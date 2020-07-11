@@ -20,6 +20,17 @@
 # if "us" in countryset:
 #     print("attended")
 
-#Dictionaries:
-#Dictionaries have a key and a value pair
-#Dictionary = {}
+# # Dictionaries:
+# # Dictionaries have a key and a value pair
+# # Dictionary = {"Key":"Value","Key2":"Value2",...}
+# countrydictionary = {}
+
+# for country in countrylist:
+#     if country in countrydictionary:
+#         countrydictionary[country] += 1
+#     else:
+#         countrydictionary[country] = 1
+
+# print(countrydictionary)
+
+
