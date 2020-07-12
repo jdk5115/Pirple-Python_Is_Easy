@@ -18,8 +18,8 @@ favSong = {
     }
 
 while(True):
-    key = int(input("What item do you want to guess?"))
-    value = int(input("what is your guess?"))
+    key = input("What item do you want to guess?")
+    value = input("what is your guess?")
 
     def guessFunc(key,value):
         if key in favSong:
