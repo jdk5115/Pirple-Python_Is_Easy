@@ -19,13 +19,17 @@ favSong = {
 
 while(True):
     key = input("What item do you want to guess?")
-    # value = input("what is your guess?")
-
+    value = input("what is your guess?")
+    print(favSong[key])
     for x in favSong:
         if key in favSong:
-            print(favSong[key])
-        else:
-            print("Please pick another item.  Your item was not found in the dictionary.")
+            if value in favSong: 
+                if favSong[key] == value:
+                    print(value)
+                    break
+            else:
+                print("Please pick another item.  Your item was not found in the dictionary.")
+                break
 
     # def guessFunc(key,value):
     #     if key in favSong:
