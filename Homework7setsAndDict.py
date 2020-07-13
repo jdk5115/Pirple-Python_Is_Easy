@@ -17,13 +17,16 @@ favSong = {
     "SalesinUSDollars":4350000.27
     }
 
-print(favSong)
+key = input("What item do you want to guess?")
+value = input("what is your guess?")
 
-# while(True):
-#     key = input("What item do you want to guess?")
-#     value = input("what is your guess?")
-    # print(favSong[key])
-   
+
+for song in favSong:
+    if key in favSong:
+        match = favSong[key]
+        print(match)
+    else:
+
 
     # for x in favSong:
     #     if key in favSong:
