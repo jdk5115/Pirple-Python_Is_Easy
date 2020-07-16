@@ -8,7 +8,7 @@
 #  | |  4
 # 01234
 
-def drawfield():
+def drawfield(field):
     for row in range(5):
         if row%2 == 0:
             for column in range(5):
@@ -25,8 +25,10 @@ def drawfield():
 player = 1
 #[Column1 [row1, row 2, row3}, Column2[Row 1, row 2, row 3]...]]
 currentfield = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+print(currentfield)
 
 while(True):
+    print("Players turn: ", player)
     moveRow = int(input("Please enter the row."))
     moveColumn = int(input("Please enter the column."))
     if player == 1:
@@ -37,3 +39,4 @@ while(True):
         # make move for player two
         currentfield[moveColumn][moveRow] = "O"
         player = 1
+    print(currentfield)
