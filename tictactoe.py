@@ -11,12 +11,15 @@
 def drawfield(field):
     for row in range(5):
         if row%2 == 0:
+            practicalRow = row/2
             for column in range(5):
+                            #0 => 0, 2 => 1, 4 => 2
                 if column%2 == 0:
+                    practicalColumn = column/2
                     if column != 4:
-                        print(" ", end="")
+                        print(field[practicalColumn][practicalRow], end="")
                     else:
-                        print(" ")
+                        print(field[practicalColumn][practicalRow])
                 else:
                     print("|", end="")
         else:
