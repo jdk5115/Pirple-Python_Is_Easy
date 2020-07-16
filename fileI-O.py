@@ -8,13 +8,16 @@ cities = ["London", "Paris", "Oshawa", "Tokyo", "LA"]
 cityfile = open("cityplaces", "w", )
 
 for spots in cities:
-    cityfile.write(spots) #needs to be a string
+    cityfile.write(spots + " \n") #needs to be a string
     
 cityfile.close()
 
 cityfile = open("cityplaces", "r")
 
-wholefile = cityfile.read()
-print(wholefile)
-print("done")
-wholefile.close()
+# wholefile = cityfile.read()
+# print(wholefile)
+# print("done")
+# wholefile.close()
+
+for line in cityfile:
+    print(line, end="hey now ")
