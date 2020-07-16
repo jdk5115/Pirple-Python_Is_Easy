@@ -23,11 +23,14 @@ def drawfield():
             print("-----")
 
 player = 1
+#[Column1 [row1, row 2, row3}, Column2[Row 1, row 2, row 3]...]]
+currentfiled = [[" ", " ", " "]], [" ", " ", " "], [" ", " ", " "]]
 
 while(True):
     moveRow = int(input("Please enter the row."))
     moveColumn = int(input("Please enter the column."))
     if player == 1:
         # make move for player 1
+        currentfield[moveColumn]]
     else:
         # make move for player two
