@@ -1,6 +1,6 @@
 #pirple I/O participant data
 
-participantNumber = 2
+participantNumber = 5
 participantData = []
 registeredparticipants = 0
 outputFile = open("participantData.txt","w")
@@ -33,6 +33,19 @@ inputFile = open("participantData.txt","r")
 inputList = []
 
 for line in inputFile:
-    
+    tempParticipant = line.strip("\n").split()
+    inputList.append(tempParticipant)
+    print(inputList)
+        # "Line 1: Jon U.S. 35 \n".strip(\n) => Jon U.S. 35
+        # "Line 1: Jon U.S. 35 \n".split() => ["Jon", "U.S.", "35"]
 
+Age = {}
+for part in inputList:
+    tempAge = int(part[-1]) #int 35
+    if tempAge in Age:
+        Age [tempAge] += 1
+    else:
+        Age[tempAge] = 1
+
+print(Age)
 inputFile.close()
