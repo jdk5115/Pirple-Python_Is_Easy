@@ -48,4 +48,8 @@ for part in inputList:
         Age[tempAge] = 1
 
 print(Age)
+
+oldest = 0
+
+
 inputFile.close()
