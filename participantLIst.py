@@ -50,10 +50,15 @@ for part in inputList:
 print(Age)
 
 oldest = 0
+youngest = 100
+
 for tempAge in Age:
     if tempAge > oldest:
         oldest = tempAge
+    if tempAge < youngest:
+        youngest = tempAge
 print(oldest)
+print(youngest)
 
 
 inputFile.close()
