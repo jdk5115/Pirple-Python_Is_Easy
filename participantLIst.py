@@ -27,3 +27,12 @@ for participant in participantData:
     outputFile.write(" \n")
 
 outputFile.close()
+
+inputFile = open("participantData.txt","r")
+
+inputList = []
+
+for line in inputFile:
+    
+
+inputFile.close()
