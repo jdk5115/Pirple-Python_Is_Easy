@@ -49,16 +49,33 @@ for part in inputList:
 
 print(Age)
 
+Countries = {}
+for part in inputList:
+    tempCountry = part[1] #int 35
+    if tempCountry in Countries:
+        Countries[tempCountry] += 1
+    else:
+        Countries[tempCountry] = 1
+print("Countries that attended",Countries)
+
 oldest = 0
 youngest = 100
+mostOccuringAge = 0
+counter = 0
 
 for tempAge in Age:
     if tempAge > oldest:
         oldest = tempAge
     if tempAge < youngest:
         youngest = tempAge
+    if Age[tempAge]>counter:
+        counter = Age[tempAge]
+        mostOccuringAge = tempAge
+
+
 print(oldest)
 print(youngest)
+print("Most Occuring age is:",mostOccuringAge,"with",counter,"participants.")
 
 
 inputFile.close()
