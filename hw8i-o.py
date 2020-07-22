@@ -1,4 +1,5 @@
 # input output homework pirple
+import os
 
 ''' 
 Details:
@@ -21,30 +22,33 @@ If the user wants to replace a single line in the file, they will then need to b
 
 fileName = input("What do you want the filename to be?") + ".txt"
 
-#if fileName Exists
-choice = input("Do you want to: \n A) Read the File \n B) Delete the file and start over \n C) Append the file \n ")
+
+if os.path.isfile(fileName):
+    choice = input("Do you want to: \n A) Read the File \n B) Delete the file and start over \n C) Append the file \n ")
 
     if choice == "A":
-        # open(fileName,"r")
-        # fileName.readlines
+        File = open(fileName, 'r') 
+        lines = File.readlines() 
+        print(lines)
+
     elif choice == "B":
-        # filename.delete??
-        # createFile = open(fileName,"w")
+        os.remove(fileName)
+        File = open(fileName,"w")
+        File.close()
+
     elif choice == "C":
+        File = open(fileName,"a")
         fileAppend = input("What would you like to add to the file?")
-        #fileName.append(fileAppend)
+        File.append(fileAppend)
     else:
         print("Please only choose either A, B, or C.")
-#else:
-    # data = input("What do you want to input into file?")
-    # open(fileName,"w")
-    # filename.write(data)
-    # filename.close()
 
+else:
+    data = input("What do you want to input into file?")
+    File = open(fileName, "w")
+    File.write(data)
+    File.close()
 
-createFile.close()
+File.close()
 
-
-
-
-print(fileName)
+print("Your file", File, "has been created!")
