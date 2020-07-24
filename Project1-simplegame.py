@@ -32,6 +32,9 @@ Assuming a 7 wide x 6 high board:
 6 |_|_|_|_|_|_|_|
 
  Possible winning combinations: 
-    Vertical: 21 solutions A-G (1-4, 2-5, 3-6)
-    Horizontal: 24 solutions 1-6 (a-d, b-e, c-f, d-g)
-    Diagional:
+    Vertical: 21 solutions [Every Column A-F (7)] [3 winning possibilities per column (1-4, 2-5, 3-6)]
+    Horizontal: 24 solutions [Every Row 1-6] [4 winning possibilities per row (A-D, B-E, C-G, D-F]
+    Diagional - Left to Right: 12 solutions - starting from top to bottom [[A-D (1-4, 2-5, 3-6)], [B-E (1-4, 2-5, 3-6)], [C-F (1-4, 2-5, 3-6)], [D-G (1-4, 2-5, 3-6)]]
+    Diagional - Right to Left: 12 solutions - starting from top to bottom [[G-D (1-4, 2-5, 3-6)], [F-C (1-4, 2-5, 3-6)], [E-B (1-4, 2-5, 3-6)], [D-A (1-4, 2-5, 3-6)]]
+
+    '''
