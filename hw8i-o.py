@@ -1,4 +1,5 @@
 # input output homework pirple
+#Not sure where they talked about checking if a file exists in the training, but I googled it and found "import os" and just used that.
 import os
 
 ''' 
