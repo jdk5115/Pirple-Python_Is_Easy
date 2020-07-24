@@ -30,17 +30,21 @@ if os.path.isfile(fileName):
         File = open(fileName, 'r') 
         lines = File.readlines() 
         print(lines)
+        File.close()
 
     elif choice == "B":
         os.remove(fileName)
         File = open(fileName,"w")
         File.close()
+        print("The old file has been deleted and a new file has been created.")
 
     elif choice == "C":
         File = open(fileName,"a")
         Filez = [File]
         fileAppend = input("What would you like to add to the file?")
         Filez.append(fileAppend)
+        File.write(str(Filez))
+        print("Your file has been appended.")
     else:
         print("Please only choose either A, B, or C.")
 
@@ -49,7 +53,7 @@ else:
     File = open(fileName, "w")
     File.write(data)
     File.close()
+    print("Your file has been created!")
 
 File.close()
 
-print("Your file", File, "has been created!")
