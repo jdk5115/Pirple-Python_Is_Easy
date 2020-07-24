@@ -1,6 +1,6 @@
 Project #1: A Simple Game
 
-
+'''
 Details:
  
 Have you ever played "Connect 4"? It's a popular kid's game by the Hasbro company. In this project, your task is create a Connect 4 game in Python. 
@@ -20,3 +20,4 @@ Extra Credit:
 Want to try colorful pieces instead of X and O? First you'll need to figure out how to import a package like termcolor into your project. 
 We're going to cover importing later in the course, but try and see if you can figure it out on your own. Or you might be able to find unicode 
 characters to use instead, depending on what your system supports. Here's a hint: print(u'\u2B24')
+'''
