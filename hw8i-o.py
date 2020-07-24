@@ -38,8 +38,9 @@ if os.path.isfile(fileName):
 
     elif choice == "C":
         File = open(fileName,"a")
+        Filez = [File]
         fileAppend = input("What would you like to add to the file?")
-        File.append(fileAppend)
+        Filez.append(fileAppend)
     else:
         print("Please only choose either A, B, or C.")
 
