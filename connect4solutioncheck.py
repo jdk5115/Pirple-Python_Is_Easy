@@ -30,11 +30,15 @@ while (True):
                 ]
 
     print("It is player", str(player) +"'s turn.")
-    playerInput = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7."))
-    playerInput -= 1 #columns start on row 0 but player may not realize that.
-    playerSelection = gameboard[playerInput][rowHeight]]
+    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7.")) -1 #columns start on row 0 but player may not realize that.
+    playerSelection = gameboard[[columnSelection][rowHeight]]
 
-    if playerInput <= 7:
+    if columnSelection > 7:
+        #
+        # Need a way to error proof this later
+        #
+        print("Please enter a column between one and 7.") 
+        else:
         if rowHeight > 5:
             print("That column is full. Please pick another column.")
             playerInput = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7."))
@@ -62,7 +66,5 @@ while (True):
                 player = 2
             else:
                 player = 1
-    else:
-        print("Please enter a column between one and 7.")
-        continue
+
 print(gameBoard)
