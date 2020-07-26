@@ -11,32 +11,39 @@ because you never have to check up, only down.
 
 '''
 player = 1
-colHeight = [0,0,0,0,0,0,0]
+colHeight = {"col0":0,"col1":0,"col2":0,"col3":0,"col4":0,"col5":0,"col6":0}
 
-while (True):
+# gameBoard = [["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],
+#             ["","","","","",""],["","","","","",""],["","","","","",""]
+#             ]
 
-    # gameBoard = {
-    #     "col0":{"row0":"0,0","row1":"0,1","row2":"0,2","row3":"0,3","row4":"0,4","row5":"0,5"},
-    #     "col1":{"row0":"1,0","row1":"1,1","row2":"1,2","row3":"1,3","row4":"1,4","row5":"1,5"},
-    #     "col2":{"row0":"2,0","row1":"2,1","row2":"2,2","row3":"2,3","row4":"2,4","row5":"2,5"},
-    #     "col3":{"row0":"3,0","row1":"3,1","row2":"3,2","row3":"3,3","row4":"3,4","row5":"3,5"},
-    #     "col4":{"row0":"4,0","row1":"4,1","row2":"4,2","row3":"4,3","row4":"4,4","row5":"4,5"},
-    #     "col5":{"row0":"5,0","row1":"5,1","row2":"5,2","row3":"5,3","row4":"5,4","row5":"5,5"},
-    #     "col6":{"row0":"6,0","row1":"6,1","row2":"6,2","row3":"6,3","row4":"6,4","row5":"6,5"},
-    #     }
+gameBoard = {
+        "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col4":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col5":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        }
+happy = 2
+guy = gameBoard["col"+str(happy)]["colheight"]
+print(gameBoard["col"+str(happy)][str(guy)])
+gameBoard["col"+str(happy)]["colheight"]
+print(gameBoard[str(happy)]["h"+str(guy)])
 
-    gameBoard = [["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],
-                ["","","","","",""],["","","","","",""],["","","","","",""]
-                ]
+for i in gameBoard["col"+happy]:
+    
+# while (True):
 
-    print("It is player", str(player) +"'s turn.")
-    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. ")) -1 #columns start on row 0 but player may not realize that.
-    playerSelection = gameBoard[[columnSelection][colHeight[columnSelection]]]
-    playerSelection.append("X")
-    print(gameBoard)
-    print(colHeight[columnSelection])
-    newRowHeight = colHeight[columnSelection + 1]
-    print(newRowHeight)
+#     print("It is player", str(player) +"'s turn.")
+#     columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 #columns start on row 0 but player may not realize that.
+#     playerSelection = gameBoard[[columnSelection][colHeight["col"+ str(columnSelection)]]]
+#     playerSelection.append("X")
+#     print(gameBoard)
+#     print(colHeight["col"+ str(columnSelection-1\)])
+#     colHeight["col"+ str(columnSelection)] +=1
+#     print(colHeight)
     # chipHeight.append(1)
 
 #     if columnSelection > 7:
