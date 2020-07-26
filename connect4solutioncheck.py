@@ -11,7 +11,7 @@ because you never have to check up, only down.
 
 '''
 player = 1
-rowHeight = 0
+colHeight = [0,0,0,0,0,0,0]
 
 while (True):
 
@@ -25,46 +25,47 @@ while (True):
     #     "col6":{"row0":"6,0","row1":"6,1","row2":"6,2","row3":"6,3","row4":"6,4","row5":"6,5"},
     #     }
 
-    gameboard = [["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],
+    gameBoard = [["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],
                 ["","","","","",""],["","","","","",""],["","","","","",""]
                 ]
 
     print("It is player", str(player) +"'s turn.")
-    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7.")) -1 #columns start on row 0 but player may not realize that.
-    playerSelection = gameboard[[columnSelection][rowHeight]]
+    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. ")) -1 #columns start on row 0 but player may not realize that.
+    playerSelection = gameBoard[[columnSelection][colHeight[columnSelection]]]
+    playerSelection.append("X")
+    print(gameBoard)
+    print(colHeight[columnSelection])
+    newRowHeight = colHeight[columnSelection + 1]
+    print(newRowHeight)
+    # chipHeight.append(1)
 
-    if columnSelection > 7:
-        #
-        # Need a way to error proof this later
-        #
-        print("Please enter a column between one and 7.") 
-        else:
-        if rowHeight > 5:
-            print("That column is full. Please pick another column.")
-            playerInput = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7."))
-            playerInput -= 1 
-            if rowHeight > 5:
-                print("you blew it.")
-                break
-            else:
-                if player == 1:
-                    colRow = gameBoard["col" + str(playerInput)]["row"+ str(rowHeight)]
-                    print(colRow)
-                    rowHeight += 1
-                else:
+#     if columnSelection > 7:
+#         #
+#         # Need a way to error proof this later
+#         #
+#         print("Please enter a column between one and 7.") 
+#     else:
+#         if rowHeight > 5:
+#             print("That column is full. Please pick another column.")
+#         else:
+#                 if player == 1:
+#                     colRow = gameBoard["col" + str(columnSelection)]["row"+ str(rowHeight)]
+#                     print(colRow)
+#                     rowHeight += 1
+#                 else:
 
-                if player %2 == 0:
-                    player = 1
+#                 if player %2 == 0:
+#                     player = 1
 
-                else:
-                    player = 2
-        else:
-            colRow = gameBoard["col" + str(playerInput)]["row"+ str(rowHeight)]
-            print(colRow)
-            rowHeight += 1
-            if player %2 ==0:
-                player = 2
-            else:
-                player = 1
+#                 else:
+#                     player = 2
 
-print(gameBoard)
+#             colRow = gameBoard["col" + str(playerInput)]["row"+ str(rowHeight)]
+#             print(colRow)
+#             rowHeight += 1
+#             if player %2 ==0:
+#                 player = 2
+#             else:
+#                 player = 1
+
+# print(gameBoard)
