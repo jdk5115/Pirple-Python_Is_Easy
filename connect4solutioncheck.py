@@ -11,41 +11,41 @@ because you never have to check up, only down.
 
 '''
 player = 1
-#colHeight = {"col0":0,"col1":0,"col2":0,"col3":0,"col4":0,"col5":0,"col6":0}
-
-# gameBoard = [["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],
-#             ["","","","","",""],["","","","","",""],["","","","","",""]
-#             ]
+colHeight = "colheight"
 
 gameBoard = {
         "col0":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
-        "col1":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
+        "col1":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":3},
         "col2":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
         "col3":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
         "col4":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
         "col5":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
         "col6":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
         }
+rowInput = int(gameBoard["col" + str(columnSelection)][str(colHeight)])
+print(rowInput)
 
 while(True):
-    colHeight = "colheight"
-    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 #columns start on row 0 but player may not realize that.
-    
-    rowInput = gameBoard["col" + str(columnSelection)][str(colHeight)]
-    print(rowInput)
+    # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
+    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 
+
+    # Since the connect four board is filled from bottom to top, we are going to iterate on 'colheight' in each column, based on how many "chips" in col.
+    # This will tell us what row (0-5) to put the next move
+
 
     if player == 1:
         gameBoard["col" + str(columnSelection)][str(rowInput)] = "\u2B24'"
         print(gameBoard["col" + str(columnSelection)][str(rowInput)])
-        gameBoard["col" + str(columnSelection)][str(colHeight)] += 1
-        rowInput +=1
+        gameBoard["col" + str(columnSelection)][colHeight] += 1
+        # rowInput +=1
         player = 2
         print(gameBoard)
     else:
         gameBoard["col" + str(columnSelection)][("colheight")] = "\u25EF"
-        playerSelection = gameBoard["col" + str(columnSelection)][colHeight]
-        print(playerSelection)
+        # gameBoard["col" + str(columnSelection)][str(colHeight)] += 1
+        rowInput +=1
         player = 1
+        print(gameBoard["col" + str(columnSelection)][str(rowInput)])
 
 print(u'\u2B24')
 print(u'\u25EF')
@@ -99,3 +99,11 @@ print(gameBoard)
 #                 player = 1
 
 # print(gameBoard)
+
+
+
+#colHeight = {"col0":0,"col1":0,"col2":0,"col3":0,"col4":0,"col5":0,"col6":0}
+
+# gameBoard = [["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],
+#             ["","","","","",""],["","","","","",""],["","","","","",""]
+#             ]
