@@ -36,7 +36,7 @@ while(True):
     if rowInput > 5:
         print("That column is full, please select another cloumn.")
 
-    elif columnSelection >= 7 or columnSelection <= 1:
+    elif columnSelection >= 7 or columnSelection < 0:
         print("Please select an appropriate column number.")
 
     else:

@@ -57,29 +57,32 @@ Going to do everything but #6 since that will take the most time. I thought that
 #Going to re-use a lot of the code we've already learned from tic-tac-toe lesson.
 
 def drawfield(field):
-    for row in range(5):
+    for row in range(7):
         if row%2 == 0:
-            practicalRow = row
-            for column in range(8):
-                            #0 => 0, 2 => 1, 4 => 2
-                if column%2 == 0:
-                    practicalColumn = int(column/2)*2
-                    if column != 7:
-                        print(field[practicalColumn][practicalRow], end="")
-                    else:
-                        print(field[practicalColumn][practicalRow])
-                else:
-                    print("|", end="")
-        else:
-            print("-----")
+            print("-------")
 
-player = 1
+        else: 
+            print("| | | | |")
+
+#             practicalRow = row
+#             for column in range(8):
+#                             #0 => 0, 2 => 1, 4 => 2
+#                 if column%2 == 0:
+#                     practicalColumn = int(column/2)*2
+#                     if column != 7:
+#                         print(field[practicalColumn][practicalRow], end="")
+#                     else:
+#                         print(field[practicalColumn][practicalRow])
+#                 else:
+#                     print("|", end="")
+#         else:
+#             print("-----")
+
+# player = 1
 #[Column1 [row1, row 2, row3}, Column2[Row 1, row 2, row 3]...]]
-currentfield = [[" ", " ", " "," ", " ", " ",], [" ", " ", " "," ", " ", " ",],[" ", " ", " "," ", " ", " ",],
-                [" ", " ", " "," ", " ", " ",],[" ", " ", " "," ", " ", " ",],[" ", " ", " "," ", " ", " ",],
-                [" ", " ", " "," ", " ", " ",],]
-drawfield(currentfield)
-print(currentfield)
+
+# drawfield(currentfield)
+# print(currentfield)
 
 # while(True):
 #     print("Players turn: ", player)
