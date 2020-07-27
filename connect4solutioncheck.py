@@ -11,35 +11,58 @@ because you never have to check up, only down.
 
 '''
 player = 1
-colHeight = {"col0":0,"col1":0,"col2":0,"col3":0,"col4":0,"col5":0,"col6":0}
+#colHeight = {"col0":0,"col1":0,"col2":0,"col3":0,"col4":0,"col5":0,"col6":0}
 
 # gameBoard = [["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],
 #             ["","","","","",""],["","","","","",""],["","","","","",""]
 #             ]
 
 gameBoard = {
-        "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col4":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col5":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col0":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
+        "col1":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
+        "col2":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
+        "col3":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
+        "col4":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
+        "col5":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
+        "col6":{"0":0,"1":1,"2":"","3":"","4":"","5":"","colheight":0},
         }
-happy = 2
-guy = gameBoard["col"+str(happy)]["colheight"]
-print(gameBoard["col"+str(happy)][str(guy)])
-gameBoard["col"+str(happy)]["colheight"]
-print(gameBoard[str(happy)]["h"+str(guy)])
 
-for i in gameBoard["col"+happy]:
+while(True):
+    colHeight = "colheight"
+    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 #columns start on row 0 but player may not realize that.
     
-# while (True):
+    rowInput = gameBoard["col" + str(columnSelection)][str(colHeight)]
+    print(rowInput)
+
+    if player == 1:
+        gameBoard["col" + str(columnSelection)][str(rowInput)] = "\u2B24'"
+        print(gameBoard["col" + str(columnSelection)][str(rowInput)])
+        gameBoard["col" + str(columnSelection)][str(colHeight)] += 1
+        rowInput +=1
+        player = 2
+        print(gameBoard)
+    else:
+        gameBoard["col" + str(columnSelection)][("colheight")] = "\u25EF"
+        playerSelection = gameBoard["col" + str(columnSelection)][colHeight]
+        print(playerSelection)
+        player = 1
+
+print(u'\u2B24')
+print(u'\u25EF')
+print(gameBoard)
+# playerSelection.append("X")
+# happy = 2
+# guy = gameBoard["col"+str(happy)]["colheight"]
+# print(gameBoard["col"+str(happy)][str(guy)])
+# gameBoard["col"+str(happy)]["colheight"]
+# print(gameBoard[str(happy)]["h"+str(guy)])
+
+# for i in gameBoard["col"+happy]:
+    
+# # while (True):
 
 #     print("It is player", str(player) +"'s turn.")
-#     columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 #columns start on row 0 but player may not realize that.
-#     playerSelection = gameBoard[[columnSelection][colHeight["col"+ str(columnSelection)]]]
-#     playerSelection.append("X")
+
 #     print(gameBoard)
 #     print(colHeight["col"+ str(columnSelection-1\)])
 #     colHeight["col"+ str(columnSelection)] +=1
