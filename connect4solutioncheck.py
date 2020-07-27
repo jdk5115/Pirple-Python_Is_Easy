@@ -32,8 +32,13 @@ while(True):
     # Since the connect four board is filled from bottom to top, we are going to iterate on 'colheight' in each column, based on how many "chips" in col.
     # This will tell us what row (0-5) to put the next move
     rowInput = int(gameBoard["col" + str(columnSelection)][colHeight])
+
     if rowInput > 5:
         print("That column is full, please select another cloumn.")
+
+    elif columnSelection >= 7 or columnSelection <= 1:
+        print("Please select an appropriate column number.")
+
     else:
         if player == 1:
             gameBoard["col" + str(columnSelection)][str(rowInput)] = "\u2B24'"
