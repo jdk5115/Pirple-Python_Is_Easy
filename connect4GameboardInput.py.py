@@ -1,3 +1,5 @@
+import sys
+from termcolor import colored, cprint
 
 '''
 How to check for solutions in connect 4:
@@ -41,12 +43,12 @@ while(True):
 
     else:
         if player == 1:
-            gameBoard["col" + str(columnSelection)][str(rowInput)] = "\u2B24'"
+            gameBoard["col" + str(columnSelection)][str(rowInput)] = '\u2B24'
             print(gameBoard["col" + str(columnSelection)][str(rowInput)])
             gameBoard["col" + str(columnSelection)][colHeight] += 1
             rowInput +=1
             player = 2
-            print(gameBoard)
+            print(gameBoard)   
 
         elif player == 2:
             gameBoard["col" + str(columnSelection)][str(rowInput)] = "\u25EF"
@@ -55,14 +57,20 @@ while(True):
             rowInput += 1
             player = 1
             print(gameBoard)
+            
+# Print red and yellow dots. Don't think they will fit into dictionaries but saving this code. 
+# Maybe I can color them on the way out when printing to gameboard?
+    # print_yellow_dot = lambda x: cprint(x, 'yellow')
+    # print_yellow_dot(u'\u2B24') 
+    # print_red_dot = lambda x: cprint(x, 'red')
+    # print_red_dot(u'\u2B24')
 
-print(u'\u2B24')
-print(u'\u25EF')
 print(gameBoard)
 
 # playerSelection.append("X")
 # happy = 2
 # guy = gameBoard["col"+str(happy)]["colheight"]
+
 # print(gameBoard["col"+str(happy)][str(guy)])
 # gameBoard["col"+str(happy)]["colheight"]
 # print(gameBoard[str(happy)]["h"+str(guy)])
