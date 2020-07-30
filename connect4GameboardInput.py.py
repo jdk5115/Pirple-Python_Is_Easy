@@ -12,52 +12,84 @@ I am going to start out checking for vertical solutions because I think that is 
 because you never have to check up, only down.
 
 '''
-player = 1
-colHeight = "colheight"
+# player = 1
+# colHeight = "colheight"
 
-gameBoard = {
-        "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col4":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col5":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        }
-rowInput = 0
+# gameBoard = {
+#         "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+#         "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+#         "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+#         "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+#         "col4":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+#         "col5":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+#         "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+#         }
+# rowInput = 0
     
-while(True):
-    # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
-    print("It is player", str(player) +"'s turn.")
-    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 
+# while(True):
+#     # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
+#     print("It is player", str(player) +"'s turn.")
+#     columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 
 
     # Since the connect four board is filled from bottom to top, we are going to iterate on 'colheight' in each column, based on how many "chips" in col.
     # This will tell us what row (0-5) to put the next move
-    rowInput = int(gameBoard["col" + str(columnSelection)][colHeight])
+    # rowInput = int(gameBoard["col" + str(columnSelection)][colHeight])
 
-    if rowInput > 5:
-        print("That column is full, please select another cloumn.")
+    # if rowInput > 5:
+    #     print("That column is full, please select another cloumn.")
 
-    elif columnSelection >= 7 or columnSelection < 0:
-        print("Please select an appropriate column number.")
+    # elif columnSelection >= 7 or columnSelection < 0:
+    #     print("Please select an appropriate column number.")
 
-    else:
-        if player == 1:
-            gameBoard["col" + str(columnSelection)][str(rowInput)] = '\u2B24'
-            print(gameBoard["col" + str(columnSelection)][str(rowInput)])
-            gameBoard["col" + str(columnSelection)][colHeight] += 1
-            rowInput +=1
-            player = 2
-            print(gameBoard)   
+    # else:
+    #     if player == 1:
+    #         gameBoard["col" + str(columnSelection)][str(rowInput)] = '\u2B24'
+    #         print(gameBoard["col" + str(columnSelection)][str(rowInput)])
+    #         gameBoard["col" + str(columnSelection)][colHeight] += 1
+    #         rowInput +=1
+    #         player = 2
+    #         print(gameBoard)   
 
-        elif player == 2:
-            gameBoard["col" + str(columnSelection)][str(rowInput)] = "\u25EF"
-            print(gameBoard["col" + str(columnSelection)][str(rowInput)])
-            gameBoard["col" + str(columnSelection)][colHeight] += 1
-            rowInput += 1
-            player = 1
-            print(gameBoard)
-            
+    #     elif player == 2:
+    #         gameBoard["col" + str(columnSelection)][str(rowInput)] = "\u25EF"
+    #         print(gameBoard["col" + str(columnSelection)][str(rowInput)])
+    #         gameBoard["col" + str(columnSelection)][colHeight] += 1
+    #         rowInput += 1
+    #         player = 1
+    #         print(gameBoard)
+
+
+#this function draws grid
+def func1(row,column):
+# multiplying rows and columns by 2 to account for lines. 
+# number of rows and columns will be actual boxes to places x's and o's
+    print(" ---------------")
+    row = row*2
+    column = (column*2)
+    for r in range(row + 1):
+        if r%2 == 0:
+            for c in range(column):
+                if c%2 == 1:
+                    if c < column-1:
+                        print("|", end="")
+                    elif c == column-1:
+                        print("|")
+                else:
+                    if c <= column:
+                        print(" ",end="")
+                    elif c == column:
+
+                        print(" ")
+        else:
+            if r == row-1:
+                break
+            else:
+                print(" " + "-"*(column-1))
+    print(" ---------------")
+
+
+func1(6,8)
+
 # Print red and yellow dots. Don't think they will fit into dictionaries but saving this code. 
 # Maybe I can color them on the way out when printing to gameboard?
     # print_yellow_dot = lambda x: cprint(x, 'yellow')
@@ -65,7 +97,7 @@ while(True):
     # print_red_dot = lambda x: cprint(x, 'red')
     # print_red_dot(u'\u2B24')
 
-print(gameBoard)
+# print(gameBoard)
 
 # playerSelection.append("X")
 # happy = 2

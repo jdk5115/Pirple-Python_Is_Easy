@@ -16,14 +16,14 @@ def func1(row,column):
 
         row = row*2
         column = (column*2)
-        for r in range(row):
+        for r in range(row + 1):
             if r%2 == 0:
                 for c in range(column):
                     if c%2 == 1:
                         if c < column-1:
                             print("|", end="")
                         elif c == column-1:
-                            print(" ")
+                            print("|")
                     else:
                         if c <= column:
                             print(" ",end="")
@@ -33,7 +33,7 @@ def func1(row,column):
                 if r == row-1:
                     break
                 else:
-                    print("-"*(column-1))
+                    print(" " + "-"*(column-1))
 
 
-func1(9,60)
+func1(6,8)
