@@ -16,13 +16,13 @@ because you never have to check up, only down.
 # colHeight = "colheight"
 
 gameBoard = {
-        "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col4":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col5":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col0":{"0":"x","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col1":{"0":"","1":"x","2":"","3":"","4":"","5":"","colheight":0},
+        "col2":{"0":"","1":"","2":"x","3":"","4":"","5":"","colheight":0},
+        "col3":{"0":"","1":"","2":"","3":"x","4":"","5":"","colheight":0},
+        "col4":{"0":"","1":"","2":"","3":"","4":"x","5":"","colheight":0},
+        "col5":{"0":"","1":"","2":"","3":"","4":"","5":"x","colheight":0},
+        "col6":{"0":"","1":"","2":"","3":"","4":"x","5":"","colheight":0},
         }
 rowInput = 0
     
@@ -79,7 +79,11 @@ def func1(row,column):
                         print(" ")
                     elif c <= column:
                         if c/2 <= 6:
-                            print(gameBoard["col" + str(int(c/2))][str(int(r/2))],end="")
+                            square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
+                            if square == "":
+                                print(" ", end = "")
+                            else:
+                                print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))],end="")
                     elif c == column:
                         print(" ")
         else:
