@@ -70,10 +70,14 @@ def func1(row,column):
         if r%2 == 0:
             for c in range(column):
                 if c%2 == 1:
-                    if c < column-1:
+                    if c < column - 1:
                         print("|", end="")
-                    elif c == column-1:
-                        print("|")
+                    elif c == column - 1:
+                        square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
+                        if square == "":
+                            print(" |")
+                        else:
+                            print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))],end="")
                 else:
                     if c == 0:
                         print(" ")
