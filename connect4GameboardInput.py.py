@@ -63,7 +63,7 @@ rowInput = 0
 def func1(row,column):
 # multiplying rows and columns by 2 to account for lines. 
 # number of rows and columns will be actual boxes to places x's and o's
-    print(" ---------------")
+    print(" --------------")
     row = row*2
     column = (column*2)
     for r in range(row + 1):
@@ -78,15 +78,16 @@ def func1(row,column):
                     if c == 0:
                         print(" ")
                     elif c <= column:
-                        print("X",end="")
+                        if c/2 <= 6:
+                            print(gameBoard["col" + str(int(c/2))][str(int(r/2))],end="")
                     elif c == column:
                         print(" ")
         else:
             if r == row-1:
                 break
             else:
-                print(" " + "-"*(column-1))
-    print(" ---------------")
+                print("-"*(column-1))
+    print("---------------")
 
 
 func1(6,8)
