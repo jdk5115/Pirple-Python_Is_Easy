@@ -15,16 +15,16 @@ because you never have to check up, only down.
 # player = 1
 # colHeight = "colheight"
 
-# gameBoard = {
-#         "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-#         "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-#         "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-#         "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-#         "col4":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-#         "col5":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-#         "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
-#         }
-# rowInput = 0
+gameBoard = {
+        "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col4":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col5":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        }
+rowInput = 0
     
 # while(True):
 #     # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
@@ -75,10 +75,11 @@ def func1(row,column):
                     elif c == column-1:
                         print("|")
                 else:
-                    if c <= column:
-                        print(" ",end="")
+                    if c == 0:
+                        print(" ")
+                    elif c <= column:
+                        print("X",end="")
                     elif c == column:
-
                         print(" ")
         else:
             if r == row-1:
