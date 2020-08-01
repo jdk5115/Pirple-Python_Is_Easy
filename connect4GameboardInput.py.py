@@ -76,9 +76,9 @@ def func1(row,column):
                         if c < 8:
                             square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
                             if square == "":
-                                print(" |",end="")
+                                print(" |")
                             else:
-                                print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))],end="")
+                                print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))])
                     elif c == column:
                         print("potatoe")
                 else:
@@ -97,8 +97,9 @@ def func1(row,column):
             if r == row-1:
                 break
             else:
-                print("-"*(column-1),end="")
-    print("---------------")
+                print("\n")
+                print("-"*(column-2),end="")
+    print("\n---------------")
 
 
 func1(6,8)
