@@ -90,6 +90,8 @@ def func1(row,column):
                             if square == "":
                                 print(" ", end = "")
                             else:
+                                # if square == "x":
+                                   #  print('\u2B24')
                                 print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))],end="")
                     elif c == column:
                         print(" ")
