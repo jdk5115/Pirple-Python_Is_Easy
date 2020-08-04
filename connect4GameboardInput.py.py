@@ -63,7 +63,7 @@ rowInput = 0
 def func1(row,column):
 # multiplying rows and columns by 2 to account for lines. 
 # number of rows and columns will be actual boxes to places x's and o's
-    print(" --------------")
+    print("--------------")
     row = row*2
     column = (column*2)
     for r in range(0,row + 1):
