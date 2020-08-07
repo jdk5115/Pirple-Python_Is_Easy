@@ -17,12 +17,12 @@ because you never have to check up, only down.
 
 gameBoard = {
         "col0":{"0":"x","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col1":{"0":"","1":"x","2":"","3":"","4":"","5":"","colheight":0},
-        "col2":{"0":"2","1":"","2":"x","3":"","4":"","5":"","colheight":0},
-        "col3":{"0":"","1":"","2":"","3":"x","4":"","5":"","colheight":0},
+        "col1":{"0":"","1":"x","2":"","3":"o","4":"","5":"","colheight":0},
+        "col2":{"0":"2","1":"","2":"x","3":"","4":"","5":"o","colheight":0},
+        "col3":{"0":"","1":"o","2":"","3":"x","4":"o","5":"","colheight":0},
         "col4":{"0":"","1":"d","2":"","3":"","4":"x","5":"","colheight":0},
-        "col5":{"0":"","1":"","2":"v","3":"","4":"","5":"x","colheight":0},
-        "col6":{"0":"","1":"","2":"","3":"","4":"x","5":"","colheight":0},
+        "col5":{"0":"","1":"o","2":"v","3":"","4":"","5":"x","colheight":0},
+        "col6":{"0":"o","1":"","2":"","3":"","4":"x","5":"","colheight":0},
         }
 rowInput = 0
     
@@ -63,7 +63,7 @@ rowInput = 0
 def func1(row,column):
 # multiplying rows and columns by 2 to account for lines. 
 # number of rows and columns will be actual boxes to places x's and o's
-    print("--------------")
+    print("-------------------")
     row = row*2
     column = (column*2)
     for r in range(0,row + 1):
@@ -71,7 +71,7 @@ def func1(row,column):
             for c in range(0,column+1):
                 if c%2 == 1:
                     if c < column - 1:
-                        print("|", end="")
+                        print(" |", end="")
                     elif c == column - 1:
                         if c < 8:
                             square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
@@ -92,6 +92,8 @@ def func1(row,column):
                             else:
                                 if square == "x":
                                     print('\u2B24',end="")
+                                elif square == "o":
+                                    print('\u25EF',end="")
                                 #print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))],end="")
                     elif c == column:
                         print(" ")
@@ -100,8 +102,8 @@ def func1(row,column):
                 break
             else:
                 print("\n")
-                print("-"*(column-2),end="")
-    print("\n---------------")
+                print("-"*(column+4),end="")
+    print("\n--------------------")
 
 
 func1(6,8)
