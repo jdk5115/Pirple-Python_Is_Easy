@@ -106,3 +106,24 @@ while(True):
             print(gameBoard)
     func1(6,8)
 
+# Check for winner
+# Going to do this in 4 section - horizontal, vertical, diagonal right and diagonal left
+'''Possible winning combinations: 
+    Vertical: 21 solutions [Every Column A-F (7)] [3 winning possibilities per column (1-4, 2-5, 3-6)]
+    Horizontal: 24 solutions [Every Row 1-6] [4 winning possibilities per row (A-D, B-E, C-G, D-F]
+    Diagonal - Left to Right: 12 solutions - starting from top to bottom [[A-D (1-4, 2-5, 3-6)], [B-E (1-4, 2-5, 3-6)], [C-F (1-4, 2-5, 3-6)], [D-G (1-4, 2-5, 3-6)]]
+    Diagonal - Right to Left: 12 solutions - starting from top to bottom [[G-D (1-4, 2-5, 3-6)], [F-C (1-4, 2-5, 3-6)], [E-B (1-4, 2-5, 3-6)], [D-A (1-4, 2-5, 3-6)]]
+'''
+def checkForWinner():
+    # Horizontal
+
+    # Vertical
+        if colHeight >= 4:
+            if gameBoard["col" + str(columnSelection)][str(rowInput)]
+        else:
+            break
+
+    # Diagonal Right
+
+    # Diagonal Left
+
