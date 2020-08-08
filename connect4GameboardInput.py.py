@@ -12,51 +12,51 @@ I am going to start out checking for vertical solutions because I think that is 
 because you never have to check up, only down.
 
 '''
-# player = 1
-# colHeight = "colheight"
+player = 1
+colHeight = "colheight"
 
 gameBoard = {
-        "col0":{"0":"x","1":"","2":"","3":"","4":"","5":"","colheight":0},
-        "col1":{"0":"","1":"x","2":"","3":"o","4":"","5":"","colheight":0},
-        "col2":{"0":"2","1":"","2":"x","3":"","4":"","5":"o","colheight":0},
-        "col3":{"0":"","1":"o","2":"","3":"x","4":"o","5":"","colheight":0},
-        "col4":{"0":"","1":"d","2":"","3":"","4":"x","5":"","colheight":0},
-        "col5":{"0":"","1":"o","2":"v","3":"","4":"","5":"x","colheight":0},
-        "col6":{"0":"o","1":"","2":"","3":"","4":"x","5":"","colheight":0},
+        "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col4":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col5":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
         }
 rowInput = 0
     
-# while(True):
-#     # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
-#     print("It is player", str(player) +"'s turn.")
-#     columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 
+while(True):
+    # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
+    print("It is player", str(player) +"'s turn.")
+    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 
 
     # Since the connect four board is filled from bottom to top, we are going to iterate on 'colheight' in each column, based on how many "chips" in col.
     # This will tell us what row (0-5) to put the next move
-    # rowInput = int(gameBoard["col" + str(columnSelection)][colHeight])
+    rowInput = int(gameBoard["col" + str(columnSelection)][colHeight])
 
-    # if rowInput > 5:
-    #     print("That column is full, please select another cloumn.")
+    if rowInput > 5:
+        print("That column is full, please select another cloumn.")
 
-    # elif columnSelection >= 7 or columnSelection < 0:
-    #     print("Please select an appropriate column number.")
+    elif columnSelection >= 7 or columnSelection < 0:
+        print("Please select an appropriate column number.")
 
-    # else:
-    #     if player == 1:
-    #         gameBoard["col" + str(columnSelection)][str(rowInput)] = '\u2B24'
-    #         print(gameBoard["col" + str(columnSelection)][str(rowInput)])
-    #         gameBoard["col" + str(columnSelection)][colHeight] += 1
-    #         rowInput +=1
-    #         player = 2
-    #         print(gameBoard)   
+    else:
+        if player == 1:
+            gameBoard["col" + str(columnSelection)][str(rowInput)] = 'X'
+            print(gameBoard["col" + str(columnSelection)][str(rowInput)])
+            gameBoard["col" + str(columnSelection)][colHeight] += 1
+            rowInput +=1
+            player = 2
+            print(gameBoard)   
 
-    #     elif player == 2:
-    #         gameBoard["col" + str(columnSelection)][str(rowInput)] = "\u25EF"
-    #         print(gameBoard["col" + str(columnSelection)][str(rowInput)])
-    #         gameBoard["col" + str(columnSelection)][colHeight] += 1
-    #         rowInput += 1
-    #         player = 1
-    #         print(gameBoard)
+        elif player == 2:
+            gameBoard["col" + str(columnSelection)][str(rowInput)] = 'O'
+            print(gameBoard["col" + str(columnSelection)][str(rowInput)])
+            gameBoard["col" + str(columnSelection)][colHeight] += 1
+            rowInput += 1
+            player = 1
+            print(gameBoard)
 
 
 #this function draws grid
