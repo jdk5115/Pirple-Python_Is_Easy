@@ -91,15 +91,14 @@ while(True):
     else:
         if player == 1:
             gameBoard["col" + str(columnSelection)][str(rowInput)] = 'X'
-            print(gameBoard["col" + str(columnSelection)][str(rowInput)])
             gameBoard["col" + str(columnSelection)][colHeight] += 1
             rowInput +=1
             player = 2
+            
             print(gameBoard)   
 
         elif player == 2:
             gameBoard["col" + str(columnSelection)][str(rowInput)] = 'O'
-            print(gameBoard["col" + str(columnSelection)][str(rowInput)])
             gameBoard["col" + str(columnSelection)][colHeight] += 1
             rowInput += 1
             player = 1
@@ -115,13 +114,24 @@ while(True):
     Diagonal - Right to Left: 12 solutions - starting from top to bottom [[G-D (1-4, 2-5, 3-6)], [F-C (1-4, 2-5, 3-6)], [E-B (1-4, 2-5, 3-6)], [D-A (1-4, 2-5, 3-6)]]
 '''
 def checkForWinner():
-    # Horizontal
+    winnerx = 0
+    winnero = 0
+    # Vertical - The most simplistic because we are only checking one column
+    while (winnerx < 4 and winnero < 4):
+        for i in gameboard["col" + str(columnSelection)]:
+            if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X":
+                winnerx += 1
+                if winnerx == 4:
+                    print("winner winner chicken dinner.")
+            elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O":
+                winnerx += 1
+                if winnerx == 4:
+                    print("wAYNER wAYNER chacken dAYNER.")
+                
+            
 
-    # Vertical
-        if colHeight >= 4:
-            if gameBoard["col" + str(columnSelection)][str(rowInput)]
-        else:
-            break
+    # I am going to try and group the columns together here since they will all need one of the same column combinations 1-4, 2-5, 3-5, 4-7
+    # Horizontal
 
     # Diagonal Right
 
