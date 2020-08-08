@@ -25,7 +25,53 @@ gameBoard = {
         "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
         }
 rowInput = 0
-    
+
+#this function draws grid
+# multiplying rows and columns by 2 to account for lines. 
+# number of rows and columns will be actual boxes to places x's and o's
+# X's and O's will be converted to circles later, hopefully in color
+def func1(row,column):
+
+    print(" -------------------")
+    row = row*2
+    column = (column*2)
+    for r in range(0,row + 1):
+        if r%2 == 0:
+            for c in range(0,column+1):
+                if c%2 == 1:
+                    if c < column - 1:
+                        print(" |", end="")
+                    elif c == column - 1:
+                        if c < 8:
+                            square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
+                            if square == "":
+                                print(" |")
+                            else:
+                                print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))])
+                else:
+                    if c == 0:
+                        print(" ")
+                    elif c <= column:
+                        if c/2 <= 6:
+                            square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
+                            if square == "":
+                                print(" ", end = "")
+                            else:
+                                if square == "X":
+                                    print('\u2B24',end="")
+                                elif square == "O":
+                                    print('\u25EF',end="")
+                                #print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))],end="")
+                    elif c == column:
+                        print(" ")
+        else:
+            if r == row-1:
+                break
+            else:
+                print("\n")
+                print("-"*(column+4),end="")
+    print("\n--------------------")
+
 while(True):
     # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
     print("It is player", str(player) +"'s turn.")
@@ -57,53 +103,10 @@ while(True):
             rowInput += 1
             player = 1
             print(gameBoard)
+    func1(6,9)
 
 
-#this function draws grid
-def func1(row,column):
-# multiplying rows and columns by 2 to account for lines. 
-# number of rows and columns will be actual boxes to places x's and o's
-    print("-------------------")
-    row = row*2
-    column = (column*2)
-    for r in range(0,row + 1):
-        if r%2 == 0:
-            for c in range(0,column+1):
-                if c%2 == 1:
-                    if c < column - 1:
-                        print(" |", end="")
-                    elif c == column - 1:
-                        if c < 8:
-                            square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
-                            if square == "":
-                                print(" |")
-                            else:
-                                print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))])
-                    elif c == column:
-                        print("potatoe")
-                else:
-                    if c == 0:
-                        print(" ")
-                    elif c <= column:
-                        if c/2 <= 6:
-                            square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
-                            if square == "":
-                                print(" ", end = "")
-                            else:
-                                if square == "x":
-                                    print('\u2B24',end="")
-                                elif square == "o":
-                                    print('\u25EF',end="")
-                                #print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))],end="")
-                    elif c == column:
-                        print(" ")
-        else:
-            if r == row-1:
-                break
-            else:
-                print("\n")
-                print("-"*(column+4),end="")
-    print("\n--------------------")
+
 
 
 func1(6,8)
