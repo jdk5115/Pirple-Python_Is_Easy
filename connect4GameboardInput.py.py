@@ -14,6 +14,9 @@ because you never have to check up, only down.
 '''
 player = 1
 colHeight = "colheight"
+print_yellow_dot = lambda x: cprint(x, 'yellow',end="")
+print_red_dot = lambda x: cprint(x, 'red',end="")
+
 
 gameBoard = {
         "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
@@ -26,16 +29,17 @@ gameBoard = {
         }
 rowInput = 0
 
-#this function draws grid
+#
+# this function draws grid
 # multiplying rows and columns by 2 to account for lines. 
-# number of rows and columns will be actual boxes to places x's and o's
-# X's and O's will be converted to circles later, hopefully in color
+# number of rows and columns will be actual boxes to place red and yellow circles
+# Note - red and yellow dots don't render well on half a screen for some reason?  Used cprint
 def func1(row,column):
 
     print("----------------------")
     row = row*2
     column = (column*2)
-    for r in range(0,row + 1):
+    for r in range(0,row+1):
         if r%2 == 0:
             for c in range(0,column+1):
                 if c%2 == 1:
@@ -57,9 +61,10 @@ def func1(row,column):
                             print(" ", end = "")
                         else:
                             if square == "X":
-                                print('\u2B24',end="")
+                                print_yellow_dot(u'\u2B24')
                             elif square == "O":
-                                print('\u25EF',end="")
+                                print_red_dot(u'\u2B24')
+
         else:
             if r == row-1:
                 break
@@ -68,6 +73,7 @@ def func1(row,column):
                 print("-"*(column+6))
     print("\n----------------------")
 
+# This loop will initiate the game and continue to alternate turns between players until someone wins.
 while(True):
     # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
     print("It is player", str(player) +"'s turn.")
@@ -101,76 +107,3 @@ while(True):
             print(gameBoard)
     func1(6,8)
 
-
-
-
-
-func1(6,8)
-
-# Print red and yellow dots. Don't think they will fit into dictionaries but saving this code. 
-# Maybe I can color them on the way out when printing to gameboard?
-    # print_yellow_dot = lambda x: cprint(x, 'yellow')
-    # print_yellow_dot(u'\u2B24') 
-    # print_red_dot = lambda x: cprint(x, 'red')
-    # print_red_dot(u'\u2B24')
-
-# print(gameBoard)
-
-# playerSelection.append("X")
-# happy = 2
-# guy = gameBoard["col"+str(happy)]["colheight"]
-
-# print(gameBoard["col"+str(happy)][str(guy)])
-# gameBoard["col"+str(happy)]["colheight"]
-# print(gameBoard[str(happy)]["h"+str(guy)])
-
-# for i in gameBoard["col"+happy]:
-    
-# # while (True):
-
-#     print("It is player", str(player) +"'s turn.")
-
-#     print(gameBoard)
-#     print(colHeight["col"+ str(columnSelection-1\)])
-#     colHeight["col"+ str(columnSelection)] +=1
-#     print(colHeight)
-    # chipHeight.append(1)
-
-#     if columnSelection > 7:
-#         #
-#         # Need a way to error proof this later
-#         #
-#         print("Please enter a column between one and 7.") 
-#     else:
-#         if rowHeight > 5:
-#             print("That column is full. Please pick another column.")
-#         else:
-#                 if player == 1:
-#                     colRow = gameBoard["col" + str(columnSelection)]["row"+ str(rowHeight)]
-#                     print(colRow)
-#                     rowHeight += 1
-#                 else:
-
-#                 if player %2 == 0:
-#                     player = 1
-
-#                 else:
-#                     player = 2
-
-#             colRow = gameBoard["col" + str(playerInput)]["row"+ str(rowHeight)]
-#             print(colRow)
-#             rowHeight += 1
-#             if player %2 ==0:
-#                 player = 2
-#             else:
-#                 player = 1
-
-# print(gameBoard)
-
-
-
-#colHeight = {"col0":0,"col1":0,"col2":0,"col3":0,"col4":0,"col5":0,"col6":0}
-
-# gameBoard = [["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],
-#             ["","","","","",""],["","","","","",""],["","","","","",""]
-#             ]
