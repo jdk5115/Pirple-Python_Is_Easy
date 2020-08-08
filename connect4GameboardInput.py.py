@@ -32,7 +32,7 @@ rowInput = 0
 # X's and O's will be converted to circles later, hopefully in color
 def func1(row,column):
 
-    print(" -------------------")
+    print("----------------------")
     row = row*2
     column = (column*2)
     for r in range(0,row + 1):
@@ -43,34 +43,30 @@ def func1(row,column):
                         print(" |", end="")
                     elif c == column - 1:
                         if c < 8:
-                            square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
+                            square = gameBoard["col" + str(int((c)/2))][str(int((r)/2))]
                             if square == "":
                                 print(" |")
                             else:
-                                print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))])
+                                print(gameBoard["col" + str(int((c)/2))][str(int((r)/2))])
                 else:
-                    if c == 0:
-                        print(" ")
-                    elif c <= column:
-                        if c/2 <= 6:
-                            square = gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))]
-                            if square == "":
-                                print(" ", end = "")
-                            else:
-                                if square == "X":
-                                    print('\u2B24',end="")
-                                elif square == "O":
-                                    print('\u25EF',end="")
-                                #print(gameBoard["col" + str(int((c+1)/2))][str(int((r)/2))],end="")
-                    elif c == column:
-                        print(" ")
+                    if c/2 <= 6:
+                        square = gameBoard["col" + str(int((c)/2))][str(int((r)/2))]
+                        if c == 0:
+                            print("|", end="")
+                        if square == "":
+                            print(" ", end = "")
+                        else:
+                            if square == "X":
+                                print('\u2B24',end="")
+                            elif square == "O":
+                                print('\u25EF',end="")
         else:
             if r == row-1:
                 break
             else:
                 print("\n")
-                print("-"*(column+4),end="")
-    print("\n--------------------")
+                print("-"*(column+6))
+    print("\n----------------------")
 
 while(True):
     # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
@@ -103,7 +99,7 @@ while(True):
             rowInput += 1
             player = 1
             print(gameBoard)
-    func1(6,9)
+    func1(6,8)
 
 
 
