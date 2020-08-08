@@ -42,11 +42,11 @@ Possible winning combinations:
 In total there are 69 possible winning combinations. nice.
 
 
-1. Initialize the grid
-2. Assign players (maybe pick colors?) and establish turns
-3. Gather input (column # or letter)
-4. Check column for other "dots"
-5. Redraw board with latest move
+1. Initialize the grid - Done
+2. Assign players (maybe pick colors?) and establish turns - Done
+3. Gather input (column # or letter) - Done
+4. Check column for other "dots" - Done
+5. Redraw board with latest move - Done
 6. Check to see if that was the winning move
 7. Announce winner and end game (if applicable)
 7b. Next player move
@@ -54,49 +54,4 @@ In total there are 69 possible winning combinations. nice.
 Going to do everything but #6 since that will take the most time. I thought that if I save it for last, I may come up with something clever.
 
 '''
-#Going to re-use a lot of the code we've already learned from tic-tac-toe lesson.
 
-def drawfield(field):
-    for row in range(7):
-        if row%2 == 0:
-            print("-------")
-
-        else: 
-            print("| | | | |")
-
-#             practicalRow = row
-#             for column in range(8):
-#                             #0 => 0, 2 => 1, 4 => 2
-#                 if column%2 == 0:
-#                     practicalColumn = int(column/2)*2
-#                     if column != 7:
-#                         print(field[practicalColumn][practicalRow], end="")
-#                     else:
-#                         print(field[practicalColumn][practicalRow])
-#                 else:
-#                     print("|", end="")
-#         else:
-#             print("-----")
-
-# player = 1
-#[Column1 [row1, row 2, row3}, Column2[Row 1, row 2, row 3]...]]
-
-# drawfield(currentfield)
-# print(currentfield)
-
-# while(True):
-#     print("Players turn: ", player)
-#     #  this needs to be automatica based on previous examples. moveRow = int(input("Please enter the row."))
-#     moveColumn = int(input("Please enter the column."))
-#     if player == 1:
-#         # make move for player 1
-#         if currentfield[moveColumn][moveRow] == " ":
-#             currentfield[moveColumn][moveRow] = "X"
-#             player = 2
-#     else:
-#         # make move for player two
-#         if currentfield[moveColumn][moveRow] == " ":
-#             currentfield[moveColumn][moveRow] = "O"
-#             player = 1
-#     drawfield(currentfield)
-#     print(currentfield)

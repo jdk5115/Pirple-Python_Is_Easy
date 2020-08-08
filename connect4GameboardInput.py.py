@@ -29,7 +29,6 @@ gameBoard = {
         }
 rowInput = 0
 
-#
 # this function draws grid
 # multiplying rows and columns by 2 to account for lines. 
 # number of rows and columns will be actual boxes to place red and yellow circles
