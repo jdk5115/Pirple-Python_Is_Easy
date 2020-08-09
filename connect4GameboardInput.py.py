@@ -72,6 +72,22 @@ def func1(row,column):
                 print("-"*(column+6))
     print("\n----------------------")
 
+def checkForWinner():
+    winnerx = 0
+    winnero = 0
+    testCol = gameBoard["col" + str(columnSelection)]
+    # Vertical - The most simplistic because we are only checking one column
+    while (winnerx < 4 and winnero < 4):
+        for i in testCol:
+            if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X":
+                if gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "X":
+                    if gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "X":
+                        print("winner winner chicken dinner.")
+            elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O":
+                if gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "O":
+                    if gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "O":
+                    print("wAYNER wAYNER chacken dAYNER.")
+
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
 while(True):
     # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
@@ -94,7 +110,7 @@ while(True):
             gameBoard["col" + str(columnSelection)][colHeight] += 1
             rowInput +=1
             player = 2
-            
+            checkForWinner()
             print(gameBoard)   
 
         elif player == 2:
@@ -102,6 +118,7 @@ while(True):
             gameBoard["col" + str(columnSelection)][colHeight] += 1
             rowInput += 1
             player = 1
+            checkForWinner()
             print(gameBoard)
     func1(6,8)
 
@@ -113,20 +130,7 @@ while(True):
     Diagonal - Left to Right: 12 solutions - starting from top to bottom [[A-D (1-4, 2-5, 3-6)], [B-E (1-4, 2-5, 3-6)], [C-F (1-4, 2-5, 3-6)], [D-G (1-4, 2-5, 3-6)]]
     Diagonal - Right to Left: 12 solutions - starting from top to bottom [[G-D (1-4, 2-5, 3-6)], [F-C (1-4, 2-5, 3-6)], [E-B (1-4, 2-5, 3-6)], [D-A (1-4, 2-5, 3-6)]]
 '''
-def checkForWinner():
-    winnerx = 0
-    winnero = 0
-    # Vertical - The most simplistic because we are only checking one column
-    while (winnerx < 4 and winnero < 4):
-        for i in gameboard["col" + str(columnSelection)]:
-            if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X":
-                winnerx += 1
-                if winnerx == 4:
-                    print("winner winner chicken dinner.")
-            elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O":
-                winnerx += 1
-                if winnerx == 4:
-                    print("wAYNER wAYNER chacken dAYNER.")
+
                 
             
 
