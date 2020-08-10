@@ -19,7 +19,7 @@ print_red_dot = lambda x: cprint(x, 'red',end="")
 
 
 gameBoard = {
-        "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
+        "col0":{"0":"x","1":"x","2":"o","3":"o","4":"o","5":"x","colheight":0},
         "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
         "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
         "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
@@ -72,21 +72,23 @@ def func1(row,column):
                 print("-"*(column+6))
     print("\n----------------------")
 
-def checkForWinner():
-    winnerx = 0
-    winnero = 0
+def checkForWinner(winner):
     testCol = gameBoard["col" + str(columnSelection)]
+    winner = "no one"
     # Vertical - The most simplistic because we are only checking one column
-    while (winnerx < 4 and winnero < 4):
-        for i in testCol:
-            if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X":
-                if gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "X":
-                    if gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "X":
-                        print("winner winner chicken dinner.")
-            elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O":
-                if gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "O":
-                    if gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "O":
-                    print("wAYNER wAYNER chacken dAYNER.")
+    for i in testCol:
+        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X":
+            if gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "X":
+                if gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "X":
+                    winner = "x"
+                    print(winner)
+                    return 
+        elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O":
+            if gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "O":
+                if gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "O":
+                    winner == "o"
+                    print(winner)
+                    return
 
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
 while(True):
@@ -110,7 +112,8 @@ while(True):
             gameBoard["col" + str(columnSelection)][colHeight] += 1
             rowInput +=1
             player = 2
-            checkForWinner()
+            checkForWinner(columnSelection)
+            print(checkForWinner(columnSelection))
             print(gameBoard)   
 
         elif player == 2:
@@ -118,7 +121,8 @@ while(True):
             gameBoard["col" + str(columnSelection)][colHeight] += 1
             rowInput += 1
             player = 1
-            checkForWinner()
+            checkForWinner(columnSelection)
+            print(checkForWinner(columnSelection))
             print(gameBoard)
     func1(6,8)
 
