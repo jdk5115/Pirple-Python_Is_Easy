@@ -3,14 +3,14 @@
 #TestList = ["element1","element2","element3"]
 #TestList = [0,1,2]
 
-Scores = [70,85,67.5,90,80]
+Scores = [70,[1,2,3],67.5,90,80]
 
 # #print(Scores[2:5])
 print(Scores)
 # Scores[0] = 75
 # Scores[1] = [1,2,3]
 
-# print(Scores[1][2])
+print(Scores[1][2])
 
 Scores.append(83)
 print(Scores)

@@ -33,44 +33,43 @@ rowInput = 0
 # multiplying rows and columns by 2 to account for lines. 
 # number of rows and columns will be actual boxes to place red and yellow circles
 # Note - red and yellow dots don't render well on half a screen for some reason?  Used cprint
-def func1(row,column):
+# def func1(row,column):
+    # print("----------------------")
+    # row = row*2
+    # column = (column*2)
+    # for r in range(0,row+1):
+    #     if r%2 == 0:
+    #         for c in range(0,column+1):
+    #             if c%2 == 1:
+    #                 if c < column - 1:
+    #                     print(" |", end="")
+    #                 elif c == column - 1:
+    #                     if c < 8:
+    #                         square = gameBoard["col" + str(int((c)/2))][str(int((r)/2))]
+    #                         if square == "":
+    #                             print(" |")
+    #                         else:
+    #                             print(gameBoard["col" + str(int((c)/2))][str(int((r)/2))])
+    #             else:
+    #                 if c/2 <= 6:
+    #                     square = gameBoard["col" + str(int((c)/2))][str(int((r)/2))]
+    #                     if c == 0:
+    #                         print("|", end="")
+    #                     if square == "":
+    #                         print(" ", end = "")
+    #                     else:
+    #                         if square == "X":
+    #                             print_yellow_dot(u'\u2B24')
+    #                         elif square == "O":
+    #                             print_red_dot(u'\u2B24')
 
-    print("----------------------")
-    row = row*2
-    column = (column*2)
-    for r in range(0,row+1):
-        if r%2 == 0:
-            for c in range(0,column+1):
-                if c%2 == 1:
-                    if c < column - 1:
-                        print(" |", end="")
-                    elif c == column - 1:
-                        if c < 8:
-                            square = gameBoard["col" + str(int((c)/2))][str(int((r)/2))]
-                            if square == "":
-                                print(" |")
-                            else:
-                                print(gameBoard["col" + str(int((c)/2))][str(int((r)/2))])
-                else:
-                    if c/2 <= 6:
-                        square = gameBoard["col" + str(int((c)/2))][str(int((r)/2))]
-                        if c == 0:
-                            print("|", end="")
-                        if square == "":
-                            print(" ", end = "")
-                        else:
-                            if square == "X":
-                                print_yellow_dot(u'\u2B24')
-                            elif square == "O":
-                                print_red_dot(u'\u2B24')
-
-        else:
-            if r == row-1:
-                break
-            else:
-                print("\n")
-                print("-"*(column+6))
-    print("\n----------------------")
+    #     else:
+    #         if r == row-1:
+    #             break
+    #         else:
+    #             print("\n")
+    #             print("-"*(column+6))
+    # print("\n----------------------")
 
 def checkForWinner(winner):
     testCol = gameBoard["col" + str(columnSelection)]
@@ -91,40 +90,40 @@ def checkForWinner(winner):
                     return
 
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
-while(True):
-    # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
-    print("It is player", str(player) +"'s turn.")
-    columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 
+# while(True):
+#     # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
+#     print("It is player", str(player) +"'s turn.")
+#     columnSelection = int(input("Which column do you want to place your chip? Choose 1, 2, 3, 4, 5, 6 or 7. "))-1 
 
-    # Since the connect four board is filled from bottom to top, we are going to iterate on 'colheight' in each column, based on how many "chips" in col.
-    # This will tell us what row (0-5) to put the next move
-    rowInput = int(gameBoard["col" + str(columnSelection)][colHeight])
+#     # Since the connect four board is filled from bottom to top, we are going to iterate on 'colheight' in each column, based on how many "chips" in col.
+#     # This will tell us what row (0-5) to put the next move
+#     rowInput = int(gameBoard["col" + str(columnSelection)][colHeight])
 
-    if rowInput > 5:
-        print("That column is full, please select another cloumn.")
+#     if rowInput > 5:
+#         print("That column is full, please select another cloumn.")
 
-    elif columnSelection >= 7 or columnSelection < 0:
-        print("Please select an appropriate column number.")
+#     elif columnSelection >= 7 or columnSelection < 0:
+#         print("Please select an appropriate column number.")
 
-    else:
-        if player == 1:
-            gameBoard["col" + str(columnSelection)][str(rowInput)] = 'X'
-            gameBoard["col" + str(columnSelection)][colHeight] += 1
-            rowInput +=1
-            player = 2
-            checkForWinner(columnSelection)
-            print(checkForWinner(columnSelection))
-            print(gameBoard)   
+#     else:
+#         if player == 1:
+#             gameBoard["col" + str(columnSelection)][str(rowInput)] = 'X'
+#             gameBoard["col" + str(columnSelection)][colHeight] += 1
+#             rowInput +=1
+#             player = 2
+#             checkForWinner(columnSelection)
+#             print(checkForWinner(columnSelection))
+#             print(gameBoard)   
 
-        elif player == 2:
-            gameBoard["col" + str(columnSelection)][str(rowInput)] = 'O'
-            gameBoard["col" + str(columnSelection)][colHeight] += 1
-            rowInput += 1
-            player = 1
-            checkForWinner(columnSelection)
-            print(checkForWinner(columnSelection))
-            print(gameBoard)
-    func1(6,8)
+#         elif player == 2:
+#             gameBoard["col" + str(columnSelection)][str(rowInput)] = 'O'
+#             gameBoard["col" + str(columnSelection)][colHeight] += 1
+#             rowInput += 1
+#             player = 1
+#             checkForWinner(columnSelection)
+#             print(checkForWinner(columnSelection))
+#             print(gameBoard)
+#     func1(6,8)
 
 # Check for winner
 # Going to do this in 4 section - horizontal, vertical, diagonal right and diagonal left
