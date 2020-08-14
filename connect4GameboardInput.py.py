@@ -19,7 +19,7 @@ print_red_dot = lambda x: cprint(x, 'red',end="")
 
 
 gameBoard = {
-        "col0":{"0":"x","1":"x","2":"o","3":"o","4":"o","5":"x","colheight":0},
+        "col0":{"0":"","1":"x","2":"o","3":"o","4":"o","5":"x","colheight":0},
         "col1":{"0":"","1":"","2":"","3":"","4":"o","5":"","colheight":0},
         "col2":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
         "col3":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
@@ -27,8 +27,8 @@ gameBoard = {
         "col5":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
         "col6":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
         }
-rowInput = 0
-
+rowInput = 1
+var2 = 0
 # this function draws grid
 # multiplying rows and columns by 2 to account for lines. 
 # number of rows and columns will be actual boxes to place red and yellow circles
@@ -71,23 +71,13 @@ rowInput = 0
     #             print("-"*(column+6))
     # print("\n----------------------")
 
-def checkForWinner(winner):
-    testCol = gameBoard["col" + str(columnSelection)]
-    winner = "no one"
-    # Vertical - The most simplistic because we are only checking one column
-    for i in testCol:
-        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X":
-            if gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "X":
-                if gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "X":
-                    winner = "x"
-                    print(winner)
-                    return 
-        elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O":
-            if gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "O":
-                if gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "O":
-                    winner == "o"
-                    print(winner)
-                    return
+def checkForWinner():
+    if gameBoard["col" + str(var2)][str(rowInput)] == "x":
+        print("yup")
+    else:
+        print("nape")
+
+checkForWinner()
 
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
 # while(True):
