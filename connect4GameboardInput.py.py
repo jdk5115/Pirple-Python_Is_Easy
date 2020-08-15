@@ -76,7 +76,7 @@ def checkForWinner():
         print("yup")
     else:
         print("nape")
-
+    w
 checkForWinner()
 
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
