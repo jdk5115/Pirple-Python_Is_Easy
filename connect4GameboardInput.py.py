@@ -19,7 +19,7 @@ print_red_dot = lambda x: cprint(x, 'red',end="")
 
 
 gameBoard = {
-        "col0":{"0":"","1":"x","2":"o","3":"x","4":"o","5":"x","colheight":0},
+        "col0":{"0":"x","1":"o","2":"x","3":"x","4":"x","5":"x","colheight":0},
         "col1":{"0":"","1":"","2":"","3":"","4":"o","5":"","colheight":0},
         "col2":{"0":"","1":"x","2":"","3":"","4":"","5":"","colheight":0},
         "col3":{"0":"","1":"","2":"x","3":"","4":"","5":"","colheight":0},
@@ -27,7 +27,7 @@ gameBoard = {
         "col5":{"0":"x","1":"","2":"","3":"","4":"x","5":"","colheight":0},
         "col6":{"0":"","1":"x","2":"x","3":"","4":"x","5":"","colheight":0},
         }
-rowInput = 1
+rowInput = 5
 var2 = 0
 # this function draws grid
 # multiplying rows and columns by 2 to account for lines. 
@@ -71,18 +71,21 @@ var2 = 0
     #             print("-"*(column+6))
     # print("\n----------------------")
 
-def checkForWinner():
-    if gameBoard["col" + str(var2)][str(rowInput)] == "x":
-        print("yup")
+# def checkForWinner():
+#     if gameBoard["col" + str(var2)][str(rowInput)] == "x":
+#         print("yup")
+#     else:
+#         print("nape")
+
+# checkForWinner()
+if rowInput > 3:
+    if gameBoard["col" + str(var2)][str(rowInput)] == "x" and gameBoard["col" + str(var2)][str(rowInput-1)]== "x" and gameBoard["col" + str(var2)][str(rowInput-2)]== "x" and gameBoard["col" + str(var2)][str(rowInput-3)]== "x":
+        print ("winner!")
     else:
-        print("nape")
+        print("next perper")
+else:
+    print("next player")
 
-checkForWinner()
-
-for rowInput in range(6):
-        if gameBoard["col" + str(var2)][str(rowInput)] == "x":
-            print(gameBoard["col" + str(var2)][str(rowInput)])
-            print(rowInput)
 
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
 # while(True):
