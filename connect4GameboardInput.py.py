@@ -71,13 +71,12 @@ def func1(row,column):
                 print("-"*(column+6))
     print("\n----------------------")
 
-def checkForWinner():
-    winnercheck = gameBoard["col" + str(columnSelection)][colHeight]
-    if winnercheck > 3:
-        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "x" and gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "x" and gameBoard["col" + str(columnSelection)][str(rowInput-3)]== "x":
-            print ("winner!")
+def checkForWinner(): 
+    if gameBoard["col" + str(columnSelection)][colHeight] > 3:
+        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X": # and gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-3)]== "X":
+            print (gameBoard["col" + str(columnSelection)][colHeight])
         else:
-            print("next perper")
+            print(gameBoard["col" + str(columnSelection)][colHeight])
     else:
         print("next player")
 
@@ -102,17 +101,17 @@ while(True):
         if player == 1:
             gameBoard["col" + str(columnSelection)][str(rowInput)] = 'X'
             gameBoard["col" + str(columnSelection)][colHeight] += 1
+            checkForWinner()
             rowInput +=1
             player = 2
-            checkForWinner()
             print(gameBoard)   
 
         elif player == 2:
             gameBoard["col" + str(columnSelection)][str(rowInput)] = 'O'
             gameBoard["col" + str(columnSelection)][colHeight] += 1
+            checkForWinner()           
             rowInput += 1
             player = 1
-            checkForWinner()
             print(gameBoard)
     func1(6,8)
 
