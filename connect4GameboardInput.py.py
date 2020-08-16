@@ -72,13 +72,15 @@ def func1(row,column):
     print("\n----------------------")
 
 def checkForWinner(): 
+    #Vertical Checks
     if gameBoard["col" + str(columnSelection)][colHeight] > 3:
-        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X": # and gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-3)]== "X":
-            print (gameBoard["col" + str(columnSelection)][colHeight])
-        else:
-            print(gameBoard["col" + str(columnSelection)][colHeight])
-    else:
-        print("next player")
+        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-3)]== "X":
+            print ("Player 1 is the winner!")
+            exit()
+        elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-3)]== "O":
+            print("Player 2 is the winner!")
+            exit()
+
 
 
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
