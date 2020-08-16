@@ -80,6 +80,8 @@ def checkForWinner():
         elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-3)]== "O":
             print("Player 2 is the winner!")
             exit()
+    # Horizontal Checks
+    
 
 
 
