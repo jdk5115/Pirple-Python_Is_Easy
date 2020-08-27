@@ -81,9 +81,10 @@ def checkForWinner():
             print("Player 2 is the winner!")
             exit()
     # Horizontal Checks
-    
-
-
+    if rowInput == "0":
+        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput + 1)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput + 2)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput + 3)] == "X":
+            print("nice job")
+            
 
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
 while(True):
