@@ -82,8 +82,8 @@ def checkForWinner():
 
     # Horizontal Checks
     if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X" and gameBoard["col" + str(int(columnSelection - 1))][str(rowInput)] == "X" and gameBoard["col" + str(int(columnSelection - 2))][str(rowInput)] == "X" and gameBoard["col" + str(int(columnSelection - 3))][str(rowInput)] == "X":
-        print("nice job")
-        func1()
+        print("Player 1 is the winner!")
+        func1(6,8)
         exit()
 
 
