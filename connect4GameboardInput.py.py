@@ -82,7 +82,7 @@ def checkForWinner():
             exit()
     # Horizontal Checks
     if rowInput == "0":
-        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput + 1)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput + 2)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput + 3)] == "X":
+        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection + 1)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection + 2)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection + 3)][str(rowInput)] == "X":
             print("nice job")
             
 
