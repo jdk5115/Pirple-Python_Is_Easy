@@ -17,7 +17,6 @@ colHeight = "colheight"
 print_yellow_dot = lambda x: cprint(x, 'yellow',end="")
 print_red_dot = lambda x: cprint(x, 'red',end="")
 
-
 gameBoard = {
         "col0":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
         "col1":{"0":"","1":"","2":"","3":"","4":"","5":"","colheight":0},
@@ -80,11 +79,12 @@ def checkForWinner():
         elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-3)]== "O":
             print("Player 2 is the winner!")
             exit()
+
     # Horizontal Checks
-    for rowInput in range (6):
-        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection + 1)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection + 2)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection + 3)][str(rowInput)] == "X":
-            print("nice job")
-            exit()
+    if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X" and gameBoard["col" + str(int(columnSelection - 1))][str(rowInput)] == "X" and gameBoard["col" + str(int(columnSelection - 2))][str(rowInput)] == "X" and gameBoard["col" + str(int(columnSelection - 3))][str(rowInput)] == "X":
+        print("nice job")
+        func1()
+        exit()
 
 
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
@@ -114,8 +114,8 @@ while(True):
 
         elif player == 2:
             gameBoard["col" + str(columnSelection)][str(rowInput)] = 'O'
-            gameBoard["col" + str(columnSelection)][colHeight] += 1
-            checkForWinner()           
+            gameBoard["col" + str(columnSelection)][colHeight] += 1    
+            checkForWinner()      
             rowInput += 1
             player = 1
             print(gameBoard)
