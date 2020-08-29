@@ -70,163 +70,72 @@ def func1(row,column):
                 print("-"*(column+6))
     print("\n----------------------")
 
-def checkForWinner(): 
+def checkForWinner(col): 
     #Vertical Checks
-    if gameBoard["col" + str(columnSelection)][colHeight] > 3:
-        if gameBoard["col" + str(columnSelection)][str(rowInput)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "X" and gameBoard["col" + str(columnSelection)][str(rowInput-3)]== "X":
+    if gameBoard["col" + str(col)][colHeight] > 3:
+        if gameBoard["col" + str(col)][str(rowInput)] == "X" and gameBoard["col" + str(col)][str(rowInput-1)] == "X" and gameBoard["col" + str(col)][str(rowInput-2)] == "X" and gameBoard["col" + str(col)][str(rowInput-3)]== "X":
             print ("Player 1 is the winner!")
             exit()
-        elif gameBoard["col" + str(columnSelection)][str(rowInput)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-1)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-2)] == "O" and gameBoard["col" + str(columnSelection)][str(rowInput-3)]== "O":
+        elif gameBoard["col" + str(col)][str(rowInput)] == "O" and gameBoard["col" + str(col)][str(rowInput-1)] == "O" and gameBoard["col" + str(col)][str(rowInput-2)] == "O" and gameBoard["col" + str(col)][str(rowInput-3)]== "O":
             print("Player 2 is the winner!")
             exit()
 
     # Horizontal Checks Definitely a way simplier way to do this through loops but it took me a while to come up with this, so I'm going to leave it for now.
-    if columnSelection == 0:
+    for col in range (7):
+        # checks for player 1
         if gameBoard["col" + str(0)][str(rowInput)] == "X" and gameBoard["col" + str(1)][str(rowInput)] == "X" and gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X":
             print("Player 1 is the winner!")
             func1(6,8)
             exit()
+        elif gameBoard["col" + str(1)][str(rowInput)] == "X" and gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X":
+            print("Player 1 is the winner!")
+            func1(6,8)
+            exit()
+        elif gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X":
+            print("Player 1 is the winner!")
+            func1(6,8)
+            exit()       
+        elif gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X" and gameBoard["col" + str(6)][str(rowInput)] == "X":
+            print("Player 1 is the winner!")
+            func1(6,8)
+            exit() 
+        #player 2
         if gameBoard["col" + str(0)][str(rowInput)] == "O" and gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-
-    elif columnSelection == 1:
-        if gameBoard["col" + str(1)][str(rowInput)] == "X" and gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(0)][str(rowInput)] == "X" and gameBoard["col" + str(1)][str(rowInput)] == "X" and gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(0)][str(rowInput)] == "O" and gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-
-    elif columnSelection == 2:
-        if gameBoard["col" + str(0)][str(rowInput)] == "X" and gameBoard["col" + str(1)][str(rowInput)] == "X" and gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(1)][str(rowInput)] == "X" and gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(0)][str(rowInput)] == "O" and gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O" and gameBoard["col" + str(5)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()          
-
-    elif columnSelection == 3:
-        if gameBoard["col" + str(0)][str(rowInput)] == "X" and gameBoard["col" + str(1)][str(rowInput)] == "X" and gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(1)][str(rowInput)] == "X" and gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X" and gameBoard["col" + str(6)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(0)][str(rowInput)] == "O" and gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O" and gameBoard["col" + str(5)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O" and gameBoard["col" + str(5)][str(rowInput)] == "O" and gameBoard["col" + str(6)][str(rowInput)] == "O":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-
-    elif columnSelection == 4:
-        if gameBoard["col" + str(1)][str(rowInput)] == "X" and gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X" and gameBoard["col" + str(6)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "0" and gameBoard["col" + str(3)][str(rowInput)] == "0" and gameBoard["col" + str(4)][str(rowInput)] == "0":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(2)][str(rowInput)] == "0" and gameBoard["col" + str(3)][str(rowInput)] == "0" and gameBoard["col" + str(4)][str(rowInput)] == "0" and gameBoard["col" + str(5)][str(rowInput)] == "0":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(3)][str(rowInput)] == "0" and gameBoard["col" + str(4)][str(rowInput)] == "0" and gameBoard["col" + str(5)][str(rowInput)] == "0" and gameBoard["col" + str(6)][str(rowInput)] == "0":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-
-    elif columnSelection == 5:
-        if gameBoard["col" + str(2)][str(rowInput)] == "X" and gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X" and gameBoard["col" + str(6)][str(rowInput)] == "X":
-            print("Player 1 is the winner!")
-            func1(6,8)
-            exit()
-        if gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O" and gameBoard["col" + str(5)][str(rowInput)] == "O":
             print("Player 2 is the winner!")
             func1(6,8)
             exit()
-        if gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O" and gameBoard["col" + str(5)][str(rowInput)] == "O" and gameBoard["col" + str(6)][str(rowInput)] == "O":
+        elif gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O":
             print("Player 2 is the winner!")
             func1(6,8)
             exit()
+        elif gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O" and gameBoard["col" + str(5)][str(rowInput)] == "O":
+            print("Player 2 is the winner!")
+            func1(6,8)
+            exit()       
+        elif gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O" and gameBoard["col" + str(5)][str(rowInput)] == "O" and gameBoard["col" + str(6)][str(rowInput)] == "O":
+            print("Player 2 is the winner!")
+            func1(6,8)
+            exit()   
 
-    elif columnSelection == 6:
-        if gameBoard["col" + str(3)][str(rowInput)] == "X" and gameBoard["col" + str(4)][str(rowInput)] == "X" and gameBoard["col" + str(5)][str(rowInput)] == "X" and gameBoard["col" + str(6)][str(rowInput)] == "X":
+    # Diagional checks
+    # 4 different ways for columns and rows to be arranged (++,--,-+,+-)  
+    for col in range (7):
+        if (gameBoard["col" + str(col)][str(rowInput)] == "X" and gameBoard["col" + str(col+1)][str(rowInput+1)] == "X" and gameBoard["col" + str(col+2)][str(rowInput+2)] == "X" and gameBoard["col" + str(col+3)][str(rowInput+3)] == "X" or
+            gameBoard["col" + str(col)][str(rowInput)] == "X" and gameBoard["col" + str(col-1)][str(rowInput-1)] == "X" and gameBoard["col" + str(col+1)][str(rowInput+1)] == "X" and gameBoard["col" + str(col+2)][str(rowInput+2)] == "X" or
+            gameBoard["col" + str(col)][str(rowInput)] == "X" and gameBoard["col" + str(col-2)][str(rowInput-2)] == "X" and gameBoard["col" + str(col-1)][str(rowInput-1)] == "X" and gameBoard["col" + str(col+1)][str(rowInput+1)] == "X" or
+            gameBoard["col" + str(col)][str(rowInput)] == "X" and gameBoard["col" + str(col-3)][str(rowInput-3)] == "X" and gameBoard["col" + str(col-2)][str(rowInput-2)] == "X" and gameBoard["col" + str(col-1)][str(rowInput-1)] == "X"):
             print("Player 1 is the winner!")
             func1(6,8)
-            exit()
-        if gameBoard["col" + str(3)][str(rowInput)] == "O" and gameBoard["col" + str(4)][str(rowInput)] == "O" and gameBoard["col" + str(5)][str(rowInput)] == "O" and gameBoard["col" + str(6)][str(rowInput)] == "O":
+            exit() 
+        if (gameBoard["col" + str(col)][str(rowInput)] == "O" and gameBoard["col" + str(col+1)][str(rowInput+1)] == "O" and gameBoard["col" + str(col+2)][str(rowInput+2)] == "O" and gameBoard["col" + str(col+3)][str(rowInput+3)] == "O" or
+            gameBoard["col" + str(col)][str(rowInput)] == "O" and gameBoard["col" + str(col-1)][str(rowInput-1)] == "O" and gameBoard["col" + str(col+1)][str(rowInput+1)] == "O" and gameBoard["col" + str(col+2)][str(rowInput+2)] == "O" or
+            gameBoard["col" + str(col)][str(rowInput)] == "O" and gameBoard["col" + str(col-2)][str(rowInput-2)] == "O" and gameBoard["col" + str(col-1)][str(rowInput-1)] == "O" and gameBoard["col" + str(col+1)][str(rowInput+1)] == "O" or
+            gameBoard["col" + str(col)][str(rowInput)] == "O" and gameBoard["col" + str(col-3)][str(rowInput-3)] == "O" and gameBoard["col" + str(col-2)][str(rowInput-2)] == "O" and gameBoard["col" + str(col-1)][str(rowInput-1)] == "O"):
             print("Player 2 is the winner!")
             func1(6,8)
-            exit()
-    else:
-        print("nah") 
+            exit() 
 
-
-
+    
 # This loop will initiate the game and continue to alternate turns between players until someone wins.
 while(True):
     # columns start on row 0 but player may not realize that so making them 1-7 for user instead of 0-6.
@@ -247,15 +156,15 @@ while(True):
         if player == 1:
             gameBoard["col" + str(columnSelection)][str(rowInput)] = 'X'
             gameBoard["col" + str(columnSelection)][colHeight] += 1
-            checkForWinner()
+            checkForWinner(columnSelection)
             rowInput +=1
             player = 2
             print(gameBoard)   
 
         elif player == 2:
-            gameBoard["col" + str(columnSelection)][str(rowInput)] = 'O'
-            gameBoard["col" + str(columnSelection)][colHeight] += 1    
-            checkForWinner()      
+            gameBoard["col" + str(columnSelection)][str(rowInput)] = 'O'   
+            gameBoard["col" + str(columnSelection)][colHeight] += 1       
+            checkForWinner(columnSelection)
             rowInput += 1
             player = 1
             print(gameBoard)
