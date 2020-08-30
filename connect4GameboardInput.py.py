@@ -99,6 +99,7 @@ def checkForWinner(col):
             print("Player 1 is the winner!")
             func1(6,8)
             exit() 
+            
         #player 2
         if gameBoard["col" + str(0)][str(rowInput)] == "O" and gameBoard["col" + str(1)][str(rowInput)] == "O" and gameBoard["col" + str(2)][str(rowInput)] == "O" and gameBoard["col" + str(3)][str(rowInput)] == "O":
             print("Player 2 is the winner!")
