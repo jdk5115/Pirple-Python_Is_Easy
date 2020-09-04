@@ -9,4 +9,27 @@
 #         Action(s)
 
 class Team:
-    def __in__(self):)
+    def __init__(self):
+        self.TeamName = "NaN"
+        self.TeamOrigin = "NaNe"
+
+    def defineTeamName(self, Name):
+        self.TeamName = Name
+
+    def defineteamorigin(self, Origin):
+        self.TeamOrigin = Origin
+
+Team1 = Team()
+
+print(Team1.TeamName)
+
+Team1.defineTeamName("Tigers")
+
+print(Team1.TeamName)
+
+print(Team1.TeamOrigin)
+
+Team1.defineteamorigin("CHICAGO")
+
+print(Team1.TeamOrigin)
+
