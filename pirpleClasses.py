@@ -19,11 +19,13 @@ class Team:
     def defineteamorigin(self, Origin):
         self.TeamOrigin = Origin
 
-Team1 = Team()
+Team1 = Team("Tigers", "Chicago")
+
+Team2 = Team("Hawks","New York")
 
 print(Team1.TeamName)
 
-Team1.defineTeamName("Tigers")
+Team1.defineTeamName("Dolphins")
 
 print(Team1.TeamName)
 
@@ -32,4 +34,5 @@ print(Team1.TeamOrigin)
 Team1.defineteamorigin("CHICAGO")
 
 print(Team1.TeamOrigin)
-
+print(Team2.TeamName)
+print(Team2.TeamOrigin)
