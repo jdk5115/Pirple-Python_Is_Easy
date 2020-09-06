@@ -9,9 +9,9 @@
 #         Action(s)
 
 class Team:
-    def __init__(self):
-        self.TeamName = "NaN"
-        self.TeamOrigin = "NaNe"
+    def __init__(self, Name, Origin):
+        self.TeamName = Name
+        self.TeamOrigin = Origin
 
     def defineTeamName(self, Name):
         self.TeamName = Name
