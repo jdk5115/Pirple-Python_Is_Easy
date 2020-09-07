@@ -37,16 +37,16 @@ class Pets:
         return self.name + str(self.playful) + str(self.hunger) + str(self.age)
 
 
-Pet1 = Pets("Fido", 43, False, True)
+# Pet1 = Pets("Fido", 43, False, True)
 
-print(Pet1.getName())
-print(Pet1.getPlayful())
-Pet1.setName("Snowball")
-print(Pet1.getName())
-print(Pet1.name)
-Pet1.name = "Jim"
-print(Pet1.name)
-print(Pet1)
+# print(Pet1.getName())
+# print(Pet1.getPlayful())
+# Pet1.setName("Snowball")
+# print(Pet1.getName())
+# print(Pet1.name)
+# Pet1.name = "Jim"
+# print(Pet1.name)
+# print(Pet1)
 
 class Dog(Pets):
     def __init__(self, name, age, hunger, playful, breed, favoriteToy):
@@ -56,12 +56,29 @@ class Dog(Pets):
     
     def wantsToPlay(self):
         if self.playful == True:
-            return ("Dog wants to play with " + favoriteToy)
+            return ("Dog wants to play with " + self.favoriteToy)
         else:
             return ("The dog doesn't want to play.")
 
-huskyDog = Dog("Bill", 5, False, True, "Husky", "Rope")
+class Cat(Pets):
+    def __init__(self, name, age, hunger, playful, place):
+        Pets.__init__(self, name, age, hunger, playful)
+        self.favPlaceToSit = place
+    
+    def wantsToSit(self):
+        if self.playful == True:
+            print("The cat " + self.name + " wants to sit in their favortie place, the " + self.favPlaceToSit)
+        else:
+            print("The cat wants to play.")
+
+huskyDog = Dog("Bill", 5, False, False, "Husky", "Rope")
 
 play = huskyDog.wantsToPlay()
 
 print(play)
+
+typicalCat = Cat("William", 17, False, True, "chair")
+
+catPlay = typicalCat.wantsToSit()
+
+print(catPlay)
