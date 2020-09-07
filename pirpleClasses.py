@@ -8,8 +8,15 @@
 #     def AnotherFuntion(self):
 #         Action(s)
 
+
+# class Team:
+#     def __init__(self, Name = "Name", Origin="Origian"):
+#         self.TeamName = Name
+#         self.TeamOrigin = Origin
+
+
 class Team:
-    def __init__(self, Name, Origin):
+    def __init__(self, Name = "Naimer", Origin = "origianer"):
         self.TeamName = Name
         self.TeamOrigin = Origin
 
@@ -23,6 +30,7 @@ Team1 = Team("Tigers", "Chicago")
 
 Team2 = Team("Hawks","New York")
 
+Team3 = Team()
 print(Team1.TeamName)
 
 Team1.defineTeamName("Dolphins")
@@ -36,3 +44,5 @@ Team1.defineteamorigin("CHICAGO")
 print(Team1.TeamOrigin)
 print(Team2.TeamName)
 print(Team2.TeamOrigin)
+print(Team3.TeamName)
+print(Team3.TeamOrigin)
