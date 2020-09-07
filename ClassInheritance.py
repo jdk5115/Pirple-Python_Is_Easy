@@ -33,7 +33,7 @@ class Team:
 class Player(Team):
 
     def __init__(self, playerName, playerPoints, TeamName, TeamOrigin):
-        Team.__init__(self,TeamName, TeamOrigin)
+        Team.__init__(self, TeamName, TeamOrigin)
         self.playerName = playerName
         self.playerPoints = playerPoints
     
@@ -42,6 +42,9 @@ class Player(Team):
     
     def setName(self, Name):
         self.playerName = Name
+    
+    def __str__(self):
+        return "Player has scored: " + str(self.playerPoints) + " points."
 
 player1 = Player("Sid", 0, "Cows", "Polasky")
 
@@ -54,3 +57,4 @@ player1.scoredPoint()
 player1.setName("lee")
 print(player1.playerPoints)
 print(player1.playerName)
+print(player1)
