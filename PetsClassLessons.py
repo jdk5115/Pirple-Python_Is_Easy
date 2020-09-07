@@ -1,4 +1,4 @@
-'''#Classes - Pets: Lesson A'''
+#Classes - Pets: Lessons A - D
 
 class Pets:
     def __init__(self, n, a, h, p):
@@ -34,8 +34,7 @@ class Pets:
         self.playful = playful
     
     def __str__(self):
-        return self.name + str(self.playful) + str(self.hunger) + str(self.age)
-
+        return (self.name + " is " + str(self.age) + " years old.")
 
 # Pet1 = Pets("Fido", 43, False, True)
 
@@ -59,7 +58,7 @@ class Dog(Pets):
             return ("Dog wants to play with " + self.favoriteToy)
         else:
             return ("The dog doesn't want to play.")
-
+    
 class Cat(Pets):
     def __init__(self, name, age, hunger, playful, place):
         Pets.__init__(self, name, age, hunger, playful)
@@ -71,8 +70,16 @@ class Cat(Pets):
         else:
             print("The cat wants to play.")
 
-    def __str__(self):
-        return (self.name + " likes to sit in " + self.favPlaceToSit)
+class human:
+    def __init__(self, name, pets):
+        self.name = name
+        self.pets = pets
+    
+    def hasPets(self):
+        if len(self.pets) != 0:
+            return "yes"
+        else:
+            return "no"
 
 huskyDog = Dog("Bill", 5, False, False, "Husky", "Rope")
 
@@ -83,5 +90,14 @@ print(play)
 typicalCat = Cat("William", 17, False, True, "chair.")
 
 typicalCat.wantsToSit()
+
 print(typicalCat)
 print(huskyDog)
+
+yourAverageHuman = human("Alice", [huskyDog, typicalCat])
+
+hasPets = yourAverageHuman.hasPets()
+
+print(hasPets + " " + str(len(yourAverageHuman.pets)) + " pets.")
+
+print(yourAverageHuman.pets[1])
