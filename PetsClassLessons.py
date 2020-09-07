@@ -47,3 +47,17 @@ print(Pet1.name)
 Pet1.name = "Jim"
 print(Pet1.name)
 print(Pet1)
+
+class Dog(Pets):
+    def __init__(self, name, age, hunger, playful, breed, favoriteToy):
+        Pets.__init__(name, age, hunger, playful)
+        self.breed = breed
+        self.favoriteToy = favoriteToy
+    
+    def wantsToPlay(self):
+        if self.playful == True:
+            return ("Dog wants to play with " + favoriteToy)
+        else:
+            return ("The dog doesn't want to play.")
+
+huskyDog = Dog("Bill", 5, False, True, "Husky", "Rope")
