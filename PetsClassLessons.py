@@ -71,14 +71,17 @@ class Cat(Pets):
         else:
             print("The cat wants to play.")
 
+    def __str__(self):
+        return (self.name + " likes to sit in " + self.favPlaceToSit)
+
 huskyDog = Dog("Bill", 5, False, False, "Husky", "Rope")
 
 play = huskyDog.wantsToPlay()
 
 print(play)
 
-typicalCat = Cat("William", 17, False, True, "chair")
+typicalCat = Cat("William", 17, False, True, "chair.")
 
-catPlay = typicalCat.wantsToSit()
-
-print(catPlay)
+typicalCat.wantsToSit()
+print(typicalCat)
+print(huskyDog)
