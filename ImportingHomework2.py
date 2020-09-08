@@ -13,7 +13,7 @@ lbl1.pack(pady=10)
 e = tk.Entry(window, width=50, fg='black')
 e.pack(pady=10)
 
-slider = tk.Scale(window,from_=0, to=100, orient=HORIZONTAL)
+slider = tk.Scale(window,from_=0, to=100)
 
 
 def lbl1Erase():
