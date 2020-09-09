@@ -38,11 +38,11 @@ def btnClick():
 while(True):
     for i in range (8):
         if x == 0:
-            lbl1 = tk.Label(window, text=Questions[x])
-            lbl1.pack(pady=10)
-
             e = tk.Entry(window, width=50, fg='black')
             e.pack(pady=10) 
+
+            lbl1 = tk.Label(window, text=Qcount)
+            lbl1.pack(pady=10)
 
             btn1 = tk.Button(window, text="Submit", command= btnClick() , fg= 'black', bg='#33FFC4', padx=40, pady=20)
             btn1.pack()
