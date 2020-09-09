@@ -17,19 +17,21 @@ Questions = ['Hello, what should I call you1?','How old are you2?', 'What is you
 x = 0
 Qcount = Questions[x]
 
-lbl1 = tk.Label(window, bg='red',text=Qcount)
-lbl1.pack(fill=tk.X)
+lbl1 = tk.Label(window,text=Qcount)
+lbl1.place(x=20, y=20)
+lbl1.pack(pady=10)
 
 e = tk.Entry(window, width=50, fg='blue')
+e.place(x=50, y=50)
 e.pack(pady=10)
 
 # btn1 = tk.Button(window, text="Submit", command= btnClick() , fg= 'black', bg='#33FFC4', padx=10, pady=0)
 # btn1.pack()
 
 
-lbl1.pack_forget()
-lbl1 = tk.Label(window, text=Questions[x])
-lbl1.pack(pady=10)
+# lbl1.pack_forget()
+# lbl1 = tk.Label(window, text=Questions[x])
+# lbl1.pack(pady=10)
 
 # btn1.pack_forget()
 # btn1 = tk.Button(window, text="Submit", command= btnClick() , fg= 'black', bg='#33FFC4', padx=40, pady=20)
