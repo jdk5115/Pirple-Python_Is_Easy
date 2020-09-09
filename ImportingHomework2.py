@@ -1,19 +1,19 @@
 #tkinter
 import tkinter as tk
 import time as t
-window = tk.Tk()
 
+global lbl1, e, slider, btn1, x, Qcount, Questions #, Bclicks, ButtonClicks, b
+
+
+window = tk.Tk()
 window.title("my box gui")
 window.iconbitmap('target_goal_icon_152113.ico')
 window.geometry("500x500") #width x height
-
-global lbl1, e, slider, btn1, x, Qcount, Questions #, Bclicks, ButtonClicks, b
 
 Questions = ['Hello, what should I call you1?','How old are you2?', 'What is your favorite sport?3', 
             'How many brothers and sisters do you have4?',
             'Do you like classical music5?', 'Have you studied at University6?',  
             'Do you like ice cream7?', 'How are you feeling today8?']
-
 x = 0
 Qcount = Questions[x]
 
@@ -77,7 +77,7 @@ while(True):
         else:
             x=0
 
-window.mainloop()
+        window.mainloop()
 
 #status = tk.Label(window, text= "Question 1" of 8")
 
