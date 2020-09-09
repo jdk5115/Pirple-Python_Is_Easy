@@ -25,9 +25,11 @@ e = tk.Entry(window, width=50, fg='blue')
 e.place(x=50, y=50)
 e.pack(pady=10)
 
-# btn1 = tk.Button(window, text="Submit", command= btnClick() , fg= 'black', bg='#33FFC4', padx=10, pady=0)
-# btn1.pack()
-
+def btnReset():
+    global name, btn1
+    name = e.get()
+    btn1.pack_forget()
+    print(name)
 
 # lbl1.pack_forget()
 # lbl1 = tk.Label(window, text=Questions[x])
@@ -39,6 +41,10 @@ e.pack(pady=10)
 
 slider = tk.Scale(window,from_=0, to=100)
 slider.pack()
+
+global btn1
+btn1 = tk.Button(window, text="Submit", command= btnReset() , fg= 'black', bg='#33FFC4', padx=10, pady=0)
+btn1.pack()
 
 window.mainloop()
 
