@@ -26,6 +26,15 @@ lbl1.pack(pady=10)
 e = Entry(window, width=50, fg='blue')
 e.pack(pady=10)
 
+
+#dropdown
+
+clicked = StringVar()
+clicked.set("Football")
+dropDown = OptionMenu(window, clicked, "Football", "Hockey", "Baseball", "Basketball")
+dropDown.pack()
+
+
 def btnClick():
     global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, b
     if b == 0:
