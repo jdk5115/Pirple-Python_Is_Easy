@@ -28,6 +28,7 @@ e.pack(pady=10)
 
 
 #dropdown
+#This needs to be put into case 3
 
 clicked = StringVar()
 clicked.set("Football")
