@@ -29,6 +29,7 @@ e.pack(pady=10)
 
 #dropdown
 #This needs to be put into case 3
+#btn click cycles through questions. Just need to add widgets, store values and display answers.
 
 clicked = StringVar()
 clicked.set("Football")
