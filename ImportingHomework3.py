@@ -31,10 +31,7 @@ e.pack(pady=10)
 #This needs to be put into case 3
 #btn click cycles through questions. Just need to add widgets, store values and display answers.
 
-clicked = StringVar()
-clicked.set("Football")
-dropDown = OptionMenu(window, clicked, "Football", "Hockey", "Baseball", "Basketball")
-dropDown.pack()
+
 
 
 def btnClick():
@@ -45,6 +42,7 @@ def btnClick():
         e.pack_forget()
         print(name)
         lbl1.pack_forget()
+        x+=1
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         slider = Scale(window,from_=0, to=100)
@@ -52,91 +50,98 @@ def btnClick():
         btn1.pack_forget()
         #btn1 = Button(window, text="Submit", command= lambda: btnClick() , fg= 'black', bg='#33FFC4', padx=10)
         btn1.pack()
-        x += 1
         b += 1
 
     elif b ==1:
         age = slider.get()
         slider.pack_forget()
         lbl1.pack_forget()
+        x+=1
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
-        '''this is where the next widget goes'''
+        clicked = StringVar()
+        clicked.set("Football")
+        dropDown = OptionMenu(window, clicked, "Football", "Hockey", "Baseball", "Basketball")
+        dropDown.pack()
         btn1.pack_forget()
         btn1.pack()
-        x += 1
         b += 1
 
     elif b == 2:
-        age = slider.get()
-        slider.pack_forget()
+        sport = dropDown.get()
         lbl1.pack_forget()
+        x += 1
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
-        '''this is where the next widget goes'''
+
         btn1.pack_forget()
         btn1.pack()
-        x += 1
+
         b += 1
 
     elif b == 3:
         age = slider.get()
         slider.pack_forget()
         lbl1.pack_forget()
+        x += 1
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         '''this is where the next widget goes'''
         btn1.pack_forget()
         btn1.pack()
-        x += 1
+
         b += 1
 
     elif b == 4:
         age = slider.get()
         slider.pack_forget()
         lbl1.pack_forget()
+        x += 1
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         '''this is where the next widget goes'''
         btn1.pack_forget()
         btn1.pack()
-        x += 1
+
         b += 1
 
     elif b == 5:
         age = slider.get()
         slider.pack_forget()
         lbl1.pack_forget()
+        x += 1
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         '''this is where the next widget goes'''
         btn1.pack_forget()
         btn1.pack()
-        x += 1
+
         b += 1
 
     elif b == 6:
         age = slider.get()
         slider.pack_forget()
         lbl1.pack_forget()
+        x += 1
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         '''this is where the next widget goes'''
         btn1.pack_forget()
         btn1.pack()
-        x += 1
+
         b += 1
 
     elif b == 7:
         age = slider.get()
         slider.pack_forget()
         lbl1.pack_forget()
+        x += 1
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         '''this is where the next widget goes'''
         btn1.pack_forget()
         btn1.pack()
-        x += 1
+
         b += 1
 
 
