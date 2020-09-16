@@ -1,7 +1,7 @@
 from tkinter import *
 import time as t
 
-global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1
+global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, status, callBack, clicked
 window = Tk()
 window.title("my box gui")
 window.iconbitmap('target_goal_icon_152113.ico')
@@ -26,16 +26,14 @@ lbl1.pack(pady=10)
 e = Entry(window, width=50, fg='blue')
 e.pack(pady=10)
 
-status = Label(window, text="Question 1 of 8")
+status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
+status.pack()
 #dropdown
 #This needs to be put into case 3
 #btn click cycles through questions. Just need to add widgets, store values and display answers.
 
-
-
-
 def btnClick():
-    global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, b
+    global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, b, status, callBack, clicked, dropDown
     if b == 0:
         e.get()
         name = e.get()
@@ -43,6 +41,9 @@ def btnClick():
         print(name)
         lbl1.pack_forget()
         x+=1
+        status.pack_forget()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
+        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         slider = Scale(window,from_=0, to=100)
@@ -57,6 +58,9 @@ def btnClick():
         slider.pack_forget()
         lbl1.pack_forget()
         x+=1
+        status.pack_forget()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
+        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         clicked = StringVar()
@@ -68,9 +72,13 @@ def btnClick():
         b += 1
 
     elif b == 2:
-        sport = dropDown.get()
+        sport = clicked.get()
+        dropDown.pack_forget()
         lbl1.pack_forget()
         x += 1
+        status.pack_forget()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
+        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
 
@@ -84,6 +92,9 @@ def btnClick():
         slider.pack_forget()
         lbl1.pack_forget()
         x += 1
+        status.pack_forget()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
+        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         '''this is where the next widget goes'''
@@ -97,6 +108,9 @@ def btnClick():
         slider.pack_forget()
         lbl1.pack_forget()
         x += 1
+        status.pack_forget()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
+        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         '''this is where the next widget goes'''
@@ -110,6 +124,9 @@ def btnClick():
         slider.pack_forget()
         lbl1.pack_forget()
         x += 1
+        status.pack_forget()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
+        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         '''this is where the next widget goes'''
@@ -123,6 +140,9 @@ def btnClick():
         slider.pack_forget()
         lbl1.pack_forget()
         x += 1
+        status.pack_forget()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
+        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         '''this is where the next widget goes'''
