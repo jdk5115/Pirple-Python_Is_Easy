@@ -7,14 +7,14 @@ window.title("my box gui")
 window.iconbitmap('target_goal_icon_152113.ico')
 window.geometry("400x400") #width x height
 
-Questions = ['Hello, what should I call you?',
-            'How old are you?', 
-            'What is your favorite sport?', 
-            'How many brothers and sisters do you have?',
-            'Do you like classical music?', 
-            'Have you studied at University?',  
-            'Do you like ice cream?', 
-            'How are you feeling today?']
+Questions = ['Hello, what should I call you?', #textbox - Done
+            'How old are you?', #slider - Done
+            'What is your favorite sport?', #dropdown/option menu - Done
+            'How many brothers and sisters do you have?', #spinbox
+            'Do you like classical music?', #yes/no buttons
+            'Have you studied at University?',  #seperator
+            'Which flavors of ice cream do you like?', #Checkboxes?
+            'How are you feeling today?'] #radio 
 
 x = 0
 Qcount = Questions[x]
