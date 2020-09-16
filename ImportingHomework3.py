@@ -26,7 +26,7 @@ lbl1.pack(pady=10)
 e = Entry(window, width=50, fg='blue')
 e.pack(pady=10)
 
-
+status = Label(window, text="Question 1 of 8")
 #dropdown
 #This needs to be put into case 3
 #btn click cycles through questions. Just need to add widgets, store values and display answers.
