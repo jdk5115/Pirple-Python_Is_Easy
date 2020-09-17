@@ -10,9 +10,6 @@ window.geometry("400x400") #width x height
 Questions = ['Hello, what should I call you?', #textbox - Done
             'How old are you?', #slider - Done
             'What is your favorite sport?', #dropdown/option menu - Done
-            'How many brothers and sisters do you have?', #spinbox
-            'Do you like classical music?', #yes/no buttons
-            'Have you studied at University?',  #seperator
             'Which flavors of ice cream do you like?', #Checkboxes?
             'How are you feeling today?'] #radio 
 
@@ -97,49 +94,21 @@ def btnClick():
         status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
-        '''this is where the next widget goes'''
+
+        var = IntVar()
+        chkbx = Checkbutton(window, text="Choclate", variable=var())
+        chkbx.pack()
+ 
         btn1.pack_forget()
         btn1.pack()
 
         b += 1
 
     elif b == 4:
-        age = slider.get()
-        slider.pack_forget()
-        lbl1.pack_forget()
-        x += 1
-        status.pack_forget()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
-        status.pack()
-        lbl1 = Label(window, text=Questions[x])
-        lbl1.pack(pady=10)
-        '''this is where the next widget goes'''
-        btn1.pack_forget()
-        btn1.pack()
-
-        b += 1
-
-    elif b == 5:
-        age = slider.get()
-        slider.pack_forget()
-        lbl1.pack_forget()
-        x += 1
-        status.pack_forget()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
-        status.pack()
-        lbl1 = Label(window, text=Questions[x])
-        lbl1.pack(pady=10)
-        '''this is where the next widget goes'''
-        btn1.pack_forget()
-        btn1.pack()
-
-        b += 1
-
-    elif b == 6:
         #b5 .pack_forget()
         def feel(value):
                 feelings = Label(window, text=value)
-                feelings.pack()
+
 
         x += 1
         status.pack_forget()
@@ -160,18 +129,6 @@ def btnClick():
 
         b += 1
 
-    elif b == 7:
-        age = slider.get()
-        slider.pack_forget()
-        lbl1.pack_forget()
-        x += 1
-        lbl1 = Label(window, text=Questions[x])
-        lbl1.pack(pady=10)
-        '''this is where the next widget goes'''
-        btn1.pack_forget()
-        btn1.pack()
-
-        b += 1
 
 
 
