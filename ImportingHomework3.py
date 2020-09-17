@@ -136,18 +136,27 @@ def btnClick():
         b += 1
 
     elif b == 6:
-        age = slider.get()
-        slider.pack_forget()
-        lbl1.pack_forget()
+        #b5 .pack_forget()
+        def feel(value):
+                feelings = Label(window, text=value)
+                feelings.pack()
+
         x += 1
         status.pack_forget()
         status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
         status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
-        '''this is where the next widget goes'''
+        
+        r = IntVar()
+        r.set(1)
+        Radiobutton(window, text="Happy", variable=r, value=1, command=lambda: feel(r.get())).pack()
+        Radiobutton(window, text="So-So", variable=r, value=2, command=lambda: feel(r.get())).pack()
+        Radiobutton(window, text="Sad", variable=r, value=3, command=lambda: feel(r.get())).pack()
+        Radiobutton(window, text="Angry", variable=r, value=4, command=lambda: feel(r.get())).pack()    
+        feelings = Label(window, text=r.get())   
         btn1.pack_forget()
-        btn1.pack()
+        newbutton = Button(window, text="Submit", command=lambda: feel(r.get())).pack()
 
         b += 1
 
