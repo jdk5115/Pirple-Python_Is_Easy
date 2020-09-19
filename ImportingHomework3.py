@@ -23,8 +23,7 @@ lbl1.pack(pady=10)
 e = Entry(window, width=50, fg='blue')
 e.pack(pady=10)
 
-status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
-status.pack()
+
 #dropdown
 #This needs to be put into case 3
 #btn click cycles through questions. Just need to add widgets, store values and display answers.
@@ -39,8 +38,6 @@ def btnClick():
         lbl1.pack_forget()
         x+=1
         status.pack_forget()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
-        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         slider = Scale(window,from_=0, to=100)
@@ -48,6 +45,8 @@ def btnClick():
         btn1.pack_forget()
         #btn1 = Button(window, text="Submit", command= lambda: btnClick() , fg= 'black', bg='#33FFC4', padx=10)
         btn1.pack()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN, pady=5 )
+        status.pack()
         b += 1
 
     elif b ==1:
@@ -134,5 +133,8 @@ def btnClick():
 
 btn1 = Button(window, text="Submit", command= lambda: btnClick() , fg= 'black', bg='#33FFC4', padx=10)
 btn1.pack()
+
+status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN, pady=5 )
+status.pack()
 
 window.mainloop()
