@@ -1,7 +1,7 @@
 from tkinter import *
 import time as t
 
-global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, status, callBack, clicked
+global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, status, callBack, clicked, dropDown, chkbx, chkbx2, chkbx3, feelings, r, feelingslbl, name, age
 window = Tk()
 window.title("my box gui")
 window.iconbitmap('target_goal_icon_152113.ico')
@@ -10,7 +10,7 @@ window.geometry("400x400") #width x height
 Questions = ['Hello, what should I call you?', #textbox - Done
             'How old are you?', #slider - Done
             'What is your favorite sport?', #dropdown/option menu - Done
-            'Which flavors of ice cream do you like?', #Checkboxes?
+            'Which flavor of ice cream is your favorite?', #Checkboxes - Done
             'How are you feeling today?'] #radio 
 
 x = 0
@@ -29,7 +29,7 @@ e.pack(pady=10)
 #btn click cycles through questions. Just need to add widgets, store values and display answers.
 
 def btnClick():
-    global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, b, status, callBack, clicked, dropDown
+    global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, b, status, callBack, clicked, dropDown, chkbx, chkbx2, chkbx3, feelings, r, feelingslbl, name, age
     if b == 0:
         e.get()
         name = e.get()
@@ -55,8 +55,6 @@ def btnClick():
         lbl1.pack_forget()
         x+=1
         status.pack_forget()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
-        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
         clicked = StringVar()
@@ -65,6 +63,8 @@ def btnClick():
         dropDown.pack()
         btn1.pack_forget()
         btn1.pack()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN, pady=5 )
+        status.pack()
         b += 1
 
     elif b == 2:
@@ -73,60 +73,86 @@ def btnClick():
         lbl1.pack_forget()
         x += 1
         status.pack_forget()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
-        status.pack()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
 
+        var = StringVar()
+        chkbx = Checkbutton(window, text="Chocolate", variable=var, onvalue="Chocolate", offvalue="")
+        chkbx.deselect()
+        chkbx.pack(anchor=W)
+        chkbx2 = Checkbutton(window, text="Vanilla", variable=var, onvalue="Vanilla", offvalue="")
+        chkbx2.deselect()
+        chkbx2.pack(anchor=W)
+        chkbx3 = Checkbutton(window, text="Strawberry", variable=var, onvalue="Strawberry", offvalue="")
+        chkbx3.deselect()
+        chkbx3.pack(anchor=W)
+        chkbxlbl = Label(window, text=var.get()).pack()
+
         btn1.pack_forget()
         btn1.pack()
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5 )
+        status.pack()
 
         b += 1
 
     elif b == 3:
+        chkbx.pack_forget()
+        chkbx2.pack_forget()
+        chkbx3.pack_forget()
         age = slider.get()
         slider.pack_forget()
         lbl1.pack_forget()
         x += 1
         status.pack_forget()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
-        status.pack()
+        btn1.pack_forget()
         lbl1 = Label(window, text=Questions[x])
         lbl1.pack(pady=10)
 
-        var = IntVar()
-        chkbx = Checkbutton(window, text="Choclate", variable=var())
-        chkbx.pack()
- 
-        btn1.pack_forget()
-        btn1.pack()
 
-        b += 1
+        MODES = [
+                ("Happy", "Happy"),
+                ("So-So", "So-So"),
+                ("Sad", "Sad", ),
+                ("Angry","Angry")
+        ]
+
+        r = StringVar()
+        r.set("Happy")
+        
+
+
+        for text, mode in MODES:
+            Radiobutton(window, text=text, variable=r, value=mode).pack(anchor=W)        
+
+        feelings = Label(window, text=r.get())   
+        feelings.pack()
+
+        newbtn = Button(window, text="Submit", command= lambda: clicked(r.get()), fg= 'black', bg='#33FFC4', padx=10)
+        newbtn.pack()
+
+        def clicked(value):
+            global b, feelingslbl,lbl1, name, age
+
+            feelingslbl = Label(window, text=value)
+            b+=1
+            lbl1.pack_forget()
+            lbl1 = Label(window, text="You are" + str(name) + "your age is" + str(age))
+            lbl1.pack(pady=10)
+
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5 )
+        status.pack()
+
 
     elif b == 4:
-        #b5 .pack_forget()
-        def feel(value):
-                feelings = Label(window, text=value)
-
-
-        x += 1
-        status.pack_forget()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN )
-        status.pack()
-        lbl1 = Label(window, text=Questions[x])
-        lbl1.pack(pady=10)
-        
-        r = IntVar()
-        r.set(1)
-        Radiobutton(window, text="Happy", variable=r, value=1, command=lambda: feel(r.get())).pack()
-        Radiobutton(window, text="So-So", variable=r, value=2, command=lambda: feel(r.get())).pack()
-        Radiobutton(window, text="Sad", variable=r, value=3, command=lambda: feel(r.get())).pack()
-        Radiobutton(window, text="Angry", variable=r, value=4, command=lambda: feel(r.get())).pack()    
-        feelings = Label(window, text=r.get())   
         btn1.pack_forget()
-        newbutton = Button(window, text="Submit", command=lambda: feel(r.get())).pack()
+        status.pack_forget()
+
+
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5 )
+        status.pack()
 
         b += 1
+        exit()
 
 
 
