@@ -1,7 +1,7 @@
 from tkinter import *
 import time as t
 
-global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, status, callBack, clicked, dropDown, chkbx, chkbx2, chkbx3, feelings, r, feelingslbl, name, age
+global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, status, callBack, clicked, dropDown, chkbx, chkbx2, chkbx3, feelings, var, var2, var3, r, feelingslbl, name, age, chkbxlbl, sport, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3
 window = Tk()
 window.title("my box gui")
 window.iconbitmap('target_goal_icon_152113.ico')
@@ -29,7 +29,7 @@ e.pack(pady=10)
 #btn click cycles through questions. Just need to add widgets, store values and display answers.
 
 def btnClick():
-    global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, b, status, callBack, clicked, dropDown, chkbx, chkbx2, chkbx3, feelings, r, feelingslbl, name, age
+    global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, b, status, callBack, clicked, dropDown, chkbx, var, var2, var3, chkbx2, chkbx3, feelings, r, feelingslbl, name, age, chkbxlbl, sport, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3
     if b == 0:
         e.get()
         name = e.get()
@@ -77,16 +77,19 @@ def btnClick():
         lbl1.pack(pady=10)
 
         var = StringVar()
+        var2 = StringVar()
+        var3 = StringVar()
         chkbx = Checkbutton(window, text="Chocolate", variable=var, onvalue="Chocolate", offvalue="")
         chkbx.deselect()
         chkbx.pack(anchor=W)
-        chkbx2 = Checkbutton(window, text="Vanilla", variable=var, onvalue="Vanilla", offvalue="")
+        chkbx2 = Checkbutton(window, text="Vanilla", variable=var2, onvalue="Vanilla", offvalue="")
         chkbx2.deselect()
         chkbx2.pack(anchor=W)
-        chkbx3 = Checkbutton(window, text="Strawberry", variable=var, onvalue="Strawberry", offvalue="")
+        chkbx3 = Checkbutton(window, text="Strawberry", variable=var3, onvalue="Strawberry", offvalue="")
         chkbx3.deselect()
         chkbx3.pack(anchor=W)
-        chkbxlbl = Label(window, text=var.get()).pack()
+
+
 
         btn1.pack_forget()
         btn1.pack()
@@ -131,12 +134,17 @@ def btnClick():
         newbtn.pack()
 
         def clicked(value):
-            global b, feelingslbl,lbl1, name, age
-
+            global b, feelingslbl,lbl1, name, age, sport, chkbxlbl, feelings, hey, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3, var, var2, var3
+            chkbxlbl = Label(window, text=var.get())
+            chkbxlbl2 = Label(window, text=var2.get())
+            chkbxlbl3 = Label(window, text=var3.get())
+            iceCream = var.get() #chkbxlbl.cget('text')
+            iceCream2 = var2.get() #chkbxlbl2.cget('text')
+            iceCream3 = var3.get() #chkbxlbl3.cget('text')
             feelingslbl = Label(window, text=value)
             b+=1
             lbl1.pack_forget()
-            lbl1 = Label(window, text="You are" + str(name) + "your age is" + str(age))
+            lbl1 = Label(window, text="You are " + str(name) + ".\nYour age is " + str(age) + "\nYour favorite sport is " + str(sport) + ".\nYour favorite flavor of ice cream is " + str(iceCream)+ str(iceCream2)+ str(iceCream3) + ".\nAnd you are feeling " + str(feelings) + ".\nThanks for playing! Have a great day =)")
             lbl1.pack(pady=10)
 
         status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5 )
@@ -144,6 +152,8 @@ def btnClick():
 
 
     elif b == 4:
+
+
         btn1.pack_forget()
         status.pack_forget()
 
