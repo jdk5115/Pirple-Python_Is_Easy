@@ -208,14 +208,14 @@ t.circle(120, 180)  # draw a semicircle
 t.position()
 t.heading()
 
-t.write('string', font=("Arial", 36, "normal"))
+t.write(str(lsWord[3]), font=("Arial", 36, "normal"))
 
 #draw spaces for word chosen
-for i in range(wordLen):
+# for i in range(wordLen):
     
-    t.fd(30)
-    t.penup()
-    t.fd(30)
-    t.pendown()
+#     t.fd(30)
+#     t.penup()
+#     t.fd(30)
+#     t.pendown()
 
 t.mainloop()

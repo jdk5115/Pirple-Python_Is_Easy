@@ -22,12 +22,83 @@ against the computer instead of only 2-player mode. When the game starts, the us
 2-player mode.'''
 
 import turtle as t
+global lsWord, word, strikes
+
+strikes = 1
+
+#Allow player 1 to pick a word and then check for spaces and numbers.Save word as list - lsWord
+while(True):
+    word = input('Player 1, please pick a word less than 8 characters long.')
+    if word.isalpha():
+        if len(word) > 8:
+            print('Please pick a word only 8 characters long.')
+        else:
+            global lsWord
+            lsWord = []
+            for x in word:
+                lsWord.append(x)
+            break
+    elif " " in word:
+        print('Please only use one word.')
+    else:
+        print("Please only use letters.")
+
+def dashes():
+    t.penup()
+    t.setx(-350)
+    t.sety(-300)
+    for i in range(len(lsWord)):
+        t.pendown()
+        t.fd(50)
+        t.penup()
+        t.fd(30)
+        t.pendown()
+        t.penup()
+        
+def gallows():
+    t.penup()
+    t.setx(250)
+    t.sety(-200)
+    t.pendown()
+    t.lt(180)
+    t.fd(100)
+    t.lt(180)
+    t.fd(200)
+    t.lt(180)
+    t.fd(100)
+    t.rt(90)
+    t.forward(300)
+    t.lt(90)
+    t.forward(200)
+    t.lt(90)
+    t.forward(50)
+
+def hangman():
+    global strikes
+    if strikes == 1:
+        t.penup()
+        t.setx(50)
+        t.sety(50)
+        t.dot(40)
+        t.penup()
+        strikes += 1
+    elif strikes == 2:
+        t.penup()
+        t.setx(50)
+        t.sety(50)
+        t.down()
+        t.pendown()
+        t.forward(125)
+        t.penup()
 
 
-word = [input('Pick a word')]
 
-print(word)
+dashes()
+gallows()
+hangman()
 
+print(t.position())
+print(lsWord)
 # while(True):
 #     for r in len(word):
 #         guess = input('What letter do you want to guess?')
@@ -35,22 +106,22 @@ print(word)
 
 #Turtle
 
-word = str(input('word'))
-wordLen = len(word)
-lsWord = [word]
+# word = str(input('word'))
+# wordLen = len(word)
+# lsWord = [word]
 
-t.circle(120, 180)  # draw a semicircle
-t.position()
-t.heading()
+# t.circle(120, 180)  # draw a semicircle
+# t.position()
+# t.heading()
 
-t.write('string', font=("Arial", 36, "normal"))
+# t.write('string', font=("Arial", 36, "normal"))
 
-#draw spaces for word chosen
-for i in range(wordLen):
+# #draw spaces for word chosen
+# for i in range(wordLen):
     
-    t.fd(30)
-    t.penup()
-    t.fd(30)
-    t.pendown()
+#     t.fd(30)
+#     t.penup()
+#     t.fd(30)
+#     t.pendown()
 
 t.mainloop()
