@@ -21,6 +21,9 @@ player 1 choosing the word to play with, the computer should pick a random word 
 against the computer instead of only 2-player mode. When the game starts, the user should be prompted to choose between 1-player or 
 2-player mode.'''
 
+import turtle as t
+
+
 word = [input('Pick a word')]
 
 print(word)
@@ -30,3 +33,24 @@ print(word)
 #         guess = input('What letter do you want to guess?')
 
 
+#Turtle
+
+word = str(input('word'))
+wordLen = len(word)
+lsWord = [word]
+
+t.circle(120, 180)  # draw a semicircle
+t.position()
+t.heading()
+
+t.write('string', font=("Arial", 36, "normal"))
+
+#draw spaces for word chosen
+for i in range(wordLen):
+    
+    t.fd(30)
+    t.penup()
+    t.fd(30)
+    t.pendown()
+
+t.mainloop()
