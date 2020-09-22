@@ -1,9 +1,9 @@
 from tkinter import *
 import time as t
 
-global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, status, callBack, clicked, dropDown, chkbx, chkbx2, chkbx3, feelings, var, var2, var3, r, feelingslbl, name, age, chkbxlbl, sport, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3
+global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, status, r, MODES, mode, text, callBack, newbtn, clicked, dropDown, chkbx, chkbx2, chkbx3, feelings, var, var2, var3, r, feelingslbl, name, age, chkbxlbl, sport, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3
 window = Tk()
-window.title("my box gui")
+window.title("Getting to know you game")
 window.iconbitmap('target_goal_icon_152113.ico')
 window.geometry("400x400") #width x height
 
@@ -23,18 +23,12 @@ lbl1.pack(pady=10)
 e = Entry(window, width=50, fg='blue')
 e.pack(pady=10)
 
-
-#dropdown
-#This needs to be put into case 3
-#btn click cycles through questions. Just need to add widgets, store values and display answers.
-
 def btnClick():
-    global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, b, status, callBack, clicked, dropDown, chkbx, var, var2, var3, chkbx2, chkbx3, feelings, r, feelingslbl, name, age, chkbxlbl, sport, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3
+    global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, b, r, MODES, mode, text, status, newbtn, callBack, clicked, dropDown, chkbx, var, var2, var3, chkbx2, chkbx3, feelings, r, feelingslbl, name, age, chkbxlbl, sport, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3
     if b == 0:
         e.get()
         name = e.get()
         e.pack_forget()
-        print(name)
         lbl1.pack_forget()
         x+=1
         status.pack_forget()
@@ -128,13 +122,20 @@ def btnClick():
             Radiobutton(window, text=text, variable=r, value=mode).pack(anchor=W)        
 
         feelings = Label(window, text=r.get())   
-        feelings.pack()
+        #feelings.pack()
 
         newbtn = Button(window, text="Submit", command= lambda: clicked(r.get()), fg= 'black', bg='#33FFC4', padx=10)
         newbtn.pack()
 
         def clicked(value):
-            global b, feelingslbl,lbl1, name, age, sport, chkbxlbl, feelings, hey, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3, var, var2, var3
+            global b, feelingslbl,lbl1, name, age, sport, chkbxlbl, feelings, MODES, mode, text, hey, newbtn, r, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3, var, var2, var3
+        
+
+            for text, mode in MODES:
+                Radiobutton(window, text=text, variable=r, value=mode).pack_forget    
+
+            newbtn.pack_forget()
+            lbl1.pack_forget
             chkbxlbl = Label(window, text=var.get())
             chkbxlbl2 = Label(window, text=var2.get())
             chkbxlbl3 = Label(window, text=var3.get())
@@ -142,9 +143,10 @@ def btnClick():
             iceCream2 = var2.get() #chkbxlbl2.cget('text')
             iceCream3 = var3.get() #chkbxlbl3.cget('text')
             feelingslbl = Label(window, text=value)
+            var4 = r.get()
             b+=1
             lbl1.pack_forget()
-            lbl1 = Label(window, text="You are " + str(name) + ".\nYour age is " + str(age) + "\nYour favorite sport is " + str(sport) + ".\nYour favorite flavor of ice cream is " + str(iceCream)+ str(iceCream2)+ str(iceCream3) + ".\nAnd you are feeling " + str(feelings) + ".\nThanks for playing! Have a great day =)")
+            lbl1 = Label(window, text="You are " + str(name) + ".\nYour age is " + str(age) + "\nYour favorite sport is " + str(sport) + ".\nYour favorite flavor of ice cream is " + str(iceCream)+ str(iceCream2)+ str(iceCream3) + ".\nAnd you are feeling " + str(var4) + ".\nThanks for playing! Have a great day =)", padx=200, pady=200)
             lbl1.pack(pady=10)
 
         status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5 )
