@@ -20,13 +20,14 @@ Try finding a large list of dictionary words and embedding them in your applicat
 player 1 choosing the word to play with, the computer should pick a random word from the dictionary. This will allow you to play 
 against the computer instead of only 2-player mode. When the game starts, the user should be prompted to choose between 1-player or 
 2-player mode.'''
-
+import tkinter as tk
 import turtle as t
 global lsWord, word, strikes
 
-strikes = 1
+strikes = 0
 
 #Allow player 1 to pick a word and then check for spaces and numbers.Save word as list - lsWord
+
 while(True):
     word = input('Player 1, please pick a word less than 8 characters long.')
     if word.isalpha():
@@ -43,23 +44,27 @@ while(True):
     else:
         print("Please only use letters.")
 
+
 def dashes():
+    global lsWord
     t.penup()
     t.setx(-350)
     t.sety(-300)
     for i in range(len(lsWord)):
         t.pendown()
+        t.pensize(5) 
         t.fd(50)
         t.penup()
         t.fd(30)
         t.pendown()
         t.penup()
-        
+
 def gallows():
     t.penup()
     t.setx(250)
     t.sety(-200)
     t.pendown()
+    t.pensize(5)   
     t.lt(180)
     t.fd(100)
     t.lt(180)
@@ -73,29 +78,71 @@ def gallows():
     t.lt(90)
     t.forward(50)
 
-def hangman():
-    global strikes
-    if strikes == 1:
+def head():
         t.penup()
         t.setx(50)
         t.sety(50)
-        t.dot(40)
+        t.dot(50)
         t.penup()
-        strikes += 1
-    elif strikes == 2:
+
+def body():
         t.penup()
         t.setx(50)
         t.sety(50)
         t.down()
         t.pendown()
+        t.pensize(5)
         t.forward(125)
         t.penup()
 
+def leftLeg():
+    t.penup()
+    t.setx(50)
+    t.sety(-75)
+    t.down()
+    t.pendown()
+    t.rt(30)
+    t.fd(50)
+    t.penup()
 
+def rightLeg():
+    t.penup()
+    t.setx(50)
+    t.sety(-75)
+    t.pendown()
+    t.down()
+    t.lt(60)
+    t.fd(50)
+    t.penup()
+
+def leftArm():
+    t.penup()
+    t.setx(50)
+    t.sety(-25)
+    t.pendown()
+    t.down()
+    t.rt(150)    
+    t.fd(50)
+    t.penup()
+
+def rightArm():
+    t.penup()
+    t.setx(50)
+    t.sety(-25)
+    t.pendown()
+    t.down()
+    t.rt(120)    
+    t.fd(50)
+    t.penup()
 
 dashes()
 gallows()
-hangman()
+head()
+body()
+leftLeg()
+rightLeg()
+leftArm()
+rightArm()
 
 print(t.position())
 print(lsWord)
