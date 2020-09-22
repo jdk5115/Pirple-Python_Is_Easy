@@ -1,11 +1,13 @@
 from tkinter import *
 import time as t
+import tkinter.font as font
 
 global lbl1, e, slider, btn1, x, Qcount, Questions, window, btn1, status, r, MODES, mode, text, callBack, newbtn, clicked, dropDown, chkbx, chkbx2, chkbx3, feelings, var, var2, var3, r, feelingslbl, name, age, chkbxlbl, sport, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3
 window = Tk()
 window.title("Getting to know you game")
 window.iconbitmap('target_goal_icon_152113.ico')
 window.geometry("400x400") #width x height
+window['bg'] = 'green'
 
 Questions = ['Hello, what should I call you?', #textbox - Done
             'How old are you?', #slider - Done
@@ -16,7 +18,7 @@ Questions = ['Hello, what should I call you?', #textbox - Done
 x = 0
 Qcount = Questions[x]
 b=0
-lbl1 = Label(window,text=Qcount)
+lbl1 = Label(window,text=Qcount, bg='green')
 lbl1.place(x=20, y=20)
 lbl1.pack(pady=10)
 
@@ -32,14 +34,14 @@ def btnClick():
         lbl1.pack_forget()
         x+=1
         status.pack_forget()
-        lbl1 = Label(window, text=Questions[x])
+        lbl1 = Label(window, text=Questions[x], bg='green')
         lbl1.pack(pady=10)
-        slider = Scale(window,from_=0, to=100)
+        slider = Scale(window,from_=0, to=100, bg='green')
         slider.pack()
         btn1.pack_forget()
         #btn1 = Button(window, text="Submit", command= lambda: btnClick() , fg= 'black', bg='#33FFC4', padx=10)
         btn1.pack()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN, pady=5 )
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN, pady=5, bg='green' )
         status.pack()
         b += 1
 
@@ -49,7 +51,7 @@ def btnClick():
         lbl1.pack_forget()
         x+=1
         status.pack_forget()
-        lbl1 = Label(window, text=Questions[x])
+        lbl1 = Label(window, text=Questions[x], bg='green')
         lbl1.pack(pady=10)
         clicked = StringVar()
         clicked.set("Football")
@@ -57,7 +59,7 @@ def btnClick():
         dropDown.pack()
         btn1.pack_forget()
         btn1.pack()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN, pady=5 )
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN, pady=5, bg='green' )
         status.pack()
         b += 1
 
@@ -67,19 +69,19 @@ def btnClick():
         lbl1.pack_forget()
         x += 1
         status.pack_forget()
-        lbl1 = Label(window, text=Questions[x])
+        lbl1 = Label(window, text=Questions[x], bg='green')
         lbl1.pack(pady=10)
 
         var = StringVar()
         var2 = StringVar()
         var3 = StringVar()
-        chkbx = Checkbutton(window, text="Chocolate", variable=var, onvalue="Chocolate", offvalue="")
+        chkbx = Checkbutton(window, text="Chocolate", variable=var, onvalue="Chocolate", offvalue="", bg='green')
         chkbx.deselect()
         chkbx.pack(anchor=W)
-        chkbx2 = Checkbutton(window, text="Vanilla", variable=var2, onvalue="Vanilla", offvalue="")
+        chkbx2 = Checkbutton(window, text="Vanilla", variable=var2, onvalue="Vanilla", offvalue="", bg='green')
         chkbx2.deselect()
         chkbx2.pack(anchor=W)
-        chkbx3 = Checkbutton(window, text="Strawberry", variable=var3, onvalue="Strawberry", offvalue="")
+        chkbx3 = Checkbutton(window, text="Strawberry", variable=var3, onvalue="Strawberry", offvalue="", bg='green')
         chkbx3.deselect()
         chkbx3.pack(anchor=W)
 
@@ -87,7 +89,7 @@ def btnClick():
 
         btn1.pack_forget()
         btn1.pack()
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5 )
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5, bg='green' )
         status.pack()
 
         b += 1
@@ -102,7 +104,7 @@ def btnClick():
         x += 1
         status.pack_forget()
         btn1.pack_forget()
-        lbl1 = Label(window, text=Questions[x])
+        lbl1 = Label(window, text=Questions[x], bg='green')
         lbl1.pack(pady=10)
 
 
@@ -119,7 +121,7 @@ def btnClick():
 
 
         for text, mode in MODES:
-            Radiobutton(window, text=text, variable=r, value=mode).pack(anchor=W)        
+            Radiobutton(window, text=text, variable=r, value=mode, bg='green').pack(anchor=W)        
 
         feelings = Label(window, text=r.get())   
         #feelings.pack()
@@ -128,14 +130,16 @@ def btnClick():
         newbtn.pack()
 
         def clicked(value):
-            global b, feelingslbl,lbl1, name, age, sport, chkbxlbl, feelings, MODES, mode, text, hey, newbtn, r, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3, var, var2, var3
-        
+            global b, feelingslbl,lbl1, name, window, age, sport, chkbxlbl, feelings, MODES, mode, text, hey, newbtn, r, iceCream, iceCream2, iceCream3, chkbxlbl2, chkbxlbl3, var, var2, var3
+            window.destroy()
 
-            for text, mode in MODES:
-                Radiobutton(window, text=text, variable=r, value=mode).pack_forget    
-
-            newbtn.pack_forget()
-            lbl1.pack_forget
+            window = Tk()
+            window.title("Final Results")
+            window.iconbitmap('target_goal_icon_152113.ico')
+            window.geometry("300x300") #width x height
+            window['bg'] = 'blue'
+            # newbtn.pack_forget()
+            # lbl1.pack_forget
             chkbxlbl = Label(window, text=var.get())
             chkbxlbl2 = Label(window, text=var2.get())
             chkbxlbl3 = Label(window, text=var3.get())
@@ -145,11 +149,11 @@ def btnClick():
             feelingslbl = Label(window, text=value)
             var4 = r.get()
             b+=1
-            lbl1.pack_forget()
-            lbl1 = Label(window, text="You are " + str(name) + ".\nYour age is " + str(age) + "\nYour favorite sport is " + str(sport) + ".\nYour favorite flavor of ice cream is " + str(iceCream)+ str(iceCream2)+ str(iceCream3) + ".\nAnd you are feeling " + str(var4) + ".\nThanks for playing! Have a great day =)", padx=200, pady=200)
+            # lbl1.pack_forget()
+            lbl1 = Label(window, text="You are " + str(name) + ".\nYour age is " + str(age) + "\nYour favorite sport is " + str(sport) + ".\nYour favorite flavor of ice cream is " + str(iceCream)+ str(iceCream2)+ str(iceCream3) + ".\nAnd you are feeling " + str(var4) + ".\nThanks for playing! Have a great day =)", padx=100, pady=100, bg='blue', fg='white')
             lbl1.pack(pady=10)
 
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5 )
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5, bg='green' )
         status.pack()
 
 
@@ -160,7 +164,7 @@ def btnClick():
         status.pack_forget()
 
 
-        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5 )
+        status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN,pady=5, bg='green' )
         status.pack()
 
         b += 1
@@ -172,7 +176,7 @@ def btnClick():
 btn1 = Button(window, text="Submit", command= lambda: btnClick() , fg= 'black', bg='#33FFC4', padx=10)
 btn1.pack()
 
-status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN, pady=5 )
+status = Label(window, text="Question " + str(x+1) + " of " + str(len(Questions)), bd=1, relief=SUNKEN, pady=5, bg='green' )
 status.pack()
 
 window.mainloop()
