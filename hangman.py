@@ -64,8 +64,7 @@ while(strikes < 6):
 
 
 
-function_dict = {'position1':position1, 'position2':position2, 'position3':position3, 'position4':position4, 'position5':position5, 
-                'position6':position6, 'position7':position7,  }
+
 
 func = input('>')  #raw_input on python2.x
 function_dict[func]()
@@ -250,6 +249,8 @@ def letter8():
     t.write(alphabet[7], font=("Arial", 48, "normal"))
     t.color('white')
 
+function_dict = {'letter1':letter1, 'letter2':letter2, 'letter3':letter3, 'letter4':letter4, 'letter5':letter5, 'letter6':letter6, 
+                'letter7':letter7, 'letter8':letter8 }
 
 alphabet = ['a','b','c','d','e','f','g','h']
 
