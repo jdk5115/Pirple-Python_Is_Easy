@@ -29,7 +29,7 @@ strikes = 0
 #Allow player 1 to pick a word and then check for spaces and numbers.Save word as list - lsWord
 
 while(True):
-    word = input('Player 1, please pick a word less than 8 characters long.')
+    word = input('Player 1, please pick a word less than 8 characters long.').upper()
     if word.isalpha():
         if len(word) > 8:
             print('Please pick a word only 8 characters long.')
@@ -43,6 +43,32 @@ while(True):
         print('Please only use one word.')
     else:
         print("Please only use letters.")
+
+while(strikes < 6):
+    guess = input('Please make your guess.').upper()
+    if guess.isalpha():
+        if len(guess) > 1 or len(guess) < 1:
+            print('Only enter 1 letter.')
+        else:
+            global guess2
+            indices = [i for i, x in enumerate(lsWord) if x == guess]
+            for i in indices:
+                print(i)
+
+    elif " " in guess:
+        print('Please only use 1 letter.')
+    else:
+        print("Please only use 1 letter.")
+
+
+
+
+
+function_dict = {'position1':position1, 'position2':position2, 'position3':position3, 'position4':position4, 'position5':position5, 
+                'position6':position6, 'position7':position7,  }
+
+func = input('>')  #raw_input on python2.x
+function_dict[func]()
 
 
 def dashes():
@@ -144,6 +170,89 @@ def youDied():
     t.color('red')
     t.write('Loser', font=("Arial", 48, "normal"))
 
+def letter1():
+    t.penup()
+    t.setx(-340)
+    t.sety(-275)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(alphabet[0], font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter2():
+    t.penup()
+    t.setx(-260)
+    t.sety(-275)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(alphabet[1], font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter3():
+    t.penup()
+    t.setx(-180)
+    t.sety(-275)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(alphabet[2], font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter4():
+    t.penup()
+    t.setx(-100)
+    t.sety(-275)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(alphabet[3], font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter5():
+    t.penup()
+    t.setx(-20)
+    t.sety(-275)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(alphabet[4], font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter6():
+    t.penup()
+    t.setx(60)
+    t.sety(-275)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(alphabet[5], font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter7():
+    t.penup()
+    t.setx(140)
+    t.sety(-275)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(alphabet[6], font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter8():
+    t.penup()
+    t.setx(220)
+    t.sety(-275)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(alphabet[7], font=("Arial", 48, "normal"))
+    t.color('white')
+
+
+alphabet = ['a','b','c','d','e','f','g','h']
+
 dashes()
 gallows()
 head()
@@ -153,6 +262,14 @@ rightLeg()
 leftArm()
 rightArm()
 youDied()
+letter1()
+letter2()
+letter3()
+letter4()
+letter5()
+letter6()
+letter7()
+letter8()
 
 print(t.position())
 print(lsWord)
