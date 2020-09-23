@@ -135,6 +135,15 @@ def rightArm():
     t.fd(50)
     t.penup()
 
+def youDied():
+    t.penup()
+    t.setx(-200)
+    t.sety(200)
+    t.pendown()
+    t.down()
+    t.color('red')
+    t.write('Loser', font=("Arial", 48, "normal"))
+
 dashes()
 gallows()
 head()
@@ -143,6 +152,7 @@ leftLeg()
 rightLeg()
 leftArm()
 rightArm()
+youDied()
 
 print(t.position())
 print(lsWord)
