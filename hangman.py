@@ -23,6 +23,7 @@ against the computer instead of only 2-player mode. When the game starts, the us
 import tkinter as tk
 import turtle as t
 global lsWord, word, strikes
+import time as time
 
 strikes = 0
 #draw dashes for every letter in word
@@ -131,9 +132,10 @@ def youDied():
     t.pendown()
     t.down()
     t.color('red')
-    t.write('Loser', font=("Arial", 48, "normal"))
+    t.write('Player 2 is the loser', font=("Arial", 48, "normal"))
 
 def letter0():
+    t.color('black')
     t.penup()
     t.setx(-350)
     t.sety(-300)
@@ -144,6 +146,7 @@ def letter0():
     t.color('white')
 
 def letter1():
+    t.color('black')
     t.penup()
     t.setx(-270)
     t.sety(-300)
@@ -154,6 +157,7 @@ def letter1():
     t.color('white')
 
 def letter2():
+    t.color('black')
     t.penup()
     t.setx(-190)
     t.sety(-300)
@@ -164,6 +168,7 @@ def letter2():
     t.color('white')
 
 def letter3():
+    t.color('black')
     t.penup()
     t.setx(-110)
     t.sety(-300)
@@ -174,6 +179,7 @@ def letter3():
     t.color('white')
 
 def letter4():
+    t.color('black')
     t.penup()
     t.setx(-30)
     t.sety(-300)
@@ -184,6 +190,7 @@ def letter4():
     t.color('white')
 
 def letter5():
+    t.color('black')
     t.penup()
     t.setx(50)
     t.sety(-300)
@@ -194,6 +201,7 @@ def letter5():
     t.color('white')
 
 def letter6():
+    t.color('black')
     t.penup()
     t.setx(130)
     t.sety(-300)
@@ -204,6 +212,7 @@ def letter6():
     t.color('white')
 
 def letter7():
+    t.color('black')
     t.penup()
     t.setx(210)
     t.sety(-300)
@@ -212,6 +221,25 @@ def letter7():
     t.color('blue')
     t.write(guess, font=("Arial", 48, "normal"))
     t.color('white')
+
+def strikez():
+    if strikes == 1:
+        head()
+    elif strikes == 2:
+        body()
+    elif strikes == 3:
+        leftLeg()
+    elif strikes == 4:
+        rightLeg()
+    elif strikes == 5:
+        leftArm()
+    elif strikes == 6:
+        rightArm()
+        youDied()
+        time.sleep(5)
+        exit()
+
+
 
 function_dict = {'letter0':letter0, 'letter1':letter1, 'letter2':letter2, 'letter3':letter3, 'letter4':letter4, 'letter5':letter5, 
                 'letter6':letter6, 'letter7':letter7 }
@@ -242,11 +270,19 @@ while(strikes < 6):
         if len(guess) > 1 or len(guess) < 1:
             print('Only enter 1 letter.')
         else:
-            global guess2
             indices = [i for i, x in enumerate(lsWord) if x == guess]
-            for i in indices:
-                letterPosition = str('letter' + str(i))
-                function_dict[letterPosition]()
+            if guess in lsWord:
+                print('Got it! ' + guess + ' is in there. Keep going! \n')
+                for i in indices:
+                    letterPosition = str('letter' + str(i))
+                    function_dict[letterPosition]()
+                    lsWord.remove(guess)
+            else:
+                print('\nMissed that one bud. Try again. \n')
+                strikes += 1
+                strikez()
+                time.sleep(1)
+    
 
     elif " " in guess:
         print('Please only use 1 letter.')
