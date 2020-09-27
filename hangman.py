@@ -63,14 +63,17 @@ def gallows():
 
 #draw head after 1st miss
 def head():
+        t.color('black')
         t.penup()
         t.setx(50)
         t.sety(50)
         t.dot(50)
         t.penup()
+        t.color('white')
 
 #draw body after 2nd miss
 def body():
+        t.color('black')
         t.penup()
         t.setx(50)
         t.sety(50)
@@ -79,9 +82,11 @@ def body():
         t.pensize(5)
         t.forward(125)
         t.penup()
+        t.color('white')
 
 #draw left leg after 3rd miss
 def leftLeg():
+    t.color('black')
     t.penup()
     t.setx(50)
     t.sety(-75)
@@ -90,9 +95,11 @@ def leftLeg():
     t.rt(30)
     t.fd(50)
     t.penup()
+    t.color('white')
 
 #draw right leg after 4th miss
 def rightLeg():
+    t.color('black')
     t.penup()
     t.setx(50)
     t.sety(-75)
@@ -101,9 +108,11 @@ def rightLeg():
     t.lt(60)
     t.fd(50)
     t.penup()
+    t.color('white')
 
 #draw left arm after 5th miss
 def leftArm():
+    t.color('black')
     t.penup()
     t.setx(50)
     t.sety(-25)
@@ -112,9 +121,11 @@ def leftArm():
     t.rt(150)    
     t.fd(50)
     t.penup()
+    t.color('white')
 
 #draw right arm after 6th miss
 def rightArm():
+    t.color('black')
     t.penup()
     t.setx(50)
     t.sety(-25)
@@ -134,6 +145,18 @@ def youDied():
     t.color('red')
     t.write('Player 2 is the loser', font=("Arial", 48, "normal"))
 
+def youWon():
+    t.penup()
+    t.setx(-200)
+    t.sety(200)
+    t.pendown()
+    t.down()
+    t.color('red')
+    t.write('Player 2 is the winner!', font=("Arial", 48, "normal"))
+    time.sleep(5)
+    exit()
+
+#position of letters 0-8
 def letter0():
     t.color('black')
     t.penup()
@@ -222,6 +245,7 @@ def letter7():
     t.write(guess, font=("Arial", 48, "normal"))
     t.color('white')
 
+#counter for strikes
 def strikez():
     if strikes == 1:
         head()
@@ -255,6 +279,7 @@ while(True):
             lsWord = []
             for x in word:
                 lsWord.append(x)
+                winList = lsWord.copy()
             break
     elif " " in word:
         print('Please only use one word.')
@@ -276,7 +301,10 @@ while(strikes < 6):
                 for i in indices:
                     letterPosition = str('letter' + str(i))
                     function_dict[letterPosition]()
-                    lsWord.remove(guess)
+                    winList.remove(guess)
+                    if len(winList) == 0:
+                        youWon()
+                        
             else:
                 print('\nMissed that one bud. Try again. \n')
                 strikes += 1
