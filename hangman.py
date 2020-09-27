@@ -133,6 +133,88 @@ def youDied():
     t.color('red')
     t.write('Loser', font=("Arial", 48, "normal"))
 
+def letter0():
+    t.penup()
+    t.setx(-350)
+    t.sety(-300)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(guess, font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter1():
+    t.penup()
+    t.setx(-270)
+    t.sety(-300)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(guess, font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter2():
+    t.penup()
+    t.setx(-190)
+    t.sety(-300)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(guess, font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter3():
+    t.penup()
+    t.setx(-110)
+    t.sety(-300)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(guess, font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter4():
+    t.penup()
+    t.setx(-30)
+    t.sety(-300)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(guess, font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter5():
+    t.penup()
+    t.setx(50)
+    t.sety(-300)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(guess, font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter6():
+    t.penup()
+    t.setx(130)
+    t.sety(-300)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(guess, font=("Arial", 48, "normal"))
+    t.color('white')
+
+def letter7():
+    t.penup()
+    t.setx(210)
+    t.sety(-300)
+    t.pendown()
+    t.down()
+    t.color('blue')
+    t.write(guess, font=("Arial", 48, "normal"))
+    t.color('white')
+
+function_dict = {'letter0':letter0, 'letter1':letter1, 'letter2':letter2, 'letter3':letter3, 'letter4':letter4, 'letter5':letter5, 
+                'letter6':letter6, 'letter7':letter7 }
 
 #Allow player 1 to pick a word and then check for spaces and numbers.Save word as list - lsWord
 while(True):
@@ -163,7 +245,8 @@ while(strikes < 6):
             global guess2
             indices = [i for i, x in enumerate(lsWord) if x == guess]
             for i in indices:
-                print(i)
+                letterPosition = str('letter' + str(i))
+                function_dict[letterPosition]()
 
     elif " " in guess:
         print('Please only use 1 letter.')
@@ -177,7 +260,7 @@ while(strikes < 6):
 
 
 func = input('>')  #raw_input on python2.x
-function_dict[func]()
+
 
 
 
