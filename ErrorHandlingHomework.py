@@ -9,22 +9,30 @@ add try/except/finally cases to it so that it can handle the errors more gracefu
 input1 = input('Please enter whole numbers.')
 input2 = input('Please enter only letters.')
 
-def func1(input1,input2):
+x = 0
+y = 0
 
+def func1(input1,input2):
     try:
         print(input1.isnumeric())
     except:
-        print('\nThat was not a number ')
+        print('That was not a number ')
     finally:
         print('Good job')
 
     try:
         print(input2.isalpha())
     except:
-        print('\nThat was not a letter')
+        print('That was not a letter')
     finally:
         print('see ya')
 
+list1 = ["3",345,"hey", "what?", "wd-40",555.78,"not what I was thinking, more like 4.3", 99, 101.1, ",.';=-",True]
+list2 = ["7",38,"word", "Yeah.", "10-4 good buddy",556404016184904615,"yeah, more like 40", -59, 12, "[]\}{]}}]",False]
 
-
-func1(input1, input2)
+for i in range(10):
+    func1(list1[x],list2[y])
+    print(list1[x])
+    print(list2[y], "\n")
+    x += 1
+    y += 1
