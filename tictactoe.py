@@ -35,6 +35,11 @@ while(True):
     print("Players turn: ", player)
     moveRow = int(input("Please enter the row."))
     moveColumn = int(input("Please enter the column."))
+    try:
+        isnum(moveRow)
+        
+    except:
+
     if player == 1:
         # make move for player 1
         if currentfield[moveColumn][moveRow] == " ":
