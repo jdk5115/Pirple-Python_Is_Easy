@@ -65,7 +65,7 @@ from itertools import groupby
 
 
 
-global deck, x, y, suit
+global deck, x, y, suit, highSuit
 def createDeck():
     global deck, x, y, suit
     deck = []
@@ -92,6 +92,13 @@ createDeck()
 print(deck)
 print(len(deck))
 
+playerHand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
+dealerHand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
+discardPile = str(deck.pop())
+
+print(dealerHand)
+print(playerHand)
+
 class Player:
     def __init__(self, hand = [], points = 4):
         self.hand = hand
@@ -108,34 +115,85 @@ class Player:
         return finalStatus
     
     def setScore(self):
-        global suit, suitScore
+        # Tallies the number of points per suit
+        global suitScore #, suitCount
         self.score = 0
+
         faceCardDict = {"A":11,"K":10,"Q":10,"J":10,"10":10,"9":9,"8":8,"7":7,
                         "6":6,"5":5,"4":4,"3":3,"2":2}
+        suitScore = { "Hearts":0, "Diamonds":0, "Spades":0, "Clubs":0 }
+        # suitCount = { "Hearts":0, "Diamonds":0, "Spades":0, "Clubs":0 }
 
-        suitScore = {}
+        print(self.hand)
+
         for card in self.hand:
-            suitScore = {"Hearts":0,"Diamonds":0,"Spades":0,"Clubs":0,}
             if "Hearts" in card:
-                suitScore[0] += faceCardDict[card.split(" ")[0]]
-                print(suitScore)
+                suitScore["Hearts"] += faceCardDict[card.split(" ")[0]]
+                # suitCount["Hearts"] += 1
+
             elif "Diamonds" in card:
-                suitScore[1] += faceCardDict[card.split(" ")[0]]
-                print(suitScore)
+                suitScore["Diamonds"] += faceCardDict[card.split(" ")[0]]
+                # suitCount["Diamonds"] += 1
+
             elif "Spades" in card:
-                suitScore[2] += faceCardDict[card.split(" ")[0]]
-                print(suitScore)
+                suitScore["Spades"] += faceCardDict[card.split(" ")[0]]
+                # suitCount["Spades"] += 1
+
             elif "Clubs" in card:
-                suitScore[3] += faceCardDict[card.split(" ")[0]]
-                print(suitScore)
+                suitScore["Clubs"] += faceCardDict[card.split(" ")[0]]
+                # suitCount["Clubs"] += 1
 
-            self.score = max(suitScore,key=suitScore.get)
+            highSuit = max(suitScore, key=suitScore.get)
+            # highSuit = max(suitcount, key=suitScore.get)
+
+            self.score = suitScore[highSuit] # highest total for a single suit
+            # self.count = suitCount[highCount]
+
         return self.score
+    
+    #rank the suits in a player's hand
+    #def rankSuit():
 
 
-playerHand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
-dealerHand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
+    # def dealerCompare(self):
+    #     global highSuit
+    #     self.compare = False
+    #     self.hand.append(discardPile)
+    #     self.score = 0
+    #     faceCardDict = {"A":11,"K":10,"Q":10,"J":10,"10":10,"9":9,"8":8,"7":7,
+    #                     "6":6,"5":5,"4":4,"3":3,"2":2}
+    #     suitScore = {}
+    #     print(self.hand)
+    #     suitScore = { "Hearts":0, "Diamonds":0, "Spades":0, "Clubs":0 }
+
+    #     for card in self.hand:
+    #         global highSuit
+    #         if "Hearts" in card:
+    #             suitScore["Hearts"] += faceCardDict[card.split(" ")[0]]
+                
+    #         elif "Diamonds" in card:
+    #             suitScore["Diamonds"] += faceCardDict[card.split(" ")[0]]
+                
+    #         elif "Spades" in card:
+    #             suitScore["Spades"] += faceCardDict[card.split(" ")[0]]
+                
+    #         elif "Clubs" in card:
+    #             suitScore["Clubs"] += faceCardDict[card.split(" ")[0]]
+                
+    #         highSuit = max(suitScore, key=suitScore.get)
+    #         lowSuit = min(suitScore, key=suitScore.get)
+
+
+    #         self.compareHigh = suitScore[highSuit] # highest total for a single suit
+    #         self.compareLow = suitScore[lowSuit] # lowest total for a single suit
+    #     return self.compareHigh, self.compareLow
+
+
+
 
 player1 = Player(playerHand)
+print(player1.score)
 
-print(player1)
+# print(deck)
+# print(len(deck))
+
