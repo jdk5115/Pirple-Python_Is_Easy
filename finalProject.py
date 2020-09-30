@@ -92,6 +92,7 @@ class Player:
     def __init__(self, hand = [], points = 4):
         self.hand = hand
         self.points = points
+        self.score = self.setScore()
 
     def __str__(self): #allows us to call print(Player)
         currentHand = "" #self.hand = ["A", "10"] -> "A 10"
@@ -101,43 +102,20 @@ class Player:
         finalStatus = currentHand + "score: " + str(self.score)
         # A 10 score: 21
         return finalStatus
-
-    def draw(self):
-        self.money += self.bet
-        self.bet = 0
     
     def setScore(self):
         self.score = 0
         faceCardDict = {"A":11,"K":10,"Q":10,"J":10,"10":10,"9":9,"8":8,"7":7,
                         "6":6,"5":5,"4":4,"3":3,"2":2}
 
-        aceCounter = 0
         for card in self.hand:
-            self.score += faceCardDict[card]
-            if card == "A":
-                aceCounter += 1
-            if self.score > 21 and aceCounter != 0:
-                self.score -= 10
-                aceCounter -= 1
+            self.score += faceCardDict[card.split(" ")[0]]
         return self.score
 
-    def win(self, result):
-        if result == True: 
-            if self.score == 21 and len(self.hand) == 2:
-                self.money += int(2.5*self.bet)
 
-            else:
-                self.money += 2*self.bet
+playerHand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
+dealerHand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
 
-            self.bet = 0
-        else:
-            self.bet = 0
+player1 = Player(playerHand)
 
-    def printHouse(self, House):
-        for card in range(len(House.hand)):
-            if card == 0:
-                print("X", end=" ")
-            elif card == len(House.hand)-1:
-                print(House.hand[card])
-            else:
-                print(House.hand[card], end=" ")
+print(player1)
