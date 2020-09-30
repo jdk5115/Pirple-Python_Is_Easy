@@ -61,9 +61,13 @@ The last player standing wins the game.
 
 from random import shuffle
 
-global deck, x, y
+from itertools import groupby
+
+
+
+global deck, x, y, suit
 def createDeck():
-    global deck, x, y
+    global deck, x, y, suit
     deck = []
     faceValues = ["A","K","Q","J"]
     suit = [" Hearts"," Spades"," Diamonds"," Clubs"]
@@ -104,12 +108,28 @@ class Player:
         return finalStatus
     
     def setScore(self):
+        global suit, suitScore
         self.score = 0
         faceCardDict = {"A":11,"K":10,"Q":10,"J":10,"10":10,"9":9,"8":8,"7":7,
                         "6":6,"5":5,"4":4,"3":3,"2":2}
 
+        suitScore = {}
         for card in self.hand:
-            self.score += faceCardDict[card.split(" ")[0]]
+            suitScore = {"Hearts":0,"Diamonds":0,"Spades":0,"Clubs":0,}
+            if "Hearts" in card:
+                suitScore[0] += faceCardDict[card.split(" ")[0]]
+                print(suitScore)
+            elif "Diamonds" in card:
+                suitScore[1] += faceCardDict[card.split(" ")[0]]
+                print(suitScore)
+            elif "Spades" in card:
+                suitScore[2] += faceCardDict[card.split(" ")[0]]
+                print(suitScore)
+            elif "Clubs" in card:
+                suitScore[3] += faceCardDict[card.split(" ")[0]]
+                print(suitScore)
+
+            self.score = max(suitScore,key=suitScore.get)
         return self.score
 
 
