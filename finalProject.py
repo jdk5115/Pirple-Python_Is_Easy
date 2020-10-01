@@ -149,7 +149,12 @@ class Player:
             self.score = suitScore[highSuit] # highest total for a single suit
             # self.count = suitCount[highCount]
 
-        return self.score
+        hearts = suitScore["Hearts"]
+        diamonds = suitScore["Diamonds"]
+        spades = suitScore["Spades"]
+        clubs = suitScore["Clubs"]
+
+        return self.score, hearts, spades, diamonds, clubs
     
     #rank the suits in a player's hand
     #def rankSuit():
