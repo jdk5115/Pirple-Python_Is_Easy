@@ -65,9 +65,9 @@ from itertools import groupby
 
 
 
-global deck, x, y, suit, highSuit
+global deck, x, y, suit, highSuit, hearts, spades, clubs, diamonds
 def createDeck():
-    global deck, x, y, suit
+    global deck, x, y, suit, hearts, spades, diamonds, clubs
     deck = []
     faceValues = ["A","K","Q","J"]
     suit = [" Hearts"," Spades"," Diamonds"," Clubs"]
@@ -116,45 +116,43 @@ class Player:
     
     def setScore(self):
         # Tallies the number of points per suit
-        global suitScore #, suitCount
+        global suitScore, hearts, clubs, diamonds, spades
         self.score = 0
 
         faceCardDict = {"A":11,"K":10,"Q":10,"J":10,"10":10,"9":9,"8":8,"7":7,
                         "6":6,"5":5,"4":4,"3":3,"2":2}
         suitScore = { "Hearts":0, "Diamonds":0, "Spades":0, "Clubs":0 }
-        # suitCount = { "Hearts":0, "Diamonds":0, "Spades":0, "Clubs":0 }
 
         print(self.hand)
 
         for card in self.hand:
             if "Hearts" in card:
                 suitScore["Hearts"] += faceCardDict[card.split(" ")[0]]
-                # suitCount["Hearts"] += 1
 
             elif "Diamonds" in card:
                 suitScore["Diamonds"] += faceCardDict[card.split(" ")[0]]
-                # suitCount["Diamonds"] += 1
 
             elif "Spades" in card:
                 suitScore["Spades"] += faceCardDict[card.split(" ")[0]]
-                # suitCount["Spades"] += 1
 
             elif "Clubs" in card:
                 suitScore["Clubs"] += faceCardDict[card.split(" ")[0]]
-                # suitCount["Clubs"] += 1
 
             highSuit = max(suitScore, key=suitScore.get)
-            # highSuit = max(suitcount, key=suitScore.get)
 
             self.score = suitScore[highSuit] # highest total for a single suit
-            # self.count = suitCount[highCount]
 
-        hearts = suitScore["Hearts"]
-        diamonds = suitScore["Diamonds"]
-        spades = suitScore["Spades"]
-        clubs = suitScore["Clubs"]
+        hearts = int(suitScore["Hearts"])
+        diamonds = int(suitScore["Diamonds"])
+        spades = int(suitScore["Spades"])
+        clubs = int(suitScore["Clubs"])
+        suitList = [hearts, diamonds, spades, clubs]
 
-        return self.score, hearts, spades, diamonds, clubs
+        for i in suitList:
+            
+            
+
+        return self.score, suitList, min_val
     
     #rank the suits in a player's hand
     #def rankSuit():
@@ -194,9 +192,13 @@ class Player:
     #     return self.compareHigh, self.compareLow
 
 
-
-
 player1 = Player(playerHand)
+# print(player1.hearts)
+# print(player1.diamonds)
+# print(player1.clubs)
+# print(player1.spades)
+
+
 print(player1.score)
 
 # print(deck)
