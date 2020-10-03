@@ -60,8 +60,10 @@ The last player standing wins the game.
 '''
 
 from random import shuffle
-
 from itertools import groupby
+import numpy as np
+
+
 
 
 
@@ -118,6 +120,10 @@ class Player:
         # Tallies the number of points per suit
         global suitScore, hearts, clubs, diamonds, spades
         self.score = 0
+        heartsList = []
+        diamondsList = []
+        clubsList = []
+        spadesList = []
 
         faceCardDict = {"A":11,"K":10,"Q":10,"J":10,"10":10,"9":9,"8":8,"7":7,
                         "6":6,"5":5,"4":4,"3":3,"2":2}
@@ -128,16 +134,17 @@ class Player:
         for card in self.hand:
             if "Hearts" in card:
                 suitScore["Hearts"] += faceCardDict[card.split(" ")[0]]
+                heartsList.append(card)
 
             elif "Diamonds" in card:
                 suitScore["Diamonds"] += faceCardDict[card.split(" ")[0]]
-
+                diamondsList.append(card)
             elif "Spades" in card:
                 suitScore["Spades"] += faceCardDict[card.split(" ")[0]]
-
+                spadesList.append(card)
             elif "Clubs" in card:
                 suitScore["Clubs"] += faceCardDict[card.split(" ")[0]]
-
+                clubsList.append(card)
             highSuit = max(suitScore, key=suitScore.get)
 
             self.score = suitScore[highSuit] # highest total for a single suit
@@ -146,13 +153,11 @@ class Player:
         diamonds = int(suitScore["Diamonds"])
         spades = int(suitScore["Spades"])
         clubs = int(suitScore["Clubs"])
-        suitList = [hearts, diamonds, spades, clubs]
-
-        for i in suitList:
-            
+        suitList = [hearts, diamonds, spades, clubs]    
+        minVal = np.nonzero(suitList)       
             
 
-        return self.score, suitList, min_val
+        return self.score, suitList,  heartsList, diamondsList, spadesList,  clubsList, minVal, highSuit
     
     #rank the suits in a player's hand
     #def rankSuit():
