@@ -42,11 +42,11 @@ Aces are worth 11 points, face cards are worth 10 points and numbered cards are 
 equal to or as close to 31 as possible.
 
 Set Up
-The dealer shuffles the deck and passes out three cards to each player. The remaining deck forms the stock and the dealer then flips one card over to form a 
+The deck is shuffled and 3 cards are dealt to each player. The remaining deck forms the stock and then a card is flipped over to form a 
 discard pile. 
 
 How to Play
-The player to the left of the dealer begins gameplay. When it is their turn, players choose to either pick a card from the stock or from the discard pile 
+Player 1 begins gameplay. When it is their turn, players choose to either pick a card from the stock or from the discard pile 
 and then they must discard one of their cards, all in an attempt to get a hand as close or equal to 31.
 
 Only cards of the same suit count as points. For example, if a player has an Aces of Spades, an 8 of Spades, and a King of Hearts, the player’s hand is 
@@ -63,13 +63,9 @@ from random import shuffle
 from itertools import groupby
 import numpy as np
 
-
-
-
-
-global deck, x, y, suit, highSuit, hearts, spades, clubs, diamonds
+global deck, x, y, suit, highSuit
 def createDeck():
-    global deck, x, y, suit, hearts, spades, diamonds, clubs
+    global deck, x, y, suit
     deck = []
     faceValues = ["A","K","Q","J"]
     suit = [" Hearts"," Spades"," Diamonds"," Clubs"]
@@ -90,16 +86,12 @@ def createDeck():
 
     shuffle(deck)
     return deck
+
+#Create and shuffle deck and deal first hand.
 createDeck()
-print(deck)
-print(len(deck))
-
-playerHand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
-dealerHand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
+player1Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
+player2Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
 discardPile = str(deck.pop())
-
-print(dealerHand)
-print(playerHand)
 
 class Player:
     def __init__(self, hand = [], points = 4):
@@ -113,99 +105,58 @@ class Player:
             currentHand += str(card) + " "
 
         finalStatus = currentHand + "score: " + str(self.score)
-        # A 10 score: 21
         return finalStatus
     
     def setScore(self):
         # Tallies the number of points per suit
-        global suitScore, hearts, clubs, diamonds, spades
         self.score = 0
-        heartsList = []
-        diamondsList = []
-        clubsList = []
-        spadesList = []
 
         faceCardDict = {"A":11,"K":10,"Q":10,"J":10,"10":10,"9":9,"8":8,"7":7,
                         "6":6,"5":5,"4":4,"3":3,"2":2}
         suitScore = { "Hearts":0, "Diamonds":0, "Spades":0, "Clubs":0 }
 
-        print(self.hand)
-
         for card in self.hand:
             if "Hearts" in card:
                 suitScore["Hearts"] += faceCardDict[card.split(" ")[0]]
-                heartsList.append(card)
 
             elif "Diamonds" in card:
                 suitScore["Diamonds"] += faceCardDict[card.split(" ")[0]]
-                diamondsList.append(card)
+
             elif "Spades" in card:
                 suitScore["Spades"] += faceCardDict[card.split(" ")[0]]
-                spadesList.append(card)
+
             elif "Clubs" in card:
                 suitScore["Clubs"] += faceCardDict[card.split(" ")[0]]
-                clubsList.append(card)
+
             highSuit = max(suitScore, key=suitScore.get)
+            self.score = suitScore[highSuit] # highest total for a single suit = player's score
 
-            self.score = suitScore[highSuit] # highest total for a single suit
-
-        hearts = int(suitScore["Hearts"])
-        diamonds = int(suitScore["Diamonds"])
-        spades = int(suitScore["Spades"])
-        clubs = int(suitScore["Clubs"])
-        suitList = [hearts, diamonds, spades, clubs]    
-        minVal = np.nonzero(suitList)       
-            
-
-        return self.score, suitList,  heartsList, diamondsList, spadesList,  clubsList, minVal, highSuit
+        return self.score #, suitList,  heartsList, diamondsList, spadesList,  clubsList, highSuit #minVal
     
-    #rank the suits in a player's hand
-    #def rankSuit():
+    def pointLoss(self):
+        self.points -= 1
+        return self.points
+
+    def newTurn(self):
+        print("The card on the discard pile is " + discardPile + ".")
+        playerTurn = input("Would you like to pick a card off the deck or off the discard pile? (Type Deck or Discard) ")
+
+player1 = Player(player1Hand)
+player2 = Player(player2Hand)
 
 
-    # def dealerCompare(self):
-    #     global highSuit
-    #     self.compare = False
-    #     self.hand.append(discardPile)
-    #     self.score = 0
-    #     faceCardDict = {"A":11,"K":10,"Q":10,"J":10,"10":10,"9":9,"8":8,"7":7,
-    #                     "6":6,"5":5,"4":4,"3":3,"2":2}
-    #     suitScore = {}
-    #     print(self.hand)
-    #     suitScore = { "Hearts":0, "Diamonds":0, "Spades":0, "Clubs":0 }
+while(True):
+    if player1.score == 0:
+        print("Player 2 wins! Great game everyone! ")
+        exit()
+    elif player2.score == 0:
+        print("Player 1 wins! Great game everyone! ")
+        exit()
+    else:
 
-    #     for card in self.hand:
-    #         global highSuit
-    #         if "Hearts" in card:
-    #             suitScore["Hearts"] += faceCardDict[card.split(" ")[0]]
-                
-    #         elif "Diamonds" in card:
-    #             suitScore["Diamonds"] += faceCardDict[card.split(" ")[0]]
-                
-    #         elif "Spades" in card:
-    #             suitScore["Spades"] += faceCardDict[card.split(" ")[0]]
-                
-    #         elif "Clubs" in card:
-    #             suitScore["Clubs"] += faceCardDict[card.split(" ")[0]]
-                
-    #         highSuit = max(suitScore, key=suitScore.get)
-    #         lowSuit = min(suitScore, key=suitScore.get)
-
-
-    #         self.compareHigh = suitScore[highSuit] # highest total for a single suit
-    #         self.compareLow = suitScore[lowSuit] # lowest total for a single suit
-    #     return self.compareHigh, self.compareLow
-
-
-player1 = Player(playerHand)
-# print(player1.hearts)
-# print(player1.diamonds)
-# print(player1.clubs)
-# print(player1.spades)
 
 
 print(player1.score)
+print(player2.score)
 
-# print(deck)
-# print(len(deck))
 
