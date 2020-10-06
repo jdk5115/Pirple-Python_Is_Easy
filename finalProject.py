@@ -63,7 +63,7 @@ from random import shuffle
 from itertools import groupby
 import numpy as np
 
-global deck, x, y, suit, highSuit
+global deck, x, y, suit, highSuit, discardPile, player, player1, player2
 def createDeck():
     global deck, x, y, suit
     deck = []
@@ -93,6 +93,8 @@ player1Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
 player2Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
 discardPile = str(deck.pop())
 
+
+
 class Player:
     def __init__(self, hand = [], points = 4):
         self.hand = hand
@@ -106,7 +108,18 @@ class Player:
 
         finalStatus = currentHand + "score: " + str(self.score)
         return finalStatus
-    
+
+    def playerSwitch(self):
+        global player, player1, player2
+        if player == player1:
+            player = player2
+            player2.newTurn()
+        elif player == player2:
+            player = player1
+            player1.newTurn()
+        
+        return player
+
     def setScore(self):
         # Tallies the number of points per suit
         self.score = 0
@@ -131,31 +144,58 @@ class Player:
             highSuit = max(suitScore, key=suitScore.get)
             self.score = suitScore[highSuit] # highest total for a single suit = player's score
 
-        return self.score #, suitList,  heartsList, diamondsList, spadesList,  clubsList, highSuit #minVal
+        return self.score 
     
     def pointLoss(self):
         self.points -= 1
         return self.points
 
     def newTurn(self):
-        print("The card on the discard pile is " + discardPile + ".")
-        playerTurn = input("Would you like to pick a card off the deck or off the discard pile? (Type Deck or Discard) ")
+        global discardPile, player, player1, player2
 
+        player = self.playerSwitch()
+        print("Your current hand is " + str(player.hand) + " \nYour current score is " + str(player.score))
+        print("The card on the discard pile is the " + str(discardPile) + ".")
+        playerChoice = input("\nWould you like to pick a card off the deck or off the discard pile? (Type Deck or Discard) ")
+        while playerChoice == "Deck" or playerChoice == "Discard":
+            if playerChoice == "Deck":
+                player.hand.append(str(deck.pop()))
+                print("The card from the deck has been added to your hand.\n" + str(player.hand))
+                while (True):
+                    discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                    if discard in self.hand:
+                        player.hand.remove(discard)
+                        discardPile = discard
+                        self.setScore()
+                        print("\nYour new hand is: " + str(self.hand))
+                        print("Your new score is " + str(self.score))
+                        return False
+                    else:
+                        print("\nPlease re-enter the card again. You made a mistake. ")
+            elif playerChoice == "Discard":
+                self.hand.append(str(discardPile))
+            else:
+                print("\nPlease enter either Deck or Discard.")
+        return self.hand
+
+#Create 2 players and assign the starting turn
 player1 = Player(player1Hand)
-player2 = Player(player2Hand)
+player2 = Player(player2Hand)  
+player = player1
 
-
-while(True):
-    if player1.score == 0:
+while (True):
+    if player1.points == 0:
         print("Player 2 wins! Great game everyone! ")
         exit()
-    elif player2.score == 0:
+    elif player2.points == 0:
         print("Player 1 wins! Great game everyone! ")
         exit()
-    else:
-
-
-
+    elif player == player1:
+        player1.newTurn()
+        player1.playerSwitch()
+    elif player == player2:
+        player2.newTurn()
+        player2.playerSwitch()
 print(player1.score)
 print(player2.score)
 
