@@ -63,7 +63,7 @@ from random import shuffle
 from itertools import groupby
 import numpy as np
 
-global deck, x, y, suit, highSuit, discardPile, player, player1, player2
+global deck, x, y, suit, highSuit, discardPile, player, player1, player2, stringPlayer
 def createDeck():
     global deck, x, y, suit
     deck = []
@@ -157,17 +157,20 @@ class Player:
         self.points -= 1
         return self.points
 
+    def knock(self):
+
+
     def newTurn(self):
-        global discardPile, player, player1, player2
+        global discardPile, player, player1, player2, stringPlayer
 
         print("\nIt is player " + str(stringPlayer) + "'s turn.")
         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
-        playerChoice = input("\nWould you like to pick a card off the deck or off the discard pile? (Type Deck or Discard) ")
+        playerChoice = input("Would you like to pick a card off the deck or the discard pile or do you want to knock? (Type Deck, Discard or Knock) ")
         while playerChoice == "Deck" or playerChoice == "Discard":
             if playerChoice == "Deck":
                 self.hand.append(str(deck.pop()))
-                print("The card from the deck has been added to your hand.\n" + str(self.hand))
+                print("\nThe card from the deck has been added to your hand.\n" + str(self.hand))
                 while (True):
                     discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                     if discard in self.hand:
@@ -188,7 +191,7 @@ class Player:
                         print("\nPlease re-enter the card again. You made a mistake. ")
             elif playerChoice == "Discard":
                 self.hand.append(str(discardPile))
-                print("The card from the discard pile has been added to your hand.\n" + str(self.hand))
+                print("\nThe card from the discard pile has been added to your hand.\n" + str(self.hand))
                 while (True):
                     discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                     if discard in self.hand:
@@ -197,12 +200,21 @@ class Player:
                         self.setScore()
                         print("\nYour new hand is: " + str(self.hand))
                         print("Your new score is " + str(self.score))
-                        if player == player1:
-                            player = player2
-                            player2.newTurn()  
-                        if player == player2:
-                            player = player1
-                            player1.newTurn() 
+                        knock = input("Do you want to knock? (Y/N)")
+                        while knock == "Y" or knock =="N":
+                            if knock == "N":
+                                if player == player1:
+                                    player = player2
+                                    stringPlayer = "2"
+                                    player2.newTurn()  
+                                if player == player2:
+                                    player = player1
+                                    stringPlayer = "1"
+                                    player1.newTurn() 
+                            elif knock == "Y":
+                            
+                            else:
+                                print("Please enter either Y or N.")
                     else:
                         print("\nPlease re-enter the card again. You made a mistake. ")
             else:
