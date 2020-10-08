@@ -117,9 +117,11 @@ class Player:
             print("Player 1 wins! Great game everyone! ")
             exit()
         elif player == player1:
-            player1.newTurn()
-        elif player == player2:
+            player = player2
             player2.newTurn()
+        elif player == player2:
+            player = player1
+            player1.newTurn()
 
 
         
@@ -158,10 +160,9 @@ class Player:
     def newTurn(self):
         global discardPile, player, player1, player2
 
-        player = self.playerSwitch()
-        print("It is " + str(player) + "'s turn.")
+        print("\nIt is player " + str(stringPlayer) + "'s turn.")
         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
-        print("The card on the discard pile is the " + str(discardPile) + ".")
+        print("\nThe card on the discard pile is the " + str(discardPile) + ".")
         playerChoice = input("\nWould you like to pick a card off the deck or off the discard pile? (Type Deck or Discard) ")
         while playerChoice == "Deck" or playerChoice == "Discard":
             if playerChoice == "Deck":
@@ -174,11 +175,36 @@ class Player:
                         discardPile = discard
                         self.setScore()
                         print("\nYour new hand is: " + str(self.hand))
-                        print("Your new score is " + str(self.score))                        
+                        print("Your new score is " + str(self.score))
+                        if player == player1:
+                            player = player2
+                            stringPlayer = "2"
+                            player2.newTurn()  
+                        if player == player2:
+                            player = player1
+                            stringPlayer = "1"
+                            player1.newTurn() 
                     else:
                         print("\nPlease re-enter the card again. You made a mistake. ")
             elif playerChoice == "Discard":
                 self.hand.append(str(discardPile))
+                print("The card from the discard pile has been added to your hand.\n" + str(self.hand))
+                while (True):
+                    discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                    if discard in self.hand:
+                        self.hand.remove(discard)
+                        discardPile = discard
+                        self.setScore()
+                        print("\nYour new hand is: " + str(self.hand))
+                        print("Your new score is " + str(self.score))
+                        if player == player1:
+                            player = player2
+                            player2.newTurn()  
+                        if player == player2:
+                            player = player1
+                            player1.newTurn() 
+                    else:
+                        print("\nPlease re-enter the card again. You made a mistake. ")
             else:
                 print("\nPlease enter either Deck or Discard.")
         return self.hand
@@ -187,8 +213,8 @@ class Player:
 player1 = Player(player1Hand)
 player2 = Player(player2Hand)  
 player = player1
-
-player.playerSwitch()
+stringPlayer = "1"
+player1.newTurn()
 
 print(player1.score)
 print(player2.score)
