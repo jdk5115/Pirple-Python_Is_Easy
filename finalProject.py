@@ -110,12 +110,17 @@ class Player:
         return finalStatus
 
     def playerSwitch(self):
-        global player, player1, player2
-        if player == player1:
-            player = player2
-
+        if player1.points == 0:
+            print("Player 2 wins! Great game everyone! ")
+            exit()
+        elif player2.points == 0:
+            print("Player 1 wins! Great game everyone! ")
+            exit()
+        elif player == player1:
+            player1.newTurn()
         elif player == player2:
-            player = player1
+            player2.newTurn()
+
 
         
         return player
@@ -169,8 +174,7 @@ class Player:
                         discardPile = discard
                         self.setScore()
                         print("\nYour new hand is: " + str(self.hand))
-                        print("Your new score is " + str(self.score))
-                        return False
+                        print("Your new score is " + str(self.score))                        
                     else:
                         print("\nPlease re-enter the card again. You made a mistake. ")
             elif playerChoice == "Discard":
@@ -184,19 +188,8 @@ player1 = Player(player1Hand)
 player2 = Player(player2Hand)  
 player = player1
 
-while (True):
-    if player1.points == 0:
-        print("Player 2 wins! Great game everyone! ")
-        exit()
-    elif player2.points == 0:
-        print("Player 1 wins! Great game everyone! ")
-        exit()
-    elif player == player1:
-        player1.newTurn()
-        player1.playerSwitch()
-    elif player == player2:
-        player2.newTurn()
-        player2.playerSwitch()
+player.playerSwitch()
+
 print(player1.score)
 print(player2.score)
 
