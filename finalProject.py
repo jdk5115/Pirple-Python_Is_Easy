@@ -94,7 +94,27 @@ player2Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
 discardPile = str(deck.pop())
 
 
+def hely():
+    print("Card Game Rules \nThirty One, is a casino type card game for 2 or more people and is played with a standard 52 playing card deck. In Thirty One,", 
+            "\nAces are worth 11 points, face cards are worth 10 points and numbered cards are worth their pip value. The objective of the game is to have a hand", 
+            "\nequal to or as close to 31 as possible.",
 
+            "\nThe deck is shuffled and 3 cards are dealt to each player. The remaining deck forms the stock and then a card is flipped over to form a",
+            "\ndiscard pile.",
+
+            "\nHow to Play",
+            "\nPlayer 1 begins gameplay. When it is their turn, players choose to either pick a card from the stock or from the discard pile ",
+            "\nand then they must discard one of their cards, all in an attempt to get a hand as close or equal to 31.",
+
+            "\nOnly cards of the same suit count as points. For example, if a player has an Aces of Spades, an 8 of Spades, and a King of Hearts, the player’s hand is ",
+            "\nworth 19.",
+
+            "\nWhen a player is comfortable with their hand, they knock on the table. All other players then have one more draw to try and improve their hand. ",
+            "\nThe player with the lowest hand loses for that round. Each player starts with 4 points and whoever loses all their points first, loses.",
+            "\nIf the player who knocks has the lowest hand, they give up 2 points rather than 1. When a player loses 4 times, they are out of the game. ",
+            "\nThe last player standing wins the game.  ")
+
+hely()
 class Player:
     def __init__(self, hand = [], points = 4):
         self.hand = hand
@@ -122,9 +142,6 @@ class Player:
         elif player == player2:
             player = player1
             player1.newTurn()
-
-
-        
         return player
 
     def setScore(self):
@@ -138,13 +155,10 @@ class Player:
         for card in self.hand:
             if "Hearts" in card:
                 suitScore["Hearts"] += faceCardDict[card.split(" ")[0]]
-
             elif "Diamonds" in card:
                 suitScore["Diamonds"] += faceCardDict[card.split(" ")[0]]
-
             elif "Spades" in card:
                 suitScore["Spades"] += faceCardDict[card.split(" ")[0]]
-
             elif "Clubs" in card:
                 suitScore["Clubs"] += faceCardDict[card.split(" ")[0]]
 
@@ -222,6 +236,8 @@ class Player:
                                                     print("Player 2 is the winner! Thanks for playing!")
                                                     exit()
                                             print("Player 1 has " + str(player1.score) + " points and player 2 has " + str(player2.score) + " points.")
+                                            print("Let's start a new round. Player 1 always goes first.")
+                                            player1.newTurn()
                                         else:
                                             print("\nPlease re-enter the card again. You made a mistake. ")
                                 if player == player2:
@@ -262,6 +278,8 @@ class Player:
                                                     print("Player 2 is the winner! Thanks for playing!")
                                                     exit()
                                             print("Player 1 has " + str(player1.score) + " points and player 2 has " + str(player2.score) + " points.")
+                                            print("Let's start a new round. Player 1 always goes first.")
+                                            player1.newTurn()
                                         else:
                                             print("\nPlease re-enter the card again. You made a mistake. ")
                             else:
@@ -325,6 +343,8 @@ class Player:
                                                     print("Player 2 is the winner! Thanks for playing!")
                                                     exit()
                                             print("Player 1 has " + str(player1.points) + " points and player 2 has " + str(player2.points) + " points.")
+                                            print("Let's start a new round. Player 1 always goes first.")
+                                            player1.newTurn()
                                         else:
                                             print("\nPlease re-enter the card again. You made a mistake. ")
                                 if player == player2:
@@ -361,6 +381,8 @@ class Player:
                                                     print("Player 2 is the winner! Thanks for playing!")
                                                     exit()
                                             print("Player 1 has " + str(player1.points) + " points and player 2 has " + str(player2.points) + " points.")
+                                            print("Let's start a new round. Player 1 always goes first.")
+                                            player1.newTurn()
                                         else:
                                             print("\nPlease re-enter the card again. You made a mistake. ")
                             else:
@@ -378,7 +400,6 @@ player = player1
 stringPlayer = "1"
 player1.newTurn()
 
-print(player1.score)
-print(player2.score)
+
 
 
