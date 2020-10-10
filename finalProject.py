@@ -63,9 +63,9 @@ from random import shuffle
 from itertools import groupby
 import numpy as np
 
-global deck, x, y, suit, highSuit, discardPile, player, player1, player2, stringPlayer
+global deck, x, y, suit, highSuit, discardPile, player, player1, player2, stringPlayer, yes, playerChoice, knock
 def createDeck():
-    global deck, x, y, suit
+    global deck, x, y, suit, yes
     deck = []
     faceValues = ["A","K","Q","J"]
     suit = [" Hearts"," Spades"," Diamonds"," Clubs"]
@@ -94,27 +94,11 @@ player2Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
 discardPile = str(deck.pop())
 
 
-def hely():
-    print("Card Game Rules \nThirty One, is a casino type card game for 2 or more people and is played with a standard 52 playing card deck. In Thirty One,", 
-            "\nAces are worth 11 points, face cards are worth 10 points and numbered cards are worth their pip value. The objective of the game is to have a hand", 
-            "\nequal to or as close to 31 as possible.",
 
-            "\nThe deck is shuffled and 3 cards are dealt to each player. The remaining deck forms the stock and then a card is flipped over to form a",
-            "\ndiscard pile.",
+ 
 
-            "\nHow to Play",
-            "\nPlayer 1 begins gameplay. When it is their turn, players choose to either pick a card from the stock or from the discard pile ",
-            "\nand then they must discard one of their cards, all in an attempt to get a hand as close or equal to 31.",
 
-            "\nOnly cards of the same suit count as points. For example, if a player has an Aces of Spades, an 8 of Spades, and a King of Hearts, the player’s hand is ",
-            "\nworth 19.",
 
-            "\nWhen a player is comfortable with their hand, they knock on the table. All other players then have one more draw to try and improve their hand. ",
-            "\nThe player with the lowest hand loses for that round. Each player starts with 4 points and whoever loses all their points first, loses.",
-            "\nIf the player who knocks has the lowest hand, they give up 2 points rather than 1. When a player loses 4 times, they are out of the game. ",
-            "\nThe last player standing wins the game.  ")
-
-hely()
 class Player:
     def __init__(self, hand = [], points = 4):
         self.hand = hand
@@ -144,6 +128,34 @@ class Player:
             player1.newTurn()
         return player
 
+    def hely(self):
+        global playerChoice, knock
+        resume = ""
+        playerChoice = ""
+        knock = ""
+        while resume != "--resume":
+            resume = input("\n\nCard Game Rules \nThirty One, is a casino type card game for 2 or more people and is played with a standard 52 playing card deck. In Thirty One," + 
+                "\nAces are worth 11 points, face cards are worth 10 points and numbered cards are worth their pip value. The objective of the game is to have a hand" + 
+                "\nequal to or as close to 31 as possible." +
+
+                "\nThe deck is shuffled and 3 cards are dealt to each player. The remaining deck forms the stock and then a card is flipped over to form a" +
+                "\ndiscard pile." +
+
+                "\nHow to Play" +
+                "\nPlayer 1 begins gameplay. When it is their turn, players choose to either pick a card from the stock or from the discard pile "+
+                "\nand then they must discard one of their cards, all in an attempt to get a hand as close or equal to 31."+
+
+                "\nOnly cards of the same suit count as points. For example, if a player has an Aces of Spades, an 8 of Spades, and a King of Hearts, the player’s hand is "+
+                "\nworth 19."+
+
+                "\nWhen a player is comfortable with their hand, they knock on the table. All other players then have one more draw to try and improve their hand. "+
+                "\nThe player with the lowest hand loses for that round. Each player starts with 4 points and whoever loses all their points first, loses."+
+                "\nIf the player who knocks has the lowest hand, they give up 2 points rather than 1. When a player loses 4 times, they are out of the game. "+
+                "\nThe last player standing wins the game.  "+
+                "\n\n Type --resume to go back to the game.")
+        
+
+
     def setScore(self):
         # Tallies the number of points per suit
         self.score = 0
@@ -172,18 +184,28 @@ class Player:
         return self.points
 
     def newTurn(self):
-        global discardPile, player, player1, player2, stringPlayer
+        global discardPile, player, player1, player2, stringPlayer, playerChoice, knock
 
         print("\nIt is player " + str(stringPlayer) + "'s turn.")
         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
         playerChoice = input("Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")
-        while playerChoice == "Deck" or playerChoice == "Discard":
+        while playerChoice == "Deck" or playerChoice == "Discard" or playerChoice == "--help":
+            if playerChoice == "--help":
+                self.hely()
+                print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                playerChoice = input("Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")
             if playerChoice == "Deck":
                 self.hand.append(str(deck.pop()))
                 print("\nThe card from the deck has been added to your hand.\n" + str(self.hand))
                 while (True):
                     discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                    if discard == "--help":
+                        self.hely()
+                        print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                        print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                        discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                     if discard in self.hand:
                         self.hand.remove(discard)
                         discardPile = discard
@@ -191,7 +213,11 @@ class Player:
                         print("\nYour new hand is: " + str(self.hand))
                         print("Your new score is " + str(self.score))
                         knock = input("Do you want to knock? (Y/N)")
-                        while knock == "Y" or knock =="N":
+                        while knock == "Y" or knock =="N" or knock == "--help":
+                            if knock == "--help":
+                                self.hely()
+                                print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                knock = input("Do you want to knock? (Y/N)")
                             if knock == "N":
                                 if player == player1:
                                     player = player2
@@ -209,6 +235,11 @@ class Player:
                                     print("Your current hand is " + str(player2.hand) + " \nYour current score is " + str(player2.score))
                                     print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                     playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
+                                    if playerChoice == "--help":
+                                        self.hely()
+                                        print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                        print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                        playerChoice = input("Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")
                                     if playerChoice ==  "Deck":
                                         player2.hand.append(str(deck.pop()))
                                     elif playerChoice == "Discard":
@@ -217,6 +248,11 @@ class Player:
                                         print("\nYour new hand is: " + str(player2.hand))
                                         print("Your new score is " + str(player2.score))
                                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                                        if discard == "--help":
+                                            self.hely()
+                                            print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                            print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                            discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                                         if discard in player2.hand:
                                             player2.hand.remove(discard)
                                             discardPile = discard
@@ -247,6 +283,11 @@ class Player:
                                     print("Your current hand is " + str(player1.hand) + " \nYour current score is " + str(player1.score))
                                     print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                     playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
+                                    if playerChoice == "--help":
+                                        self.hely()
+                                        print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                        print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                        playerChoice = input("Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")
                                     if playerChoice ==  "Deck":
                                         player1.hand.append(str(deck.pop()))
                                     elif playerChoice == "Discard":
@@ -255,6 +296,11 @@ class Player:
                                         print("\nYour new hand is: " + str(player1.hand))
                                         print("Your new score is " + str(player1.score))
                                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                                        if discard == "--help":
+                                            self.hely()
+                                            print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                            print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                            discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                                         if discard in player1.hand:
                                             player1.hand.remove(discard)
                                             discardPile = discard
@@ -291,6 +337,11 @@ class Player:
                 print("\nThe card from the discard pile has been added to your hand.\n" + str(self.hand))
                 while (True):
                     discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                    if discard == "--help":
+                        self.hely()
+                        print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                        print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                        discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                     if discard in self.hand:
                         self.hand.remove(discard)
                         discardPile = discard
@@ -298,7 +349,11 @@ class Player:
                         print("\nYour new hand is: " + str(self.hand))
                         print("Your new score is " + str(self.score))
                         knock = input("Do you want to knock? (Y/N)")
-                        while knock == "Y" or knock =="N":
+                        while knock == "Y" or knock =="N" or knock == "--help":
+                            if knock == "--help":
+                                self.hely()
+                                print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                knock = input("Do you want to knock? (Y/N)")
                             if knock == "N":
                                 if player == player1:
                                     player = player2
@@ -316,6 +371,11 @@ class Player:
                                     print("Your current hand is " + str(player2.hand) + " \nYour current score is " + str(player2.score))
                                     print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                     playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
+                                    if playerChoice == "--help":
+                                        self.hely()
+                                        print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                        print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                        playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ") 
                                     if playerChoice ==  "Deck":
                                         player2.hand.append(str(deck.pop()))
                                     elif playerChoice == "Discard":
@@ -324,6 +384,11 @@ class Player:
                                         print("\nYour new hand is: " + str(player2.hand))
                                         print("Your new score is " + str(player2.score))
                                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                                        if discard == "--help":
+                                            self.hely()
+                                            print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                            print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                            discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                                         if discard in player2.hand:
                                             player2.hand.remove(discard)
                                             discardPile = discard
@@ -354,6 +419,11 @@ class Player:
                                     print("Your current hand is " + str(player1.hand) + " \nYour current score is " + str(player1.score))
                                     print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                     playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
+                                    if playerChoice == "--help":
+                                        self.hely()
+                                        print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                        print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                        playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ") 
                                     if playerChoice ==  "Deck":
                                         player1.hand.append(str(deck.pop()))
                                     elif playerChoice == "Discard":
@@ -362,6 +432,11 @@ class Player:
                                         print("\nYour new hand is: " + str(player1.hand))
                                         print("Your new score is " + str(player1.score))
                                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                                        if discard == "--help":
+                                            self.hely()
+                                            print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
+                                            print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                            discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                                         if discard in player1.hand:
                                             player1.hand.remove(discard)
                                             discardPile = discard
