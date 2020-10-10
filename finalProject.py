@@ -157,16 +157,13 @@ class Player:
         self.points -= 1
         return self.points
 
-    def knock(self):
-
-
     def newTurn(self):
         global discardPile, player, player1, player2, stringPlayer
 
         print("\nIt is player " + str(stringPlayer) + "'s turn.")
         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
-        playerChoice = input("Would you like to pick a card off the deck or the discard pile or do you want to knock? (Type Deck, Discard or Knock) ")
+        playerChoice = input("Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")
         while playerChoice == "Deck" or playerChoice == "Discard":
             if playerChoice == "Deck":
                 self.hand.append(str(deck.pop()))
@@ -179,14 +176,96 @@ class Player:
                         self.setScore()
                         print("\nYour new hand is: " + str(self.hand))
                         print("Your new score is " + str(self.score))
-                        if player == player1:
-                            player = player2
-                            stringPlayer = "2"
-                            player2.newTurn()  
-                        if player == player2:
-                            player = player1
-                            stringPlayer = "1"
-                            player1.newTurn() 
+                        knock = input("Do you want to knock? (Y/N)")
+                        while knock == "Y" or knock =="N":
+                            if knock == "N":
+                                if player == player1:
+                                    player = player2
+                                    stringPlayer = "2"
+                                    player2.newTurn()  
+                                if player == player2:
+                                    player = player1
+                                    stringPlayer = "1"
+                                    player1.newTurn() 
+                            elif knock == "Y":
+                                if player == player1:
+                                    player = player2
+                                    stringPlayer = "Player 2"
+                                    print("\nIt is player " + str(stringPlayer) + "'s turn.")
+                                    print("Your current hand is " + str(player2.hand) + " \nYour current score is " + str(player2.score))
+                                    print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                    playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
+                                    if playerChoice ==  "Deck":
+                                        player2.hand.append(str(deck.pop()))
+                                    elif playerChoice == "Discard":
+                                        player2.hand.append(str(discardPile))
+                                    while (True):
+                                        print("\nYour new hand is: " + str(player2.hand))
+                                        print("Your new score is " + str(player2.score))
+                                        discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                                        if discard in player2.hand:
+                                            player2.hand.remove(discard)
+                                            discardPile = discard
+                                            player2.setScore()
+                                            print("\nYour new hand is: " + str(player2.hand))
+                                            print("Your new score is " + str(player2.score))
+                                            if player1.score > player2.score:
+                                                print("Player 1 is the winner of that round.")
+                                                player2.pointLoss()
+                                                if player2.points == 0:
+                                                    print("Player 1 is the winner! Thanks for playing!")
+                                                    exit()
+                                            elif player2.score > player1.score:
+                                                print("Player 2 is the winner of that round.")
+                                                player1.pointLoss()
+                                                if player1.points == 0:
+                                                    print("Player 2 is the winner! Thanks for playing!")
+                                                    exit()
+                                            print("Player 1 has " + str(player1.score) + " points and player 2 has " + str(player2.score) + " points.")
+                                        else:
+                                            print("\nPlease re-enter the card again. You made a mistake. ")
+                                if player == player2:
+                                    player = player1
+                                    stringPlayer = "Player 1"
+                                    print("\nIt is player " + str(stringPlayer) + "'s turn.")
+                                    print("Your current hand is " + str(player1.hand) + " \nYour current score is " + str(player1.score))
+                                    print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                    playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
+                                    if playerChoice ==  "Deck":
+                                        player1.hand.append(str(deck.pop()))
+                                    elif playerChoice == "Discard":
+                                        player1.hand.append(str(discardPile))
+                                    while (True):
+                                        print("\nYour new hand is: " + str(player1.hand))
+                                        print("Your new score is " + str(player1.score))
+                                        discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                                        if discard in player1.hand:
+                                            player1.hand.remove(discard)
+                                            discardPile = discard
+                                            player1.setScore()
+                                            print("\nYour new hand is: " + str(player1.hand))
+                                            print("Your new score is " + str(player1.score))
+                                            if player1.score > player2.score:
+                                                print("Player 1 is the winner of that round.")
+                                                player2.pointLoss()
+                                                if player1.points == 31:
+                                                    player2.pointLoss
+                                                if player2.points == 0:
+                                                    print("Player 1 is the winner! Thanks for playing!")
+                                                    exit()
+                                            elif player2.score > player1.score:
+                                                print("Player 2 is the winner of that round.")
+                                                player1.pointLoss()
+                                                if player2.points == 31:
+                                                    player1.pointLoss
+                                                if player1.points == 0:
+                                                    print("Player 2 is the winner! Thanks for playing!")
+                                                    exit()
+                                            print("Player 1 has " + str(player1.score) + " points and player 2 has " + str(player2.score) + " points.")
+                                        else:
+                                            print("\nPlease re-enter the card again. You made a mistake. ")
+                            else:
+                                print("Please enter either Y or N.")
                     else:
                         print("\nPlease re-enter the card again. You made a mistake. ")
             elif playerChoice == "Discard":
@@ -212,7 +291,78 @@ class Player:
                                     stringPlayer = "1"
                                     player1.newTurn() 
                             elif knock == "Y":
-                            
+                                if player == player1:
+                                    player = player2
+                                    stringPlayer = "Player 2"
+                                    print("\nIt is player " + str(stringPlayer) + "'s turn.")
+                                    print("Your current hand is " + str(player2.hand) + " \nYour current score is " + str(player2.score))
+                                    print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                    playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
+                                    if playerChoice ==  "Deck":
+                                        player2.hand.append(str(deck.pop()))
+                                    elif playerChoice == "Discard":
+                                        player2.hand.append(str(discardPile))
+                                    while (True):
+                                        print("\nYour new hand is: " + str(player2.hand))
+                                        print("Your new score is " + str(player2.score))
+                                        discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                                        if discard in player2.hand:
+                                            player2.hand.remove(discard)
+                                            discardPile = discard
+                                            player2.setScore()
+                                            print("\nYour new hand is: " + str(player2.hand))
+                                            print("Your new score is " + str(player2.score))
+                                            if player1.score > player2.score:
+                                                print("Player 1 is the winner of that round.")
+                                                player2.pointLoss()
+                                                if player2.points == 0:
+                                                    print("Player 1 is the winner! Thanks for playing!")
+                                                    exit()
+                                            elif player2.score > player1.score:
+                                                print("Player 2 is the winner of that round.")
+                                                player1.pointLoss()
+                                                if player1.points == 0:
+                                                    print("Player 2 is the winner! Thanks for playing!")
+                                                    exit()
+                                            print("Player 1 has " + str(player1.points) + " points and player 2 has " + str(player2.points) + " points.")
+                                        else:
+                                            print("\nPlease re-enter the card again. You made a mistake. ")
+                                if player == player2:
+                                    player = player1
+                                    stringPlayer = "Player 1"
+                                    print("\nIt is player " + str(stringPlayer) + "'s turn.")
+                                    print("Your current hand is " + str(player1.hand) + " \nYour current score is " + str(player1.score))
+                                    print("\nThe card on the discard pile is the " + str(discardPile) + ".")
+                                    playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
+                                    if playerChoice ==  "Deck":
+                                        player1.hand.append(str(deck.pop()))
+                                    elif playerChoice == "Discard":
+                                        player1.hand.append(str(discardPile))
+                                    while (True):
+                                        print("\nYour new hand is: " + str(player1.hand))
+                                        print("Your new score is " + str(player1.score))
+                                        discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
+                                        if discard in player1.hand:
+                                            player1.hand.remove(discard)
+                                            discardPile = discard
+                                            player1.setScore()
+                                            print("\nYour new hand is: " + str(player1.hand))
+                                            print("Your new score is " + str(player1.score))
+                                            if player1.score > player2.score:
+                                                print("Player 1 is the winner of that round.")
+                                                player2.pointLoss()
+                                                if player2.points == 0:
+                                                    print("Player 1 is the winner! Thanks for playing!")
+                                                    exit()
+                                            elif player2.score > player1.score:
+                                                print("Player 2 is the winner of that round.")
+                                                player1.pointLoss()
+                                                if player1.points == 0:
+                                                    print("Player 2 is the winner! Thanks for playing!")
+                                                    exit()
+                                            print("Player 1 has " + str(player1.points) + " points and player 2 has " + str(player2.points) + " points.")
+                                        else:
+                                            print("\nPlease re-enter the card again. You made a mistake. ")
                             else:
                                 print("Please enter either Y or N.")
                     else:
