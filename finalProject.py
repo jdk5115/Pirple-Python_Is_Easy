@@ -63,7 +63,7 @@ from random import shuffle
 from itertools import groupby
 import numpy as np
 
-global deck, x, y, suit, highSuit, discardPile, player, player1, player2, stringPlayer, yes, playerChoice, knock
+global deck, x, y, suit, highSuit, discardPile, player1Hand, player2Hand, player, player1, player2, stringPlayer, yes, playerChoice, knock
 def createDeck():
     global deck, x, y, suit, yes
     deck = []
@@ -88,19 +88,16 @@ def createDeck():
     return deck
 
 #Create and shuffle deck and deal first hand.
-createDeck()
-player1Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
-player2Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
-discardPile = str(deck.pop())
+def newGame():
+    global player1Hand, player2Hand, discardPile
+    createDeck()
+    player1Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
+    player2Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
+    discardPile = str(deck.pop())
 
-
-
- 
-
-
-
+newGame()
 class Player:
-    def __init__(self, hand = [], points = 4):
+    def __init__(self, hand = [], name = "", points = 4):
         self.hand = hand
         self.points = points
         self.score = self.setScore()
@@ -186,7 +183,7 @@ class Player:
     def newTurn(self):
         global discardPile, player, player1, player2, stringPlayer, playerChoice, knock
 
-        print("\nIt is player " + str(stringPlayer) + "'s turn.")
+        print("\nIt is player " + str(self.name) + "'s turn.")
         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
         playerChoice = input("Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")
@@ -203,6 +200,7 @@ class Player:
                     discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                     if discard == "--help":
                         self.hely()
+                        self.setScore()
                         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
@@ -216,6 +214,7 @@ class Player:
                         while knock == "Y" or knock =="N" or knock == "--help":
                             if knock == "--help":
                                 self.hely()
+                                self.setScore()
                                 print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                 knock = input("Do you want to knock? (Y/N)")
                             if knock == "N":
@@ -231,12 +230,14 @@ class Player:
                                 if player == player1:
                                     player = player2
                                     stringPlayer = "Player 2"
-                                    print("\nIt is player " + str(stringPlayer) + "'s turn.")
+                                    self.setScore()
+                                    print("\nIt is player " + str(player2.name) + "'s turn.")
                                     print("Your current hand is " + str(player2.hand) + " \nYour current score is " + str(player2.score))
                                     print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                     playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
                                     if playerChoice == "--help":
                                         self.hely()
+                                        self.setScore()
                                         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                         playerChoice = input("Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")
@@ -250,6 +251,7 @@ class Player:
                                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                                         if discard == "--help":
                                             self.hely()
+                                            self.setScore()
                                             print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                             print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                             discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
@@ -271,20 +273,22 @@ class Player:
                                                 if player1.points == 0:
                                                     print("Player 2 is the winner! Thanks for playing!")
                                                     exit()
-                                            print("Player 1 has " + str(player1.score) + " points and player 2 has " + str(player2.score) + " points.")
+                                            print(str(player1.name) +" has " + str(player1.points) + " points and " + str(player2.name) +" has " + str(player2.points) + " points.")
                                             print("Let's start a new round. Player 1 always goes first.")
+                                            newGame()
                                             player1.newTurn()
                                         else:
                                             print("\nPlease re-enter the card again. You made a mistake. ")
                                 if player == player2:
                                     player = player1
                                     stringPlayer = "Player 1"
-                                    print("\nIt is player " + str(stringPlayer) + "'s turn.")
+                                    print("\nIt is player " + str(player1.name) + "'s turn.")
                                     print("Your current hand is " + str(player1.hand) + " \nYour current score is " + str(player1.score))
                                     print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                     playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
                                     if playerChoice == "--help":
                                         self.hely()
+                                        self.setScore()
                                         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                         playerChoice = input("Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")
@@ -298,6 +302,7 @@ class Player:
                                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                                         if discard == "--help":
                                             self.hely()
+                                            self.setScore()
                                             print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                             print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                             discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
@@ -323,8 +328,9 @@ class Player:
                                                 if player1.points == 0:
                                                     print("Player 2 is the winner! Thanks for playing!")
                                                     exit()
-                                            print("Player 1 has " + str(player1.score) + " points and player 2 has " + str(player2.score) + " points.")
+                                            print(str(player1.name) +" has " + str(player1.points) + " points and " + str(player2.name) +" has " + str(player2.points) + " points.")
                                             print("Let's start a new round. Player 1 always goes first.")
+                                            newGame()
                                             player1.newTurn()
                                         else:
                                             print("\nPlease re-enter the card again. You made a mistake. ")
@@ -339,6 +345,7 @@ class Player:
                     discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                     if discard == "--help":
                         self.hely()
+                        self.setScore()
                         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
@@ -352,6 +359,7 @@ class Player:
                         while knock == "Y" or knock =="N" or knock == "--help":
                             if knock == "--help":
                                 self.hely()
+                                self.setScore()
                                 print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                 knock = input("Do you want to knock? (Y/N)")
                             if knock == "N":
@@ -367,12 +375,13 @@ class Player:
                                 if player == player1:
                                     player = player2
                                     stringPlayer = "Player 2"
-                                    print("\nIt is player " + str(stringPlayer) + "'s turn.")
+                                    print("\nIt is player " + str(player2.name) + "'s turn.")
                                     print("Your current hand is " + str(player2.hand) + " \nYour current score is " + str(player2.score))
                                     print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                     playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
                                     if playerChoice == "--help":
                                         self.hely()
+                                        self.setScore()
                                         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                         playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ") 
@@ -386,6 +395,7 @@ class Player:
                                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                                         if discard == "--help":
                                             self.hely()
+                                            self.setScore()
                                             print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                             print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                             discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
@@ -407,20 +417,22 @@ class Player:
                                                 if player1.points == 0:
                                                     print("Player 2 is the winner! Thanks for playing!")
                                                     exit()
-                                            print("Player 1 has " + str(player1.points) + " points and player 2 has " + str(player2.points) + " points.")
+                                            print(str(player1.name) +" has " + str(player1.points) + " points and " + str(player2.name) +" has " + str(player2.points) + " points.")
                                             print("Let's start a new round. Player 1 always goes first.")
+                                            newGame()
                                             player1.newTurn()
                                         else:
                                             print("\nPlease re-enter the card again. You made a mistake. ")
                                 if player == player2:
                                     player = player1
                                     stringPlayer = "Player 1"
-                                    print("\nIt is player " + str(stringPlayer) + "'s turn.")
+                                    print("\nIt is player " + str(player1.name) + "'s turn.")
                                     print("Your current hand is " + str(player1.hand) + " \nYour current score is " + str(player1.score))
                                     print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                     playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ")  
                                     if playerChoice == "--help":
                                         self.hely()
+                                        self.setScore()
                                         print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                         print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                         playerChoice = input("This is your last turn. Would you like to pick a card off the deck or the discard pile? (Type Deck or Discard) ") 
@@ -434,6 +446,7 @@ class Player:
                                         discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
                                         if discard == "--help":
                                             self.hely()
+                                            self.setScore()
                                             print("Your current hand is " + str(self.hand) + " \nYour current score is " + str(self.score))
                                             print("\nThe card on the discard pile is the " + str(discardPile) + ".")
                                             discard = str(input("\nWhich card do you want to discard? Please type it in exactly how it appears on the screen. "))
@@ -455,8 +468,9 @@ class Player:
                                                 if player1.points == 0:
                                                     print("Player 2 is the winner! Thanks for playing!")
                                                     exit()
-                                            print("Player 1 has " + str(player1.points) + " points and player 2 has " + str(player2.points) + " points.")
+                                            print(str(player1.name) +" has " + str(player1.points) + " points and " + str(player2.name) +" has " + str(player2.points) + " points.")
                                             print("Let's start a new round. Player 1 always goes first.")
+                                            newGame()
                                             player1.newTurn()
                                         else:
                                             print("\nPlease re-enter the card again. You made a mistake. ")
@@ -471,6 +485,10 @@ class Player:
 #Create 2 players and assign the starting turn
 player1 = Player(player1Hand)
 player2 = Player(player2Hand)  
+
+player1.name = input("Player 1 enter your name.")
+player2.name = input("Player 2 enter your name.")
+
 player = player1
 stringPlayer = "1"
 player1.newTurn()
