@@ -94,6 +94,7 @@ def newGame():
     player1Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
     player2Hand = [str(deck.pop()), str(deck.pop()), str(deck.pop())]
     discardPile = str(deck.pop())
+    return player1Hand, player2Hand, discardPile
 
 newGame()
 class Player:
@@ -487,7 +488,14 @@ player1 = Player(player1Hand)
 player2 = Player(player2Hand)  
 
 player1.name = input("Player 1 enter your name.")
+if player1.name == "--help":
+    player1.hely()
+    player1.name = input("Player 1 enter your name.")
+
 player2.name = input("Player 2 enter your name.")
+if player2.name == "--help":
+    player2.hely()
+    player2.name = input("Player 2 enter your name.")
 
 player = player1
 stringPlayer = "1"
